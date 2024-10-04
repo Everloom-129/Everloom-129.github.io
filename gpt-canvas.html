@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Wang - Academic Portfolio</title>
+    <link rel="icon" href="resources/UIUC-logo-simple.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        header img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        header h1 {
+            font-weight: 700;
+            margin: 20px 0 10px;
+        }
+        header p {
+            font-weight: 300;
+            color: #666;
+        }
+        .social-icons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .social-icons a {
+            margin-left: 10px;
+            text-decoration: none;
+        }
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        h2 {
+            border-bottom: 2px solid #e6e6e6;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        ul li img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .contact a {
+            color: #0077b5;
+            text-decoration: none;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="resources/me_low_res.jpg" alt="Tony Wang">
+            <h1>👨‍🎓 Jie Wang (王杰) – Tony</h1>
+            <p>📚 M.S. in Electrical Engineering – University of Pennsylvania</p>
+            <div class="social-icons">
+                <a href="https://github.com/Everloom-129" target="_blank">
+                    <img src="resources/github-icon.png" alt="GitHub">
+                </a>
+                <a href="https://x.com/JieWang_ZJUI" target="_blank">
+                    <img src="resources/twitter-icon.png" alt="Twitter">
+                </a>
+            </div>
+        </header>
+
+        <section id="about">
+            <h2>👋 About Me</h2>
+            <p>
+                I'm Jie Wang, currently a Master of Science in Electrical Engineering (MSEE) student at the University of Pennsylvania.
+                I previously completed a double-degree program in Computer Engineering at both the University of Illinois at Urbana-Champaign and Zhejiang University.
+                Growing up in an EE-based family in Shenzhen, I'm passionate about technology, with a particular love for repairing computers and networks. Beyond engineering,
+                I have a strong interest in Philosophy, ☕ coffee culture, and state-of-the-art research in AI and 🤖 robotics.
+            </p>
+        </section>
+
+        <section id="education">
+            <h2>🎓 Education</h2>
+            <ul>
+                <li>
+                    <img src="resources/upenn-logo.png" alt="UPenn">
+                    <div>
+                        <strong>University of Pennsylvania</strong><br>
+                        M.S. in Electrical Engineering &ndash; Sep. 2024 - Present
+                    </div>
+                </li>
+                <li>
+                    <img src="resources/UIUC-logo-simple.png" alt="UIUC">
+                    <div>
+                        <strong>University of Illinois at Urbana-Champaign</strong><br>
+                        B.S. in Computer Engineering (Double-degree) &ndash; Sep. 2020 - May. 2024
+                    </div>
+                </li>
+                <li>
+                    <img src="resources/zju-logo.png" alt="Zhejiang University">
+                    <div>
+                        <strong>Zhejiang University</strong><br>
+                        B.E. in Electronic and Computer Engineering (Double-degree) &ndash; Sep. 2020 - Jun. 2024
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>🛠️ Projects</h2>
+            <ul>
+                <li>
+                    <strong>Line-Tracking Trolley with Ultrasonic Obstacle Avoidance</strong><br>
+                    🚗 Developed as a final project for ECE110-Introduction to Electronics, this trolley used a PWM signal-based circuit and an infrared sensor to autonomously trace a path, sparking my initial interest in autonomous driving.
+                </li>
+                <li>
+                    <strong>Baidu Apollo D-kit Autonomous Car Project</strong><br>
+                    🤖 Collaborated on assembling and testing Baidu's open-source autonomous vehicle. Created a high-precision Lidar map, enabling autonomous navigation in a parking lot. Faced challenges with sensor fusion, particularly radar and Lidar misalignment, which led to valuable insights into sensor integration.
+                </li>
+                <li>
+                    <strong>Wireless Network Analysis Tool for UIUC</strong><br>
+                    🌐 Developed a network analysis tool as part of ECE438-Communication Networks. Worked with the UIUC Network Team to investigate network conditions at the Thomas M. Siebel Center, providing practical experience in V2V communication and network analysis.
+                </li>
+                <li>
+                    <strong>Visionary Co-Driver: LLMs Enhance Driver Risk Perception with ARHUD</strong><br>
+                    🧠 Worked on integrating LLMs into current driving assistance systems. Adapted models to identify potential roadside risks, leading to the submission of a paper to CHI2024. This project involved overcoming challenges in maintaining consistent object identification across video frames using the Bytetrack model for multiple-object tracking.
+                </li>
+                <li>
+                    <strong>Comprehensive Embodied Agent in Minecraft Virtual Environment</strong><br>
+                    🎮 Currently developing an embodied agent in the Minecraft virtual environment as part of the CVNext Lab at ZJU. The project aims to integrate multimodal signal perception, leveraging visual, auditory, and textual data to create a robust AI agent.
+                </li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>📬 Contact</h2>
+            <ul class="contact">
+                <li><a href="mailto:jiew5@illinois.edu">📧 Email: jiew5@illinois.edu</a></li>
+                <li><a href="https://github.com/Everloom-129" target="_blank">💻 GitHub: Everloom-129</a></li>
+                <li><a href="https://x.com/JieWang_ZJUI" target="_blank">🐦 Twitter: @JieWang_ZJUI</a></li>
+            </ul>
+        </section>
+
+        <section id="future">
+            <h2>🚀 Future Passion and Direction</h2>
+            <p>
+                My research interests lie in Vision-Language Models (VLMs) and their applications in robotics, robotics perception, and autonomous driving.
+                I am particularly fascinated by exploring the intersection of large language models, AI prompt engineering, and real-world robotics applications.
+                I hope to continue to merge these fields in ways that create ethical, impactful, and meaningful innovations for society. I'm also keen to collaborate on
+                new and exciting projects related to these fields.
+            </p>
+        </section>
+    </div>
+</body>
+</html>
