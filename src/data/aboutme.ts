@@ -27,7 +27,7 @@ export const aboutMe: AboutMe = {
     
   email: "tonyw3@seas.upenn.edu",
   imageUrl:
-    "resources/me_fries_high.jpg",
+    "/images/me_fries_high.jpg",
   googleScholarUrl: "https://scholar.google.com/",
   githubUsername: "Everloom-129",
   linkedinUsername: "Jie Wang",

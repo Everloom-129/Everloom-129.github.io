@@ -1,10 +1,19 @@
 # Everloom-129.github.io
 Tony Wang's personal webpage
+V1: 05/13/2023
+V2: 08/13/2024
+V3: 02/05/2025
 
-Starting development on 05/13/2023, still making progress!
+Website is being updated!
+
 
 Website preview: https://everloom-129.github.io/
 
-Developed based on this [repository](https://github.com/Violet24K/Violet24K.github.io) and [This repo](https://github.com/JunweiLiang/junweiliang.github.io).
+Developed based on these open source templates:
 
-Thanks for open source the personal webpage
+- [Violet24K's repository](https://github.com/Violet24K/Violet24K.github.io)
+- [Junwei Liang's repository](https://github.com/JunweiLiang/junweiliang.github.io)
+- [Research Website Template](https://github.com/tovacinni/research-website-template)
+
+Thanks to all the authors for open sourcing their work!
+        
