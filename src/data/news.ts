@@ -9,7 +9,7 @@ export const newsData: News[] = [
   {
     date: "July 2024",
     title: "Research at PAL Lab",
-    description: "Started research at Penn Autonomous Learning (PAL) Lab under Prof. Dinesh Jayaraman",
+    description: "Started research at Perception, Action, & Learning (PAL) Lab under Prof. Dinesh Jayaraman",
     link: "https://www.seas.upenn.edu/~dineshj",
   },
   {
@@ -35,12 +35,12 @@ export const newsData: News[] = [
   //   description: "Completed an oral presentation on behalf of our team at ICICT2024",
   //   link: "https://9thinternationalcongressoni.sched.com/artist/jie_wang.26guiec1",
   // },
-  {
-    date: "January 2024",
-    title: "Paper Accepted at ICICT2024",
-    description: "Research paper accepted as Oral at ICICT2024 conference in London",
-    link: "https://icict.co.uk/",
-  },
+  // {
+  //   date: "January 2024",
+  //   title: "Paper Accepted at ICICT2024",
+  //   description: "Paper accepted as Oral at ICICT2024 conference in London",
+  //   link: "https://icict.co.uk/",
+  // },
   // {
   //   date: "January 2024",
   //   title: "Teaching Assistant Position",
