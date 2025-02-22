@@ -33,11 +33,11 @@ export const aboutMe: AboutMe = {
     "/images/me_fries_high.jpg",
   googleScholarUrl: "https://scholar.google.com/",
   githubUsername: "Everloom-129",
-  linkedinUsername: "Jie Wang",
+  linkedinUsername: "jie-wang-8ab93a266",
   twitterUsername: "JieWang_ZJUI",
   blogUrl: "https://everloom-129.github.io/CIS700-Real-World-Robot-Learning/",
   cvUrl: "/files/CV_WangJie_Feb_2025.pdf",
   institutionUrl: "https://www.grasp.upenn.edu",
   altName: "Jie Wang",
-  secretDescription: "I am a big fan of Philosophy and Coffee! I founded <i>PhiloCoffee Club(哲咖社)</i> at international ZJU Campus. Here is the club website: <a href=\"https://philocoffee.github.io/\">philocoffee.github.io</a>",
+  secretDescription: "I am a big fan of Philosophy and Coffee! I founded PhiloCoffee Club(哲咖社) at international ZJU Campus. Here is the club website: philocoffee.github.io",
 };
