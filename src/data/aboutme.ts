@@ -24,9 +24,10 @@ export const aboutMe: AboutMe = {
   // Note that links work in the description
   description: 
     "Hi! I'm a MS Robotics student at the University of Pennsylvania's <a href='https://www.grasp.upenn.edu/'>GRASP Laboratory</a>, " +
-    "where I have been fortunate to work with <a href='https://jasonma2016.github.io/'>Jason Ma</a>, <a href='https://edwardshu.com/'>Edward Hu</a> and <a href='https://www.seas.upenn.edu/~dineshj/'>Dinesh Jayaraman</a>, " +
-    "My research interest includes vision-language model, autonomous driving and <a href='https://www.bls.gov/ors/factsheet/gross-and-fine-manipulation.htm'>fine manipulation</a>. " +
-    "I am devoted to building generalizable agent that can reason and work for fine-grained task like brewing a cup of coffee with espresso machine.",
+    "where I have been fortunate to work with <a href='https://jasonma2016.github.io/'>Jason Ma</a>, <a href='https://edwardshu.com/'>Edward Hu</a> and <a href='https://www.seas.upenn.edu/~dineshj/'>Dinesh Jayaraman</a>. " +
+    "My research interests include vision-language models, autonomous driving and robot learning. " +
+    "I am passionate about developing generalizable agents that can about and execute <a href='https://www.bls.gov/ors/factsheet/gross-and-fine-manipulation.htm'>fine-grained manipulation</a>, " +
+    "such as brewing cup of coffee latte with an espresso machine.",
     
   email: "tonyw3@seas.upenn.edu",
   imageUrl:
