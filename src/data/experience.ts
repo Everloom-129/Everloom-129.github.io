@@ -14,12 +14,7 @@ export const experienceData: Experience[] = [
     title: "Graduate Research Assistant",
     company: "University of Pennsylvania",
     description:
-      "Building VLMs-based Manipulation System via Diffusion Policy for fine-grained tasks: " +
-      "• Reproduced <a href='https://rekep-robot.github.io/'>ReKep</a> on a Mobile Franka Arm Platform with DROID, conducted experiment for ZeroMimic as a baseline\n" +
-      "• Reproduced <a href='https://sphinx-manip.github.io/'>SPHINX</a> on same robot for hybrid salient point control using transformer and diffusion policy\n" +
-      "• Reproduced <a href='https://www.pi.website/research/fast'>π0-FAST-DROID</a> within GRASP Lab, led a full evaluation on 200+ trials, report can be found here\n" +
-      "• Opensource a <a href='https://github.com/Everloom-129/pal_video_tool'>video processing tool</a> for the lab and upgrade the light setup system for Franka Kitchen\n" +
-      "• Opensource <a href='https://github.com/penn-pal-lab/omni_depth'>omni_depth</a>, a RGBD camera prompt depth estimation tool for multiple objects 3D tracking",
+      "Building VLMs-based Manipulation System via Diffusion Policy for fine-grained tasks. Reproduced ReKep, SPHINX and pi0-FAST. ",
     advisor: "PhD Candidate Jason Ma & Prof. Dinesh Jayaraman",
     companyUrl: "https://www.seas.upenn.edu/~dineshj/pal/index.html/",
   },
