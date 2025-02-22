@@ -13,7 +13,7 @@ export const educationData: Education[] = [
     year: "2024—Present",
     institution: "University of Pennsylvania", 
     degree: "M.S.E. in Robotics",
-    advisor: "<a href='https://www.seas.upenn.edu/~dineshj/pal/index.html'>Prof. Dinesh Jayaraman</a>",
+    advisor: "Prof. Dinesh Jayaraman",
   },  
   {
     year: "2020—2024",
