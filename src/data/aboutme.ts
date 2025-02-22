@@ -18,7 +18,7 @@ export interface AboutMe {
 }
 
 export const aboutMe: AboutMe = {
-  name: "Tony",
+  name: "Jie Wang",
   title: "Master Student",
   institution: "University of Pennsylvania",
   // Note that links work in the description
@@ -38,6 +38,6 @@ export const aboutMe: AboutMe = {
   blogUrl: "https://everloom-129.github.io/CIS700-Real-World-Robot-Learning/",
   cvUrl: "/files/CV_WangJie_Feb_2025.pdf",
   institutionUrl: "https://www.grasp.upenn.edu",
-  altName: "Jie Wang",
+  altName: "Tony Wang",
   secretDescription: "I am a big fan of Philosophy and Coffee! I founded PhiloCoffee Club(哲咖社) at international ZJU Campus. Here is the club website: philocoffee.github.io",
 };
