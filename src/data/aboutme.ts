@@ -18,12 +18,15 @@ export interface AboutMe {
 }
 
 export const aboutMe: AboutMe = {
-  name: "Jie Wang",
+  name: "Tony",
   title: "Master Student",
   institution: "University of Pennsylvania",
   // Note that links work in the description
-  description:
-    "I'm Tony, a <a href='https://www.grasp.upenn.edu/'>MS Robotics student</a> working at the intersection of Vision Language Models and Robot Learning. My research focuses on developing long-horizon manipulation systems that can reason and work in complex environments. ",
+  description: 
+    "Hi! I'm a MS Robotics student at the University of Pennsylvania's <a href='https://www.grasp.upenn.edu/'>GRASP Laboratory</a>, " +
+    "where I have been fortunate to work with <a href='https://jasonma2016.github.io/'>Jason Ma</a>, <a href='https://edwardshu.com/'>Edward Hu</a> and <a href='https://www.seas.upenn.edu/~dineshj/'>Dinesh Jayaraman</a>, " +
+    "My research interest includes vision-language model, autonomous driving and <a href='https://www.bls.gov/ors/factsheet/gross-and-fine-manipulation.htm'>fine manipulation</a>. " +
+    "I am devoted to building generalizable agent that can reason and work for fine-grained task like brewing a cup of coffee with espresso machine.",
     
   email: "tonyw3@seas.upenn.edu",
   imageUrl:
@@ -33,7 +36,7 @@ export const aboutMe: AboutMe = {
   linkedinUsername: "Jie Wang",
   twitterUsername: "JieWang_ZJUI",
   blogUrl: "https://everloom-129.github.io/CIS700-Real-World-Robot-Learning/",
-  cvUrl: "https://",
+  cvUrl: "/files/CV_WangJie_Feb_2025.pdf",
   institutionUrl: "https://www.grasp.upenn.edu",
   altName: "Jie Wang",
   secretDescription: "I am a big fan of Philosophy and Coffee! I founded <i>PhiloCoffee Club(哲咖社)</i> at international ZJU Campus. Here is the club website: <a href=\"https://philocoffee.github.io/\">philocoffee.github.io</a>",
