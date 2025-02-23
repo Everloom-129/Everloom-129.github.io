@@ -7,14 +7,14 @@ export interface News {
 
 export const newsData: News[] = [
   {
-    date: "July 2024",
+    date: "Seo 2024",
     title: "Research at PAL Lab",
-    description: "Started research at Perception, Action, & Learning (PAL) Lab under Prof. Dinesh Jayaraman",
+    description: "Hello Pilly! Started RA at PAL Lab working with Jason Ma and Prof. Dinesh Jayaraman",
     link: "https://www.seas.upenn.edu/~dineshj",
   },
   {
     date: "June 2024",
-    title: "Research Internship at IDEA",
+    title: "MLE Internship at IDEA",
     description: "Started internship at IDEA: Computer Vision & Robotics Department",
     link: "https://www.idea.edu.cn/",
   },
@@ -65,7 +65,7 @@ export const newsData: News[] = [
   {
     date: "August 2023",
     title: "PhiloCoffee Club Launch",
-    description: "Launched PhiloCoffee Club as club founding president",
+    description: "Found a club as president, have a sip of espresso together?",
     link: "https://philocoffee.github.io/",
   },
 ];
