@@ -27,14 +27,7 @@ export const experienceData: Experience[] = [
     advisor: "Dr. Xiaoke Jiang & Prof. Lei Zhang",
     companyUrl: "https://www.idea.edu.cn/research/cvr.html",
   },
-  {
-    date: "Oct 2024 - Nov 2024",
-    title: "RL-based High-Speed Drone Racing Project",
-    company: "CIS5190: Applied Machine Learning @ UPenn",
-    companyUrl: "https://www.seas.upenn.edu/~cis5190/fall2024/",
-    description: "Reproduced drone racing simulation with curriculum tracks using OmniDrones on IsaacSim. Achieved 40.7% success rate and 28.6 km/h average speed using PPO-based reward function.",
-    advisor: "Prof. Antonio Loquercio, Prof. Dinesh Jayaraman & Prof. Mingmin Zhao",
-  },
+
   {
     date: "Spring 2024",
     title: "Team Leader & System Architect",

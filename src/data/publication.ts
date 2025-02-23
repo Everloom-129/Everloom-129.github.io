@@ -31,9 +31,18 @@ export const publicationData: Publication[] = [
     conference: "Arkiv",
     title: "Visionary Co-Driver: LLMs Enhance Driver Risk Perception with ARHUD",
     authors: "Xiang Wei, Ziyue Lei, Jie Wang, Qi Zheng, Yingying Huang",
-    paperUrl: "/files/31_结合大规模语言模型的智能汽车安全预警_海报.jpg",
-    tldr: "Using LLMs to analyze autonomous driving road scene, modeling the behavior of pedestrians.",
+    paperUrl: "/files/Visionary-CoDriver-Poster.jpg",
+    tldr: "Using LLMs to analyze autonomous driving road scene, modeling the behavior of pedestrians. Construct a HUD system to evaluate the driver interaction.",
     codeUrl: "https://github.com/Everloom-129/Visionary-CoDriver",
     imageUrl: "/images/chi2024 system design.png"
   },
+  {
+    year: "2022",
+    conference: "Patent",
+    title: "终端机和一体机: A Thin Client and All-in-One Computer Design",
+    authors: "Wang, Xiang, Wang, Jie",
+    paperUrl: "https://patents.google.com/patent/CN216852698U/",
+    tldr: "China Patent No. CN 216852698 U. Issued: June 28, 2022. Shenzhen Weidi Cloud Technology Co., LTD.",
+  },
+
 ];
