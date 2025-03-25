@@ -7,7 +7,13 @@ export interface News {
 
 export const newsData: News[] = [
   {
-    date: "Seo 2024",
+    date: "Mar 2025",
+    title: "ICRA 2025 paper accepted!",
+    description: "ZeroMimic: Distilling Robotic Manipulation Skills from Web Videos is accepted by ICRA 2025!",
+    link: "https://zeromimic.github.io/",
+  },
+  {
+    date: "Sep 2024",
     title: "Research at PAL Lab",
     description: "Hello Pilly! Started RA at PAL Lab working with Jason Ma and Prof. Dinesh Jayaraman",
     link: "https://www.seas.upenn.edu/~dineshj",

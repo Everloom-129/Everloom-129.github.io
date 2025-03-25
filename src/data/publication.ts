@@ -13,6 +13,27 @@ export interface Publication {
 
 export const publicationData: Publication[] = [
   // If you don't want to show publications, just make the array empty.
+
+  {
+    year: "2025",
+    conference: "ICRA",
+    title: "ZeroMimic: Distilling Robotic Manipulation Skills from Web Videos",
+    authors: "Junyao Shi, Zhuolun Zhao, Tianyou Wang, Ian Pedroza, Amy Luo, Jie Wang, Jason Ma, Dinesh Jayaraman",
+    paperUrl: "https://zeromimic.github.io/",
+    codeUrl: "https://github.com/junyaoshi/ZeroMimic",
+    tldr: "Learning robotic manipulation skills from web videos with zero-shot generalization.",
+    imageUrl: "/images/ZeroMimic_concept_v3.png",
+  },
+  {
+    year: "2025",
+    conference: "IEEE Transactions on Intelligent Transportation Systems",
+    title: "Visionary Co-Driver: LLMs Enhance Driver Risk Perception with ARHUD",
+    authors: "Xiang Wei, Ziyue Lei, Jie Wang, Qi Zheng, Yingying Huang",
+    paperUrl: "/files/Visionary-CoDriver-Poster.jpg",
+    tldr: "Using LLMs to analyze autonomous driving road scene, modeling the behavior of pedestrians. Construct a HUD system to evaluate the driver interaction.",
+    codeUrl: "https://github.com/Everloom-129/Visionary-CoDriver",
+    imageUrl: "/images/chi2024 system design.png"
+  },
   {
     year: "2024",
     conference: "ICICT",
@@ -26,16 +47,7 @@ export const publicationData: Publication[] = [
     // if you have an image in public/images, you can use it like this:
     imageUrl: "/images/icict2024.png"
   },
-  {
-    year: "2023",
-    conference: "Arkiv",
-    title: "Visionary Co-Driver: LLMs Enhance Driver Risk Perception with ARHUD",
-    authors: "Xiang Wei, Ziyue Lei, Jie Wang, Qi Zheng, Yingying Huang",
-    paperUrl: "/files/Visionary-CoDriver-Poster.jpg",
-    tldr: "Using LLMs to analyze autonomous driving road scene, modeling the behavior of pedestrians. Construct a HUD system to evaluate the driver interaction.",
-    codeUrl: "https://github.com/Everloom-129/Visionary-CoDriver",
-    imageUrl: "/images/chi2024 system design.png"
-  },
+
   {
     year: "2022",
     conference: "Patent",
