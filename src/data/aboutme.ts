@@ -24,15 +24,16 @@ export const aboutMe: AboutMe = {
   // Note that links work in the description
   description: 
     "Hi! I'm a MS Robotics student at the University of Pennsylvania's <a href='https://www.grasp.upenn.edu/'>GRASP Laboratory</a>, " +
-    "where I have been fortunate to work with <a href='https://jasonma2016.github.io/'>Jason Ma</a>, <a href='https://edwardshu.com/'>Edward Hu</a> and <a href='https://www.seas.upenn.edu/~dineshj/'>Dinesh Jayaraman</a>. " +
+    "where I have been fortunate to work with <a href='https://jasonma2016.github.io/'>Jason Ma</a>, <a href='https://edwardshu.com/'>Edward Hu</a> and <a href='https://www.seas.upenn.edu/~dineshj/'>Dinesh Jayaraman</a>. <br><br>" +
     
-    "I received my B.E. in Electronic and Computer Engineering from ZJU and B.S. in Computer Engineering from UIUC in 2024, advised by <a href='https://scholar.google.com/citations?user=2hB_Q4EAAAAJ&hl=en'>Said Mikki</a>. and <a href='https://person.zju.edu.cn/en/0617496'>Wei Xiang</a>. " +
+    "I received my B.E. in Electronic and Computer Engineering from ZJU and B.S. in Computer Engineering from UIUC in 2024, advised by <a href='https://scholar.google.com/citations?user=2hB_Q4EAAAAJ&hl=en'>Said Mikki</a>. and <a href='https://person.zju.edu.cn/en/0617496'>Wei Xiang</a>. <br><br>" +
     
-    "I also spent time at <a href='https://www.idea.edu.cn/research/cvr.html'>IDEA-CVR</a> as a research intern, advised by <a href='https://shockjiang.github.io/'>Xiaoke Jiang</a> and <a href='https://www.leizhang.org/'>Lei Zhang</a>. " +
+    "I also spent time at <a href='https://www.idea.edu.cn/research/cvr.html'>IDEA-CVR</a> as a research intern, advised by <a href='https://shockjiang.github.io/'>Xiaoke Jiang</a> and <a href='https://www.leizhang.org/'>Lei Zhang</a>. <br><br>" +
     
-    "My research interests include vision-language models, autonomous driving and robot learning. " +
+    "My research interests include vision-language models, autonomous driving and robot learning. <br>" +
     "I am passionate about developing generalizable agents that can about and execute <a href='https://www.bls.gov/ors/factsheet/gross-and-fine-manipulation.htm'>fine-grained manipulation</a>, " +
-    "such as brewing cup of coffee latte with an espresso machine." + 
+    "such as brewing cup of coffee latte with an espresso machine. <br><br>" + 
+    
     "I will spend my summer at <a href='https://www.dyna.co/'>Dyna Robotics</a> as a research intern, welcome to coffee chat!",
     
   email: "tonyw3@seas.upenn.edu",
