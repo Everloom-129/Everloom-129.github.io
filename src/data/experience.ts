@@ -10,6 +10,16 @@ export interface Experience {
 
 export const experienceData: Experience[] = [
   {
+    date: "Summer 2025",
+    title: "Research Intern",
+    company: "Dyna Robotics",
+    companyUrl: "https://www.dyna.co/",
+    description: "Building a multi-modal VLA agent for fine-grained manipulation tasks.",
+    advisor: "Jason Ma",
+  },
+
+
+  {
     date: "Fall 2024 - Present",
     title: "Graduate Research Assistant",
     company: "University of Pennsylvania",
