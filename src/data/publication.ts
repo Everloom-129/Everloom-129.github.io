@@ -26,13 +26,14 @@ export const publicationData: Publication[] = [
   },
   {
     year: "2025",
-    conference: "IEEE Transactions on Intelligent Transportation Systems",
+    conference: "Arxiv",
+    //"IEEE Transactions on Intelligent Transportation Systems",
     title: "Visionary Co-Driver: LLMs Enhance Driver Risk Perception with ARHUD",
-    authors: "Xiang Wei, Ziyue Lei, Jie Wang, Qi Zheng, Yingying Huang",
+    authors: "Xiang Wei, Ziyue Lei, Jie Wang, Qi Zheng, Yingying Huang, Tianyi Zhang, Lingyun Sun",
     paperUrl: "/files/Visionary-CoDriver-Poster.jpg",
     tldr: "Using LLMs to analyze autonomous driving road scene, modeling the behavior of pedestrians. Construct a HUD system to evaluate the driver interaction.",
     codeUrl: "https://github.com/Everloom-129/Visionary-CoDriver",
-    imageUrl: "/images/chi2024 system design.png"
+    imageUrl: "/images/Visionary-CoDriver-Poster.jpg"
   },
   {
     year: "2024",
