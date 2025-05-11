@@ -33,7 +33,7 @@ export const publicationData: Publication[] = [
     paperUrl: "/files/Visionary-CoDriver-Poster.jpg",
     tldr: "Using LLMs to analyze autonomous driving road scene, modeling the behavior of pedestrians. Construct a HUD system to evaluate the driver interaction.",
     codeUrl: "https://github.com/Everloom-129/Visionary-CoDriver",
-    imageUrl: "/images/Visionary-CoDriver-Poster.jpg"
+    imageUrl: "/images/vcd_system_design.png"
   },
   {
     year: "2024",
