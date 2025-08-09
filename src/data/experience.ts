@@ -38,21 +38,21 @@ export const experienceData: Experience[] = [
     companyUrl: "https://www.idea.edu.cn/research/cvr.html",
   },
 
-  {
-    date: "Spring 2024",
-    title: "Team Leader & System Architect",
-    company: "Intelligent Pour-Over Coffee Machine Project",
-    description: "Led development of automated coffee machine with novel pour-over mechanism. Implemented FSM control system using Raspberry Pi 5B with focus on food-grade quality and safety.",
-    advisor: "Prof. Said Mikki",
-    companyUrl: "https://zjui.intl.zju.edu.cn/en",
-  },
-  {
-    date: "Summer 2023",
-    title: "Research Assistant",
-    company: "International Design Institute of ZJU",
-    companyUrl: "http://www.idi.zju.edu.cn/aboutidi",
-    description: "Developed a LLMs-based framework for human-machine co-driving scenario. Submitted paper 'Visionary Co-Driver: LLMs Enhance Driver Risk Perception with ARHUD' as third author.",
-    advisor: "Prof. Wei Xiang",
-  },
+  // {
+  //   date: "Spring 2024",
+  //   title: "Team Leader & System Architect",
+  //   company: "Intelligent Pour-Over Coffee Machine Project",
+  //   description: "Led development of automated coffee machine with novel pour-over mechanism. Implemented FSM control system using Raspberry Pi 5B with focus on food-grade quality and safety.",
+  //   advisor: "Prof. Said Mikki",
+  //   companyUrl: "https://zjui.intl.zju.edu.cn/en",
+  // },
+  // {
+  //   date: "Summer 2023",
+  //   title: "Research Assistant",
+  //   company: "International Design Institute of ZJU",
+  //   companyUrl: "http://www.idi.zju.edu.cn/aboutidi",
+  //   description: "Developed a LLMs-based framework for human-machine co-driving scenario. Submitted paper 'Visionary Co-Driver: LLMs Enhance Driver Risk Perception with ARHUD' as third author.",
+  //   advisor: "Prof. Wei Xiang",
+  // },
 
 ];
