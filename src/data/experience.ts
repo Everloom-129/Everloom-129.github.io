@@ -14,8 +14,8 @@ export const experienceData: Experience[] = [
     title: "Research Intern",
     company: "Dyna Robotics",
     companyUrl: "https://www.dyna.co/",
-    description: "Building a multi-modal VLA agent for fine-grained manipulation tasks.",
-    advisor: "Jason Ma",
+    description: "Building an embodied reasoning VLA for fine-grained manipulation tasks.",
+    advisor: "Dr. Jason Ma",
   },
 
 
@@ -24,8 +24,8 @@ export const experienceData: Experience[] = [
     title: "Graduate Research Assistant",
     company: "University of Pennsylvania",
     description:
-      "Building VLMs-based Manipulation System via Diffusion Policy for fine-grained tasks. Reproduced ReKep, SPHINX and pi0-FAST. ",
-    advisor: "PhD Candidate Jason Ma & Prof. Dinesh Jayaraman",
+      "Building VLMs-based Manipulation System via Diffusion Policy for fine-grained tasks. Reproduced ReKep, SPHINX and pi0. ",
+    advisor: "Dr. Jason Ma & Prof. Dinesh Jayaraman",
     companyUrl: "https://www.seas.upenn.edu/~dineshj/pal/index.html/",
   },
   {
