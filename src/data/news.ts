@@ -7,28 +7,52 @@ export interface News {
 
 export const newsData: News[] = [
   {
-    date: "Mar 2025",
-    title: "ICRA 2025 paper accepted!",
-    description: "ZeroMimic: Distilling Robotic Manipulation Skills from Web Videos is accepted by ICRA 2025!",
-    link: "https://zeromimic.github.io/",
+    date: "August 2025",
+    title: "Our blog on pi0 released, welcome to check how pi0 works in the wild!",
+    description: "Evaluating pi0 in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies",
+    link: "https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/",
+  },
+  // {
+  //   date: "August 2025",
+  //   title: "AAWR gets accepted by NeurIPS 2025!",
+  //   description: "AAWR: Real-World Reinforcement Learning of Interactive Perception Behaviors",
+  //   link: "https://sites.google.com/view/rwrl-ap/home",
+  // },
+  {
+    date: "July 2025",
+    title: "RoboArena gets accepted by CoRL 2025, welcome to our workshop!",
+    description: "RoboArena: Distributed Real-World Evaluation of Generalist Robot Policies",
+    link: "https://robo-arena.github.io/",
   },
   {
-    date: "Sep 2024",
-    title: "Research at PAL Lab",
-    description: "Hello Pilly! Started RA at PAL Lab working with Jason Ma and Prof. Dinesh Jayaraman",
-    link: "https://www.seas.upenn.edu/~dineshj",
+    date: "June 2025",
+    title: "ZeroMimic wins best paper in CVPR2025 3DVLMs workshop!",
+    description: "3D Vision Language Models for Robotic Manipulation: Opportunities and Challenges!",
+    link: "https://robo-3dvlms.github.io/index.html#",
   },
-  {
-    date: "June 2024",
-    title: "MLE Internship at IDEA",
-    description: "Started internship at IDEA: Computer Vision & Robotics Department",
-    link: "https://www.idea.edu.cn/",
-  },
-  {
-    date: "June 2024",
-    title: "Dual Degree Graduation",
-    description: "Graduated from ZJU and UIUC with dual degree of B.S. in CompE + B.Eng. in ECE",
-  },
+  // {
+  //   date: "Mar 2025",
+  //   title: "ICRA 2025 paper accepted!",
+  //   description: "ZeroMimic: Distilling Robotic Manipulation Skills from Web Videos is accepted by ICRA 2025!",
+  //   link: "https://zeromimic.github.io/",
+  // },
+  // {
+  //   date: "Sep 2024",
+  //   title: "Research at PAL Lab",
+  //   description: "Hello Pilly! Started RA at PAL Lab working with Jason Ma and Prof. Dinesh Jayaraman",
+  //   link: "https://www.seas.upenn.edu/~dineshj",
+  // },
+  // {
+  //   date: "June 2024",
+  //   title: "MLE Internship at IDEA",
+  //   description: "Started internship at IDEA: Computer Vision & Robotics Department",
+  //   link: "https://www.idea.edu.cn/",
+  // },
+  // {
+  //   date: "June 2024",
+  //   title: "Dual Degree Graduation",
+  //   description: "Graduated from ZJU and UIUC with dual degree of B.S. in CompE + B.Eng. in ECE",
+  // },
   // {
   //   date: "March 2024",
   //   title: "Undergraduate Senior Design Project",
@@ -68,10 +92,10 @@ export const newsData: News[] = [
   //   title: "Head Teaching Assistant Position",
   //   description: "Became Head Teaching Assistant for MATH 213: Introduction to Discrete Math at ZJU-UIUC Institute",
   // },
-  {
-    date: "August 2023",
-    title: "PhiloCoffee Club Launch",
-    description: "Found a club as president, have a sip of espresso together?",
-    link: "https://philocoffee.github.io/",
-  },
+  // {
+  //   date: "August 2023",
+  //   title: "PhiloCoffee Club Launch",
+  //   description: "Found a club as president, have a sip of espresso together?",
+  //   link: "https://philocoffee.github.io/",
+  // },
 ];
