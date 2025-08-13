@@ -13,16 +13,16 @@ export interface Publication {
 
 export const publicationData: Publication[] = [
   // If you don't want to show publications, just make the array empty.
-  {
-    year: "2025",
-    conference: "NeurIPS",
-    title: "AAWR: Real-World Reinforcement Learning of Interactive Perception Behaviors",
-    authors: "Edward S. Hu*, Jie Wang*, Xingfang Yuan*, Fiona Luo, Muyao Li, Gaspard Lambrechts, Oleh Rybkin, Dinesh Jayaraman",
-    paperUrl: "",
-    codeUrl: "https://sites.google.com/view/rwrl-ap/home",
-    tldr: "We propose a simple robot learning recipe leveraging privileged information to train interactive perception policies on real robots.",
-    imageUrl: "/images/AAWR_method.png",
-  },
+  // {
+  //   year: "2025",
+  //   conference: "NeurIPS",
+  //   title: "AAWR: Real-World Reinforcement Learning of Interactive Perception Behaviors",
+  //   authors: "Edward S. Hu*, Jie Wang*, Xingfang Yuan*, Fiona Luo, Muyao Li, Gaspard Lambrechts, Oleh Rybkin, Dinesh Jayaraman",
+  //   paperUrl: "",
+  //   codeUrl: "https://sites.google.com/view/rwrl-ap/home",
+  //   tldr: "We propose a simple robot learning recipe leveraging privileged information to train interactive perception policies on real robots.",
+  //   imageUrl: "/images/AAWR_method.png",
+  // },
   {
     year: "2025",
     conference: "CoRL",
