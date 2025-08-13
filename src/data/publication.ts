@@ -31,6 +31,7 @@ export const publicationData: Publication[] = [
     paperUrl: "https://arxiv.org/abs/2506.18123",
     codeUrl: "https://robo-arena.github.io/",
     tldr: "A distributed real-world evaluation framework for generalist robot policies.",
+    award: "🏆 Oral Presentation",
     imageUrl: "/images/roboarena_method.jpeg",
   },
   {
@@ -77,13 +78,13 @@ export const publicationData: Publication[] = [
     imageUrl: "/images/icict2024.png"
   },
 
-  {
-    year: "2022",
-    conference: "Patent",
-    title: "终端机和一体机: A Thin Client and All-in-One Computer Design",
-    authors: "Wang, Xiang, Wang, Jie",
-    paperUrl: "https://patents.google.com/patent/CN216852698U/",
-    tldr: "China Patent No. CN 216852698 U. Issued: June 28, 2022. Shenzhen Weidi Cloud Technology Co., LTD.",
-  },
+  // {
+  //   year: "2022",
+  //   conference: "Patent",
+  //   title: "终端机和一体机: A Thin Client and All-in-One Computer Design",
+  //   authors: "Wang, Xiang, Wang, Jie",
+  //   paperUrl: "https://patents.google.com/patent/CN216852698U/",
+  //   tldr: "China Patent No. CN 216852698 U. Issued: June 28, 2022. Shenzhen Weidi Cloud Technology Co., LTD.",
+  // },
 
 ];
