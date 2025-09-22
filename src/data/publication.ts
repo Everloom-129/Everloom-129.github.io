@@ -7,30 +7,33 @@ export interface Publication {
   codeUrl?: string;
   bibtex?: string;
   tldr?: string;
+  keywords?: string[];
   imageUrl?: string;
   award?: string;
 }
 
 export const publicationData: Publication[] = [
   // If you don't want to show publications, just make the array empty.
-  // {
-  //   year: "2025",
-  //   conference: "NeurIPS",
-  //   title: "AAWR: Real-World Reinforcement Learning of Interactive Perception Behaviors",
-  //   authors: "Edward S. Hu*, Jie Wang*, Xingfang Yuan*, Fiona Luo, Muyao Li, Gaspard Lambrechts, Oleh Rybkin, Dinesh Jayaraman",
-  //   paperUrl: "",
-  //   codeUrl: "https://sites.google.com/view/rwrl-ap/home",
-  //   tldr: "We propose a simple robot learning recipe leveraging privileged information to train interactive perception policies on real robots.",
-  //   imageUrl: "/images/AAWR_method.png",
-  // },
+  {
+    year: "2025",
+    conference: "NeurIPS",
+    title: "AAWR: Real-World Reinforcement Learning of Interactive Perception Behaviors",
+    authors: "Edward S. Hu*, Jie Wang*, Xingfang Yuan*, Fiona Luo, Muyao Li, Gaspard Lambrechts, Oleh Rybkin, Dinesh Jayaraman",
+    paperUrl: "",
+    codeUrl: "https://sites.google.com/view/rwrl-ap/home",
+    tldr: "We propose a new RL algorithm using privileged information to train active perception policy for pi0.",
+    keywords: ["RL", "VLAs", "Active Perception"],
+    imageUrl: "/images/AAWR_method.png",
+  },
   {
     year: "2025",
     conference: "CoRL",
     title: "RoboArena: Distributed Real-World Evaluation of Generalist Robot Policies",
-    authors: "Pranav Atreya*, Karl Pertsch*, Tony Lee*, et al.",
+    authors: "RoboArena Team",
     paperUrl: "https://arxiv.org/abs/2506.18123",
     codeUrl: "https://robo-arena.github.io/",
     tldr: "A distributed real-world evaluation framework for generalist robot policies.",
+    keywords: ["VLAs", "Real-World Evaluation"],
     award: "🏆 Oral Presentation",
     imageUrl: "/images/roboarena_method.jpeg",
   },
@@ -41,6 +44,7 @@ export const publicationData: Publication[] = [
     authors: "Jie Wang*, Matthew Leonard, Kostas Daniilidis, Dinesh Jayaraman, Edward S. Hu",
     paperUrl: "https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/",
     tldr: "We vibe-check pi0 across 300 trials on various manipulation tasks, summarize the insights and our observations in this blog.",
+    keywords: ["VLAs", "Real-World Evaluation"],
     imageUrl: "/images/pi0blog_bar_chart.png",
   },
   {
@@ -51,6 +55,7 @@ export const publicationData: Publication[] = [
     paperUrl: "https://zeromimic.github.io/",
     codeUrl: "https://github.com/junyaoshi/ZeroMimic",
     tldr: "Learning robotic manipulation skills from web videos with zero-shot generalization.",
+    keywords: ["Learning from Videos", "Articulation Tasks", "Imitation Learning"],
     imageUrl: "/images/ZeroMimic_concept_v3.png",
   },
   {
@@ -60,8 +65,9 @@ export const publicationData: Publication[] = [
     title: "Visionary Co-Driver: LLMs Enhance Driver Risk Perception with ARHUD",
     authors: "Xiang Wei, Ziyue Lei, Jie Wang, Qi Zheng, Yingying Huang, Tianyi Zhang, Lingyun Sun",
     paperUrl: "/files/Visionary-CoDriver-Poster.jpg",
-    tldr: "Using LLMs to analyze autonomous driving road scene, modeling the behavior of pedestrians. Construct a HUD system to evaluate the driver interaction.",
+    tldr: "Using LLMs and Vision foundation models to analyze autonomous driving road scene, modeling the behavior of pedestrians. Construct a HUD system to evaluate the driver interaction.",
     codeUrl: "https://github.com/Everloom-129/Visionary-CoDriver",
+    keywords: ["Autonomous Driving", "LLMs", "Human-Machine Interaction"],
     imageUrl: "/images/vcd_system_design.png"
   },
   {
@@ -74,6 +80,7 @@ export const publicationData: Publication[] = [
     //bibtex: "https://arxiv.org/abs/2409.15476.bib",
     tldr: "Using distributed databases for collision avoidance, verified on Quanser Car at crossroad scenario.",
     award: "🏆 Oral Presentation",
+    keywords: ["Autonomous Driving", "Distributed Control", "Wireless Network"],
     // if you have an image in public/images, you can use it like this:
     imageUrl: "/images/icict2024.png"
   },

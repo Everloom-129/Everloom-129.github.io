@@ -79,6 +79,15 @@ export function PublicationEntry({
             {publication.tldr}
           </p>
         )}
+        {publication.keywords && (
+          <div className="flex flex-row gap-2">
+            {publication.keywords.map((keyword, index) => (
+              <span key={index} className="text-xs text-zinc-600 px-2 py-1 bg-zinc-100 rounded-full">
+                {keyword}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
