@@ -5,6 +5,7 @@ export interface Publication {
   authors: string;
   paperUrl?: string;
   codeUrl?: string;
+  poster?: string;
   bibtex?: string;
   tldr?: string;
   keywords?: string[];
@@ -43,6 +44,7 @@ export const publicationData: Publication[] = [
     title: "Evaluating pi0 in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies",
     authors: "Jie Wang*, Matthew Leonard, Kostas Daniilidis, Dinesh Jayaraman, Edward S. Hu",
     paperUrl: "https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/",
+    poster: "/files/Pi0-Experiment-in-the-Wild-Poster-v1.pdf",
     tldr: "We vibe-check pi0 across 300 trials on various manipulation tasks, summarize the insights and our observations in this blog.",
     keywords: ["VLAs", "Real-World Evaluation"],
     imageUrl: "/images/pi0blog_bar_chart.png",

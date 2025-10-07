@@ -5,8 +5,8 @@ export function NewsEntry({ news }: { news: News }) {
   return (
     <div className="flex flex-row gap-6">
       <div className="flex flex-col flex-1">
-        <p className="text-xs text-zinc-500 mb-2">{news.date}</p>
-        <h3 className="font-serif text-md mb-3">
+        <p className="text-xs text-zinc-500 mb-1 leading-tight">{news.date}</p>
+        <h3 className="font-serif text-md mb-1 leading-tight">
           {news.link ? (
             <a
               href={news.link}
@@ -24,7 +24,7 @@ export function NewsEntry({ news }: { news: News }) {
             news.title
           )}
         </h3>
-        <p className="text-sm text-zinc-600">{news.description}</p>
+        <p className="text-sm text-zinc-600 leading-snug">{news.description}</p>
       </div>
     </div>
   );

@@ -7,22 +7,42 @@ export interface News {
 
 export const newsData: News[] = [
   {
+    date: "September 2025",
+    title: "MSROBO Representer at CIS Department Meeting",
+    description: "I am going to represent MSROBO at CIS Department Meeting in 2025!",
+    link: "https://www.cis.upenn.edu/",
+  },
+
+  {
+    date: "September 2025",
+    title: "GRASP Student, Faculty and Industry(SFI) Committee Meeting",
+    description: "I joined Faculty and Industry(SFI) Committee at GRASP Lab, inbviting distinguished guests to share their insights and experiences.",
+    link: "https://www.grasp.upenn.edu/",
+  },
+
+  {
+    date: "August 2025",
+    title: "AAWR gets accepted by NeurIPS 2025!",
+    description: "AAWR: Real-World Reinforcement Learning of Interactive Perception Behaviors",
+    link: "https://sites.google.com/view/rwrl-ap/home",
+  },
+  {
     date: "August 2025",
     title: "Our blog on pi0 released, welcome to check how pi0 works in the wild!",
     description: "Evaluating pi0 in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies",
     link: "https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/",
   },
-  // {
-  //   date: "August 2025",
-  //   title: "AAWR gets accepted by NeurIPS 2025!",
-  //   description: "AAWR: Real-World Reinforcement Learning of Interactive Perception Behaviors",
-  //   link: "https://sites.google.com/view/rwrl-ap/home",
-  // },
   {
     date: "July 2025",
     title: "RoboArena gets accepted by CoRL 2025, welcome to our workshop!",
     description: "RoboArena: Distributed Real-World Evaluation of Generalist Robot Policies",
     link: "https://robo-arena.github.io/",
+  },
+  {
+    date: "June 2025",
+    title: "Research Internship at Dyna Robotics",
+    description: "At Dyna Robotics, I learned how to train large-scale VLAs models.",
+    link: "https://dyna.co/",
   },
   {
     date: "June 2025",
