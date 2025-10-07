@@ -10,22 +10,30 @@ export interface Experience {
 
 export const experienceData: Experience[] = [
   {
+    date: "Fall 2025 - Present",
+    title: "Graduate Research Assistant",
+    company: "Daniilidis Research Group, GRASP Lab",
+    description:
+      "Improve Spatial Reasoning of VLAs like Pi05 via Reinforcement Learning.",
+    advisor: "Prof. Kostas Daniilidis ",
+    companyUrl: "https://www.cis.upenn.edu/~kostas//",
+  },
+  {
     date: "Summer 2025",
     title: "Research Intern",
     company: "Dyna Robotics",
     companyUrl: "https://www.dyna.co/",
     description: "Building an embodied reasoning VLA for fine-grained manipulation tasks.",
-    advisor: "Dr. Jason Ma",
+    advisor: "Jason Ma && York Yang",
   },
-
 
   {
     date: "Fall 2024 - Present",
     title: "Graduate Research Assistant",
-    company: "University of Pennsylvania",
+    company: "PennPAL Research Group, GRASP Lab",
     description:
       "Building VLMs-based Manipulation System via Diffusion Policy for fine-grained tasks. Reproduced ReKep, SPHINX and pi0. ",
-    advisor: "Dr. Jason Ma & Prof. Dinesh Jayaraman",
+    advisor: "Prof. Dinesh Jayaraman",
     companyUrl: "https://www.seas.upenn.edu/~dineshj/pal/index.html/",
   },
   {
