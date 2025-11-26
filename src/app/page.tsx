@@ -50,7 +50,7 @@ export default function Home() {
                         <h2 className="font-serif text-l mb-12 tracking-wide uppercase">
                           News
                         </h2>
-                        <div className="space-y-12">
+                        <div className="space-y-6">
                           {newsData.map((news, index) => (
                             <div key={index}>
                               <NewsEntry news={news} />
