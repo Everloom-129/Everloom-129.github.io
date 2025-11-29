@@ -2,6 +2,7 @@ export interface Experience {
   date: string;
   title: string;
   company: string;
+  logo?: string;
   description?: string;
   advisor?: string;
   manager?: string;
@@ -16,6 +17,7 @@ export const experienceData: Experience[] = [
     description:
       "Improve Spatial Reasoning of VLAs like Pi05 via Reinforcement Learning.",
     advisor: "Prof. Kostas Daniilidis ",
+    logo: "/images/upenn_grasplab_logo.png",
     companyUrl: "https://www.cis.upenn.edu/~kostas//",
   },
   {
@@ -24,6 +26,7 @@ export const experienceData: Experience[] = [
     company: "Dyna Robotics",
     companyUrl: "https://www.dyna.co/",
     description: "Building an embodied reasoning VLA for fine-grained manipulation tasks.",
+    logo: "/images/dyna_logo.png",
     advisor: "Jason Ma && York Yang",
   },
 
@@ -34,6 +37,7 @@ export const experienceData: Experience[] = [
     description:
       "Building VLMs-based Manipulation System via Diffusion Policy for fine-grained tasks. Reproduced ReKep, SPHINX and pi0. ",
     advisor: "Prof. Dinesh Jayaraman",
+    logo: "/images/PennPAL_logo.webp",
     companyUrl: "https://www.seas.upenn.edu/~dineshj/pal/index.html/",
   },
   {
@@ -44,6 +48,7 @@ export const experienceData: Experience[] = [
       "Build, train and optimize a small human-centric video captioning model based on Grounding DINO 1.6Pro.",
     advisor: "Dr. Xiaoke Jiang & Prof. Lei Zhang",
     companyUrl: "https://www.idea.edu.cn/research/cvr.html",
+    logo: "/images/IDEA_logo.png",
   },
 
   // {
