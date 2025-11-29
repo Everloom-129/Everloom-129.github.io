@@ -67,7 +67,7 @@ export default function Home() {
                         <h2 className="font-serif text-zinc-700 mb-12 tracking-wide uppercase">
                           Education
                         </h2>
-                        <div className="space-y-12">
+                        <div className="space-y-6">
                           {educationData.map((education, index) => (
                             <EducationEntry key={index} education={education} />
                           ))}
@@ -102,7 +102,7 @@ export default function Home() {
                         <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
                           Experience
                         </h2>
-                        <div className="space-y-12">
+                        <div className="space-y-6">
                           {experienceData.map((experience, index) => (
                             <ExperienceEntry
                               key={index}
