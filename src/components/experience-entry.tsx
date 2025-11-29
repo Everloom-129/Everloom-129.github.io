@@ -5,7 +5,7 @@ export function ExperienceEntry({ experience }: { experience: Experience }) {
     <div className="grid grid-cols-4">
       <span className="text-xs text-zinc-500 mt-0.5">{experience.date}</span>
       <div className="col-span-3 flex flex-col">
-        <h3 className="text-base font-serif">
+        <h3 className="text-base font-serif leading-tight mb-0.5">
           {experience.title} —{" "}
           {experience.companyUrl ? (
             <a
@@ -21,17 +21,17 @@ export function ExperienceEntry({ experience }: { experience: Experience }) {
           )}
         </h3>
         {experience.advisor && (
-          <p className="text-sm text-zinc-600 leading-relaxed italic mt-1">
+          <p className="text-sm text-zinc-600 leading-tight italic mt-0.5">
             Advisor: {experience.advisor}
           </p>
         )}
         {experience.manager && (
-          <p className="text-sm text-zinc-600 leading-relaxed italic mt-1">
+          <p className="text-sm text-zinc-600 leading-tight italic mt-0.5">
             Manager: {experience.manager}
           </p>
         )}
         {experience.description && (
-          <p className="text-sm text-zinc-600 leading-relaxed mt-1">
+          <p className="text-sm text-zinc-600 leading-snug mt-0.5">
             {experience.description}
           </p>
         )}
