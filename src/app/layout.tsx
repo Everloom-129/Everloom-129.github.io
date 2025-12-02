@@ -26,35 +26,8 @@ const ptSerif = PT_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jiewang.io"),
-  title: {
-    default: customMetadata.title || aboutMe.name,
-    template: `%s | ${aboutMe.name}`,
-  },
+  title: customMetadata.title || aboutMe.name,
   description: customMetadata.description || aboutMe.description,
-  openGraph: {
-    title: customMetadata.title || aboutMe.name,
-    description: customMetadata.description || aboutMe.description,
-    url: "https://jiewang.io",
-    siteName: aboutMe.name,
-    locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: aboutMe.imageUrl || "/public/file.svg",
-        width: 1200,
-        height: 630,
-        alt: aboutMe.name,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: customMetadata.title || aboutMe.name,
-    description: customMetadata.description || aboutMe.description,
-    creator: aboutMe.twitterUsername ? `@${aboutMe.twitterUsername}` : undefined,
-    images: [aboutMe.imageUrl || "/public/file.svg"],
-  },
   icons: {
     icon: "/favicon.ico",
   },

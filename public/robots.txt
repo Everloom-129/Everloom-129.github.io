@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://jiewang.io/sitemap.xml
-
