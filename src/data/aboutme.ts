@@ -34,7 +34,11 @@ export const aboutMe: AboutMe = {
     "I am a passionate builder to make generalizable agents that can think and execute <a href='https://www.bls.gov/ors/factsheet/gross-and-fine-manipulation.htm'>fine-grained manipulation</a>, " +
     "like brewing a cup of latte with an espresso machine. <br><br>" + 
     
-    "This summer, I am working at <a href='https://www.dyna.co/'>Dyna Robotics</a>, delievering high-performant reasoning VLAs models!",
+    "This summer, I am working at <a href='https://www.dyna.co/'>Dyna Robotics</a>, delievering high-performant reasoning VLAs models." + 
+
+    "I am applying for a PhD position in Computer Science or Robotics. If you are interested in my research, please feel free to contact me.", 
+
+
     
   email: "tonyw3@seas.upenn.edu",
   imageUrl:
@@ -43,7 +47,7 @@ export const aboutMe: AboutMe = {
   githubUsername: "Everloom-129",
   linkedinUsername: "jie-wang-8ab93a266",
   twitterUsername: "JieWang_ZJUI",
-  blogUrl: "https://everloom-129.github.io/CIS700-Real-World-Robot-Learning/",
+  blogUrl: "https://substack.com/@jiewang2024?/",
   cvUrl: "/files/CV_WangJie_2025.pdf",
   institutionUrl: "https://www.grasp.upenn.edu",
   altName: "tonyw3@seas.upenn.edu",

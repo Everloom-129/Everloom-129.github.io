@@ -18,11 +18,12 @@ export const publicationData: Publication[] = [
   {
     year: "2025",
     conference: "NeurIPS",
-    title: "AAWR: Real-World Reinforcement Learning of Interactive Perception Behaviors",
+    title: "AAWR: Real-World Reinforcement Learning of Active Perception Behaviors",
     authors: "Edward S. Hu*, Jie Wang*, Xingfang Yuan*, Fiona Luo, Muyao Li, Gaspard Lambrechts, Oleh Rybkin, Dinesh Jayaraman",
-    paperUrl: "",
-    codeUrl: "https://sites.google.com/view/rwrl-ap/home",
-    tldr: "We propose a new RL algorithm using privileged information to train active perception policy for pi0.",
+    paperUrl: "https://www.arxiv.org/abs/2512.01188",
+    codeUrl: "https://penn-pal-lab.github.io/aawr/",
+    
+    tldr: "We propose a new RL algorithm using privileged information from vision foundation models to train active perception policy for VLAs.",
     keywords: ["RL", "VLAs", "Active Perception"],
     imageUrl: "/images/AAWR_method.png",
   },
@@ -62,8 +63,7 @@ export const publicationData: Publication[] = [
   },
   {
     year: "2025",
-    conference: "Arxiv",
-    //"IEEE Transactions on Intelligent Transportation Systems",
+    conference: "IEEE Transactions on Intelligent Transportation Systems",
     title: "Visionary Co-Driver: LLMs Enhance Driver Risk Perception with ARHUD",
     authors: "Xiang Wei, Ziyue Lei, Jie Wang, Qi Zheng, Yingying Huang, Tianyi Zhang, Lingyun Sun",
     paperUrl: "/files/Visionary-CoDriver-Poster.jpg",
@@ -83,7 +83,6 @@ export const publicationData: Publication[] = [
     tldr: "Using distributed databases for collision avoidance, verified on Quanser Car at crossroad scenario.",
     award: "🏆 Oral Presentation",
     keywords: ["Autonomous Driving", "Distributed Control", "Wireless Network"],
-    // if you have an image in public/images, you can use it like this:
     imageUrl: "/images/icict2024.png"
   },
 

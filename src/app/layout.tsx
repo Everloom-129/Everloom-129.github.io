@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   title: customMetadata.title || aboutMe.name,
   description: customMetadata.description || aboutMe.description,
   icons: {
-    icon: "/favicon.ico",
+    icon: "/coffee32.ico",
   },
 };
 

@@ -27,7 +27,7 @@ export const experienceData: Experience[] = [
     companyUrl: "https://www.dyna.co/",
     description: "Building an embodied reasoning VLA for fine-grained manipulation tasks.",
     logo: "/images/dyna_logo.png",
-    advisor: "Jason Ma && York Yang",
+    advisor: "Dr.Jason Ma & York Yang",
   },
 
   {
