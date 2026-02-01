@@ -15,7 +15,7 @@ export const experienceData: Experience[] = [
     title: "Graduate Research Assistant",
     company: "Daniilidis Research Group, GRASP Lab",
     description:
-      "Improve Spatial Reasoning of VLAs like Pi05 via Reinforcement Learning.",
+      "Improve Spatial Reasoning of VLAs like Pi05 via Guidance and RL.",
     advisor: "Prof. Kostas Daniilidis ",
     logo: "/images/upenn_grasplab_logo.png",
     companyUrl: "https://www.cis.upenn.edu/~kostas//",
@@ -25,7 +25,7 @@ export const experienceData: Experience[] = [
     title: "Research Intern",
     company: "Dyna Robotics",
     companyUrl: "https://www.dyna.co/",
-    description: "Building an embodied reasoning VLA for fine-grained manipulation tasks.",
+    description: "Building an agentic reasoning VLA for fine-grained manipulation tasks depending on memory.",
     logo: "/images/dyna_logo.png",
     advisor: "Dr.Jason Ma & York Yang",
   },

@@ -16,17 +16,29 @@ export interface Publication {
 export const publicationData: Publication[] = [
   // If you don't want to show publications, just make the array empty.
   {
-    year: "2025",
-    conference: "NeurIPS",
-    title: "AAWR: Real-World Reinforcement Learning of Active Perception Behaviors",
-    authors: "Edward S. Hu*, Jie Wang*, Xingfang Yuan*, Fiona Luo, Muyao Li, Gaspard Lambrechts, Oleh Rybkin, Dinesh Jayaraman",
-    paperUrl: "https://www.arxiv.org/abs/2512.01188",
-    codeUrl: "https://penn-pal-lab.github.io/aawr/",
-    
-    tldr: "We propose a new RL algorithm using privileged information from vision foundation models to train active perception policy for VLAs.",
-    keywords: ["RL", "VLAs", "Active Perception"],
-    imageUrl: "/images/AAWR_method.png",
+    year: "2026",
+    conference: "Under Review",
+    title: "TiPToP: A Modular Planning-Based Robot Manipulation System",
+    authors: "MIT & UPenn",
+    paperUrl: "https://everloom-129.github.io/",
+    codeUrl: "https://everloom-129.github.io/",
+    tldr: "We propose a planning-based robotics system that solves complex real-world manipulation tasks directly from raw pixels and natural-language commands. Validate 'in-the-wild' at GRASP Lab.",
+    keywords: ["TAMP", "VLAs", "Evaluation"],
+    imageUrl: "/images/2026/tiptop-teaser.png",
   },
+
+  // {
+  //   year: "2026",
+  //   conference: "Under Review",
+  //   title: "OmniGuide: Universal Guidance Fields for Enhancing Generalist Robot Policies",
+  //   authors: "GRASP Lab",
+  //   paperUrl: "https://everloom-129.github.io/",
+  //   codeUrl: "https://everloom-129.github.io/",
+  //   tldr: "We propose a a flexible framework that improves VLA performance on Spatial Reasoning tasks by leveraging prior knowledge from 3D foundation models, semantic-reasoning VLMs, and human trajectory.",
+  //   keywords: ["Guidance", "3D", "VLAs", "Spatial Reasoning"],
+  //   imageUrl: "/images/2026/guided_pi_teaser.png",
+  // },
+
   {
     year: "2025",
     conference: "CoRL",
@@ -58,7 +70,7 @@ export const publicationData: Publication[] = [
     paperUrl: "https://zeromimic.github.io/",
     codeUrl: "https://github.com/junyaoshi/ZeroMimic",
     tldr: "Learning robotic manipulation skills from web videos with zero-shot generalization.",
-    keywords: ["Learning from Videos", "Articulation Tasks", "Imitation Learning"],
+    keywords: ["Learning from Videos", "Articulation", "Imitation Learning"],
     imageUrl: "/images/ZeroMimic_concept_v3.png",
   },
   {
@@ -69,7 +81,7 @@ export const publicationData: Publication[] = [
     paperUrl: "/files/Visionary-CoDriver-Poster.jpg",
     tldr: "Using LLMs and Vision foundation models to analyze autonomous driving road scene, modeling the behavior of pedestrians. Construct a HUD system to evaluate the driver interaction.",
     codeUrl: "https://github.com/Everloom-129/Visionary-CoDriver",
-    keywords: ["Autonomous Driving", "LLMs", "Human-Machine Interaction"],
+    keywords: ["Autonomous Driving", "LLMs", "Human-Computer Interaction"],
     imageUrl: "/images/vcd_system_design.png"
   },
   {
