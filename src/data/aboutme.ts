@@ -19,12 +19,12 @@ export interface AboutMe {
 
 export const aboutMe: AboutMe = {
   name: "Jie Wang",
-  title: "Master Student",
+  title: "Master Student @ GRASP Lab",
   institution: "University of Pennsylvania",
   // Note that links work in the description
   description: 
     "Hi! I'm a MS Robotics student at the University of Pennsylvania's <a href='https://www.grasp.upenn.edu/'>GRASP Laboratory</a>, " +
-    "where I have been fortunate to work with <a href='https://jasonma2016.github.io/'>Jason Ma</a>, <a href='https://edwardshu.com/'>Edward Hu</a>, <a href='https://www.cis.upenn.edu/~kostas/'>Kostas Daniilidis</a> and <a href='https://www.seas.upenn.edu/~dineshj/'>Dinesh Jayaraman</a>. <br><br>" +
+    "where I have been fortunate to work with <a href='https://jasonma2016.github.io/'>Jason Ma</a>, <a href='https://edwardshu.com/'>Edward Hu</a>, <a href='https://www.seas.upenn.edu/~dineshj/'>Dinesh Jayaraman</a> and <a href='https://www.cis.upenn.edu/~kostas/'>Kostas Daniilidis</a>. <br><br>" +
     
     "I received my B.S. in Computer Engineering from ZJU and UIUC in 2024, advised by <a href='https://scholar.google.com/citations?user=2hB_Q4EAAAAJ&hl=en'>Said Mikki</a>. and <a href='https://person.zju.edu.cn/en/0617496'>Wei Xiang</a>. <br><br>" +
     
