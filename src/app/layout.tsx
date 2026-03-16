@@ -25,11 +25,29 @@ const ptSerif = PT_Serif({
   weight: ["400", "700"],
 });
 
+const metaTitle = customMetadata.title || aboutMe.name;
+const metaDescription =
+  customMetadata.description ||
+  "MS Robotics student at UPenn GRASP Lab. Research in VLAs, embodied reasoning, and robot learning.";
+
 export const metadata: Metadata = {
-  title: customMetadata.title || aboutMe.name,
-  description: customMetadata.description || aboutMe.description,
+  title: metaTitle,
+  description: metaDescription,
   icons: {
     icon: "/coffee32.ico",
+  },
+  openGraph: {
+    title: metaTitle,
+    description: metaDescription,
+    url: "https://everloom-129.github.io",
+    siteName: metaTitle,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: metaTitle,
+    description: metaDescription,
+    creator: aboutMe.twitterUsername ? `@${aboutMe.twitterUsername}` : undefined,
   },
 };
 

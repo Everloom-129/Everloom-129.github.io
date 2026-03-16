@@ -34,7 +34,7 @@ export const aboutMe: AboutMe = {
     "I am a passionate builder to make generalizable agents that can think and execute <a href='https://www.bls.gov/ors/factsheet/gross-and-fine-manipulation.htm'>fine-grained manipulation</a>, " +
     "like brewing a cup of latte with an espresso machine. <br><br>" + 
     
-    "This summer, I am working at <a href='https://www.dyna.co/'>Dyna Robotics</a>, delievering high-performant reasoning VLAs models." + 
+    "This summer, I am working at <a href='https://www.dyna.co/'>Dyna Robotics</a>, delivering high-performance reasoning VLA models. " +
 
     "I am applying for a PhD position in Computer Science or Robotics. If you are interested in my research, please feel free to contact me.", 
 

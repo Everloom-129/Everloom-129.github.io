@@ -12,7 +12,17 @@ import { PortfolioEntry } from "@/components/portfolio-entry";
 import { portfolioData } from "@/data/portfolio";
 import { sectionOrder, Section } from "@/data/section-order";
 
+const sectionLabels: Record<Section, string> = {
+  [Section.Education]: "Education",
+  [Section.Experience]: "Experience",
+  [Section.News]: "News",
+  [Section.Publication]: "Publications",
+  [Section.Portfolio]: "Portfolio",
+};
+
 export default function Home() {
+  const navItems = sectionOrder.map((s) => ({ id: s, label: sectionLabels[s] }));
+
   return (
     <div className="min-h-screen bg-[#FFFCF8]">
       {/* Don't have a great call on whether max-w-screen-xl is better */}
@@ -23,12 +33,12 @@ export default function Home() {
           <div className="col-span-12 md:col-span-4 space-y-12 mb-8 md:mb-0">
             {/* Profile */}
             <div className="md:sticky top-12 space-y-8">
-              <ProfileSection aboutMe={aboutMe} />
+              <ProfileSection aboutMe={aboutMe} navItems={navItems} />
             </div>
           </div>
 
           {/* Right Column - Scrolling Content */}
-          <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-24">
+          <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-16">
             {/* About section is typically first */}
             {aboutMe.description && (
               <section>
@@ -46,8 +56,8 @@ export default function Home() {
                 case Section.News:
                   return (
                     newsData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-l mb-12 tracking-wide uppercase">
+                      <section key={sectionName} id={sectionName}>
+                        <h2 className="font-serif text-sm mb-8 tracking-wide uppercase text-zinc-700">
                           News
                         </h2>
                         <div className="space-y-6">
@@ -63,8 +73,8 @@ export default function Home() {
                 case Section.Education:
                   return (
                     educationData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-zinc-700 mb-12 tracking-wide uppercase">
+                      <section key={sectionName} id={sectionName}>
+                        <h2 className="font-serif text-sm mb-8 tracking-wide uppercase text-zinc-700">
                           Education
                         </h2>
                         <div className="space-y-6">
@@ -78,8 +88,8 @@ export default function Home() {
                 case Section.Publication:
                   return (
                     publicationData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-l mb-12 tracking-wide uppercase">
+                      <section key={sectionName} id={sectionName}>
+                        <h2 className="font-serif text-sm mb-8 tracking-wide uppercase text-zinc-700">
                           Publications
                         </h2>
                         <div className="space-y-12">
@@ -98,8 +108,8 @@ export default function Home() {
                 case Section.Experience:
                   return (
                     experienceData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
+                      <section key={sectionName} id={sectionName}>
+                        <h2 className="font-serif text-sm mb-8 tracking-wide uppercase text-zinc-700">
                           Experience
                         </h2>
                         <div className="space-y-4">
@@ -116,8 +126,8 @@ export default function Home() {
                 case Section.Portfolio:
                   return (
                     portfolioData.length > 0 && (
-                      <section key={sectionName}>
-                        <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
+                      <section key={sectionName} id={sectionName}>
+                        <h2 className="font-serif text-sm mb-8 tracking-wide uppercase text-zinc-700">
                           Portfolio
                         </h2>
                         <div className="space-y-12">

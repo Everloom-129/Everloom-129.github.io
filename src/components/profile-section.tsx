@@ -9,11 +9,17 @@ import {
 } from "lucide-react";
 import { AboutMe } from "@/data/aboutme";
 
-interface ProfileSectionProps {
-  aboutMe: AboutMe;
+interface NavItem {
+  id: string;
+  label: string;
 }
 
-export function ProfileSection({ aboutMe }: ProfileSectionProps) {
+interface ProfileSectionProps {
+  aboutMe: AboutMe;
+  navItems?: NavItem[];
+}
+
+export function ProfileSection({ aboutMe, navItems }: ProfileSectionProps) {
   if (!aboutMe) {
     return null;
   }
@@ -154,6 +160,19 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
             </>
           )}
         </div>
+        {navItems && navItems.length > 0 && (
+          <nav className="hidden md:flex flex-col gap-1 mt-6 pt-6 border-t border-zinc-200">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className="text-xs text-zinc-400 hover:text-zinc-900 tracking-wider uppercase transition-colors duration-200"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        )}
       </div>
     </div>
   );

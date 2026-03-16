@@ -16,6 +16,7 @@ export function PublicationEntry({
             alt={publication.title}
             width={160}
             height={200}
+            loading="lazy"
             className="rounded-lg transition-all duration-300"
           />
         </div>

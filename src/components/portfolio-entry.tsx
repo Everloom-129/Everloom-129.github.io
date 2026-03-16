@@ -12,6 +12,7 @@ export function PortfolioEntry({ portfolio }: { portfolio: Portfolio }) {
             alt={portfolio.title}
             width={160}
             height={200}
+            loading="lazy"
             className="rounded-lg"
           />
         </div>
