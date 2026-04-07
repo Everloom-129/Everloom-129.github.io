@@ -48,7 +48,7 @@ export const aboutMe: AboutMe = {
   linkedinUsername: "jie-wang-8ab93a266",
   twitterUsername: "JieWang_ZJUI",
   blogUrl: "https://substack.com/@jiewang2024?/",
-  cvUrl: "/files/CV_WangJie_2025.pdf",
+  cvUrl: "/files/resume.pdf",
   institutionUrl: "https://www.grasp.upenn.edu",
   altName: "tonyw3@seas.upenn.edu",
   secretDescription: "I am a big fan of Philosophy and Coffee! I founded PhiloCoffee Club(哲咖社) at international ZJU Campus. Here is the club website: philocoffee.github.io",
