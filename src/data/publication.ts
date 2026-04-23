@@ -38,6 +38,18 @@ export const publicationData: Publication[] = [
     keywords: ["Guidance", "3D", "VLAs", "Spatial Reasoning"],
     imageUrl: "/images/2026/guided_pi_teaser.png",
   },
+  
+  {
+    year: "2026",
+    conference: "NeurIPS 2025 & ARLET Workshop",
+    title: "AAWR: Real World Reinforcement Learning of Active Perception Behaviors",
+    authors: "Edward S. Hu*, Jie Wang*, Xingfang Yuan*, Fiona Luo, Muyao Li, Gaspard Lambrechts, Oleh Rybkin, Dinesh Jayaraman",
+    paperUrl: "https://penn-pal-lab.github.io/aawr/",
+    codeUrl: "https://github.com/penn-pal-lab/aawr",
+    tldr: "We propose a simple robot learning recipe leveraging privileged information to train active perception policies on real robots.",
+    keywords: ["RL", "Active Perception", "VLAs"],
+  imageUrl: "/images/2025/AAWR_method.png",
+  },
 
   {
     year: "2025",
