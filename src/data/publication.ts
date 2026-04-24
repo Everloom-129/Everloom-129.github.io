@@ -11,6 +11,7 @@ export interface Publication {
   keywords?: string[];
   imageUrl?: string;
   award?: string;
+  featured?: boolean;
 }
 
 export const publicationData: Publication[] = [
@@ -48,7 +49,8 @@ export const publicationData: Publication[] = [
     codeUrl: "https://github.com/penn-pal-lab/aawr",
     tldr: "We propose a simple robot learning recipe leveraging privileged information to train active perception policies on real robots.",
     keywords: ["RL", "Active Perception", "VLAs"],
-  imageUrl: "/images/2025/AAWR_method.png",
+    imageUrl: "/images/2025/AAWR_method.png",
+    featured: true,
   },
 
   {
@@ -65,7 +67,7 @@ export const publicationData: Publication[] = [
   },
   {
     year: "2025",
-    conference: "Blog",
+    conference: "GRASP Blog 2025",
     title: "Evaluating pi0 in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies",
     authors: "Jie Wang*, Matthew Leonard, Kostas Daniilidis, Dinesh Jayaraman, Edward S. Hu",
     paperUrl: "https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/",
@@ -73,6 +75,7 @@ export const publicationData: Publication[] = [
     tldr: "We vibe-check pi0 across 300 trials on various manipulation tasks, summarize the insights and our observations in this blog.",
     keywords: ["VLAs", "Real-World Evaluation"],
     imageUrl: "/images/pi0blog_bar_chart.png",
+    featured: true,
   },
   {
     year: "2025",

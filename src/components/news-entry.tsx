@@ -18,7 +18,7 @@ export function NewsEntry({ news }: { news: News }) {
       </div>
 
       {/* Content */}
-      <div className="flex-1 pb-5">
+      <div className="flex-1 pb-2">
         <h3 className="font-serif text-sm leading-snug text-zinc-900 mb-0.5">
           {news.link ? (
             <a
@@ -37,7 +37,7 @@ export function NewsEntry({ news }: { news: News }) {
             news.title
           )}
         </h3>
-        <p className="text-xs text-zinc-500 leading-relaxed">{news.description}</p>
+        <p className="text-xs text-zinc-500 leading-snug">{news.description}</p>
       </div>
     </div>
   );

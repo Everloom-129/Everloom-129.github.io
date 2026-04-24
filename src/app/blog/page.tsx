@@ -101,6 +101,14 @@ export default function BlogPage() {
       tag: "Course Notes",
       date: "2025",
     },
+    {
+      title: "EAS5450: Engineering Entrepreneurship",
+      description:
+        "Course notes and reflections from EAS5450 at UPenn, exploring the intersection of engineering, startups, and product thinking.",
+      url: "https://github.com/Everloom-129/EAS5450-Eng_Entrepreneurship",
+      tag: "Course Notes",
+      date: "2025",
+    },
   ];
 
   const philoCoffee: WritingEntry = {

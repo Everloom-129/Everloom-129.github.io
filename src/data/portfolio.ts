@@ -8,16 +8,6 @@ export interface Portfolio {
 }
 
 export const portfolioData: Portfolio[] = [
-  {
-    title: "2025: Course Blogs of CIS7000: Real-World Robot Learning ",
-    description: 
-      "A comprehensive collection of paper reading notes and algorithm reproductions for ESE6800/CIS7000 at UPenn. " +
-      "Learning from Prof. Antonio Loquercio and Prof. Dinesh Jayaraman on cutting-edge robotics research. 🤖📚",
-    technologies: ["Robotics", "Machine Learning", "Research Seminar"],
-    projectUrl: "https://everloom-129.github.io/CIS700-Real-World-Robot-Learning/",
-    imageUrl: "/images/cis700-data.png",
-    codeUrl: "https://github.com/Everloom-129/CIS700-Real-World-Robot-Learning",
-  },
   // {
   //   title: "2025: RainyBird",
   //   description:

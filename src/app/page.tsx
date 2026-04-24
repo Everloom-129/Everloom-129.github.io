@@ -28,9 +28,7 @@ function SectionLink({ href, label }: { href: string; label: string }) {
 
 export default function Home() {
   const recentNews = newsData.slice(0, 4);
-  const featuredPubs = publicationData
-    .filter((p) => p.conference !== "Blog")
-    .slice(0, 3);
+  const featuredPubs = publicationData.filter((p) => p.featured);
 
   return (
     <div className="min-h-screen bg-[#FFFCF8]">
@@ -44,7 +42,7 @@ export default function Home() {
           </div>
 
           {/* Right content */}
-          <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-16">
+          <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-10">
             {/* About */}
             {aboutMe.description && (
               <section>
@@ -61,7 +59,7 @@ export default function Home() {
                 <h2 className="font-serif text-sm mb-6 tracking-widest uppercase text-zinc-500">
                   News
                 </h2>
-                <div className="space-y-5">
+                <div className="space-y-2">
                   {recentNews.map((news, i) => (
                     <NewsEntry key={i} news={news} />
                   ))}

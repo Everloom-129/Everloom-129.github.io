@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   title: metaTitle,
   description: metaDescription,
   icons: {
-    icon: "/coffee32.ico",
+    icon: "/images/favicon.ico",
   },
   openGraph: {
     title: metaTitle,
