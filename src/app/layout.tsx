@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Noto_Serif, PT_Serif } from "next/font/google";
 import "./globals.css";
 import { aboutMe } from "@/data/aboutme";
 import { customMetadata } from "@/data/title-description";
+import { Navbar } from "@/components/navbar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -61,30 +62,28 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${notoSerif.variable} ${ptSerif.variable} antialiased`}
       >
+        <Navbar />
         <main className="">{children}</main>
-        <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-[#FFFCF8]">
-          <div className="flex flex-row mx-auto max-w-7xl px-6 py-12 md:flex md:items-start md:justify-between ">
-            <div className="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
-              <p>
+        <footer className="border-t border-zinc-100 bg-[#FFFCF8]">
+          <div className="max-w-screen-lg mx-auto px-8 py-10 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+            <div>
+              <p className="text-sm text-zinc-500">
                 © {new Date().getFullYear()} {aboutMe.name}.
               </p>
               {aboutMe.secretDescription && (
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-4">
+                <p className="text-xs text-zinc-400 mt-3 max-w-sm leading-relaxed">
                   {aboutMe.secretDescription}
                 </p>
               )}
             </div>
-            <div className="mb-4">
-              <p className="text-sm text-neutral-500 dark:text-neutral-500 justify">
-                Built with{" "}
-                <a
-                  href="https://github.com/tovacinni/research-website-template"
-                  className="underline hover:text-neutral-800 dark:hover:text-neutral-300 transition-colors"
-                >
-                  research-website-template
-                </a>
-              </p>
-            </div>
+            <nav className="flex gap-6 text-xs tracking-widest uppercase text-zinc-400">
+              <a href="/research" className="hover:text-zinc-700 transition-colors">Research</a>
+              <a href="/projects" className="hover:text-zinc-700 transition-colors">Projects</a>
+              <a href="/blog" className="hover:text-zinc-700 transition-colors">Blog</a>
+              {aboutMe.cvUrl && (
+                <a href={aboutMe.cvUrl} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-700 transition-colors">CV</a>
+              )}
+            </nav>
           </div>
         </footer>
       </body>
