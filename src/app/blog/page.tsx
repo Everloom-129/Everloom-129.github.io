@@ -1,6 +1,5 @@
 import { aboutMe } from "@/data/aboutme";
 import { publicationData } from "@/data/publication";
-import { portfolioData } from "@/data/portfolio";
 import { ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -33,7 +32,15 @@ function WritingCard({ entry }: { entry: WritingEntry }) {
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-xs tracking-widest uppercase text-zinc-400 bg-zinc-50 px-2 py-0.5 rounded">
+            <span className={`text-xs tracking-widest uppercase px-2 py-0.5 rounded-full border font-medium ${
+              entry.tag === "Substack"
+                ? "text-violet-700 bg-violet-50 border-violet-100"
+                : entry.tag === "Research Blog"
+                ? "text-emerald-700 bg-emerald-50 border-emerald-100"
+                : entry.tag === "Course Notes"
+                ? "text-blue-700 bg-blue-50 border-blue-100"
+                : "text-amber-700 bg-amber-50 border-amber-100"
+            }`}>
               {entry.tag}
             </span>
             {entry.date && (
@@ -65,10 +72,8 @@ function WritingCard({ entry }: { entry: WritingEntry }) {
 }
 
 export default function BlogPage() {
-  const blogPubs = publicationData.filter((p) => p.conference === "Blog");
-
-  const courseBlogs = portfolioData.filter(
-    (p) => p.title.toLowerCase().includes("blog") || p.title.toLowerCase().includes("course")
+  const blogPubs = publicationData.filter((p) =>
+    p.conference.toLowerCase().includes("blog")
   );
 
   const substackEntry: WritingEntry = {
@@ -87,12 +92,16 @@ export default function BlogPage() {
     date: p.year,
   }));
 
-  const courseEntries: WritingEntry[] = courseBlogs.map((p) => ({
-    title: p.title,
-    description: p.description,
-    url: p.projectUrl,
-    tag: "Course Notes",
-  }));
+  const courseEntries: WritingEntry[] = [
+    {
+      title: "Course Blogs of CIS7000: Real-World Robot Learning",
+      description:
+        "A comprehensive collection of paper reading notes and algorithm reproductions for ESE6800/CIS7000 at UPenn. Learning from Prof. Antonio Loquercio and Prof. Dinesh Jayaraman on cutting-edge robotics research.",
+      url: "https://everloom-129.github.io/CIS700-Real-World-Robot-Learning/",
+      tag: "Course Notes",
+      date: "2025",
+    },
+  ];
 
   const philoCoffee: WritingEntry = {
     title: "PhiloCoffee Club (哲咖社)",

@@ -8,8 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function ResearchPage() {
-  const papers = publicationData.filter((p) => p.conference !== "Blog");
-  const blogPosts = publicationData.filter((p) => p.conference === "Blog");
+  const isBlog = (p: { conference: string }) => p.conference.toLowerCase().includes("blog");
+  const papers = publicationData.filter((p) => !isBlog(p));
+  const blogPosts = publicationData.filter(isBlog);
 
   const years = [...new Set(papers.map((p) => p.year))].sort((a, b) =>
     Number(b) - Number(a)
@@ -36,8 +37,12 @@ export default function ResearchPage() {
             const yearPapers = papers.filter((p) => p.year === year);
             return (
               <section key={year}>
-                <h2 className="font-serif text-xs tracking-widest uppercase text-zinc-400 mb-8 flex items-center gap-4">
+                <h2 className="font-serif text-xs tracking-widest uppercase text-zinc-400 mb-8 flex items-center gap-3">
                   {year}
+                  <span className="text-zinc-300">·</span>
+                  <span className="text-zinc-300 normal-case tracking-normal">
+                    {yearPapers.length} paper{yearPapers.length !== 1 ? "s" : ""}
+                  </span>
                   <span className="flex-1 h-px bg-zinc-100" />
                 </h2>
                 <div className="space-y-12">

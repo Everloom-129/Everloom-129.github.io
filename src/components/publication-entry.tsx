@@ -2,106 +2,154 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Publication } from "@/data/publication";
 
-export function PublicationEntry({
-  publication,
+function conferenceBadgeClass(conference: string): string {
+  if (conference.includes("Under Review"))
+    return "text-zinc-400 bg-zinc-50 border border-zinc-200";
+  if (conference.toLowerCase().includes("blog"))
+    return "text-emerald-700 bg-emerald-50 border border-emerald-100";
+  if (
+    conference.includes("NeurIPS") ||
+    conference.includes("ICRA") ||
+    conference.includes("CoRL") ||
+    conference.includes("CVPR") ||
+    conference.includes("ICLR") ||
+    conference.includes("ICICT")
+  )
+    return "text-blue-700 bg-blue-50 border border-blue-100";
+  return "text-violet-700 bg-violet-50 border border-violet-100";
+}
+
+function AuthorLine({ authors }: { authors: string }) {
+  const parts = authors.split(/(Jie Wang)/g);
+  return (
+    <p className="text-sm text-zinc-500 leading-relaxed">
+      {parts.map((part, i) =>
+        part === "Jie Wang" ? (
+          <span key={i} className="font-medium text-zinc-700 underline decoration-dotted underline-offset-2">
+            Jie Wang
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </p>
+  );
+}
+
+function LinkButton({
+  href,
+  label,
 }: {
-  publication: Publication;
+  href: string;
+  label: string;
 }) {
   return (
-    <div className="flex flex-row gap-6">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group inline-flex items-center gap-1.5 text-xs tracking-wider uppercase text-zinc-400 hover:text-zinc-900 transition-colors duration-200"
+    >
+      <ArrowUpRight
+        size={11}
+        className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
+      />
+      {label}
+    </a>
+  );
+}
+
+export function PublicationEntry({ publication }: { publication: Publication }) {
+  return (
+    <div className="flex flex-row gap-5">
+      {/* Thumbnail */}
       {publication.imageUrl && (
-        <div className="w-1/4 min-w-[160px] relative">
-          <Image
-            src={publication.imageUrl}
-            alt={publication.title}
-            width={160}
-            height={200}
-            loading="lazy"
-            className="rounded-lg transition-all duration-300"
-          />
+        <div className="flex-shrink-0 w-[130px]">
+          <div className="relative w-[130px] h-[88px] rounded-lg overflow-hidden bg-zinc-100">
+            <Image
+              src={publication.imageUrl}
+              alt={publication.title}
+              fill
+              loading="lazy"
+              className="object-cover"
+            />
+          </div>
         </div>
       )}
-      <div className="flex flex-col flex-1">
-        <div className="flex flex-row gap-4 items-center mb-2">
-          <p className="text-xs text-zinc-500">
-            {publication.conference} {publication.year}
-          </p>
+
+      {/* Content */}
+      <div className="flex flex-col flex-1 min-w-0">
+        {/* Conference + Award */}
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          <span
+            className={`text-xs px-2 py-0.5 rounded-full font-medium ${conferenceBadgeClass(publication.conference)}`}
+          >
+            {publication.conference}
+          </span>
+          <span className="text-xs text-zinc-400">{publication.year}</span>
           {publication.award && (
-            <div className="group flex px-2 py-1 bg-gradient-to-r from-amber-50 to-rose-50 rounded-md items-center shadow-md border border-amber-100/50 relative overflow-hidden hover:rotate-1 transition-all duration-300">
-              <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/90 to-transparent" />
-              <p className="text-xs text-amber-700 font-medium relative">
-                {publication.award}
-              </p>
-            </div>
+            <span className="inline-flex items-center text-xs text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full font-medium">
+              {publication.award}
+            </span>
           )}
         </div>
-        <h3 className="font-serif text-md mb-3">{publication.title}</h3>
-        <p className="text-sm text-zinc-600 mb-4">{publication.authors}</p>
-        <div className="flex flex-row gap-6">
-          {publication.paperUrl && (
+
+        {/* Title */}
+        <h3 className="font-serif text-[0.95rem] leading-snug mb-1.5 text-zinc-900">
+          {publication.paperUrl ? (
             <a
               href={publication.paperUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-500 transition-colors duration-200"
             >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider uppercase">Paper</span>
+              {publication.title}
             </a>
+          ) : (
+            publication.title
           )}
-          {publication.codeUrl && (
-            <a
-              href={publication.codeUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider uppercase">Code</span>
-            </a>
-          )}
-          {publication.poster && (
-            <a
-              href={publication.poster}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider uppercase">Poster</span>
-            </a>
-          )}
-          {publication.bibtex && (
-            <a
-              href={publication.bibtex}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider uppercase">BibTeX</span>
-            </a>
-          )}
-        </div>
+        </h3>
+
+        {/* Authors */}
+        <AuthorLine authors={publication.authors} />
+
+        {/* TL;DR */}
         {publication.tldr && (
-          <p className="text-sm italic text-zinc-600 mt-4">
+          <p className="text-xs text-zinc-500 mt-2 leading-relaxed">
+            <span className="font-medium text-zinc-400 uppercase tracking-wider text-[10px] mr-1.5">tl;dr</span>
             {publication.tldr}
           </p>
         )}
-        {publication.keywords && (
-          <div className="flex flex-row gap-2">
-            {publication.keywords.map((keyword, index) => (
-              <span key={index} className="text-xs text-zinc-600 px-2 py-1 bg-zinc-100 rounded-full">
-                {keyword}
+
+        {/* Links */}
+        <div className="flex flex-wrap gap-4 mt-3">
+          {publication.paperUrl && (
+            <LinkButton href={publication.paperUrl} label="Paper" />
+          )}
+          {publication.codeUrl && (
+            <LinkButton href={publication.codeUrl} label="Code" />
+          )}
+          {publication.poster && (
+            <LinkButton href={publication.poster} label="Poster" />
+          )}
+          {publication.bibtex && (
+            <LinkButton href={publication.bibtex} label="BibTeX" />
+          )}
+        </div>
+
+        {/* Keywords */}
+        {publication.keywords && publication.keywords.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-3">
+            {publication.keywords.map((kw, i) => (
+              <span
+                key={i}
+                className="text-[10px] tracking-wide text-zinc-400 px-2 py-0.5 bg-zinc-50 border border-zinc-100 rounded-full"
+              >
+                {kw}
               </span>
             ))}
           </div>
         )}
-        
       </div>
     </div>
   );
