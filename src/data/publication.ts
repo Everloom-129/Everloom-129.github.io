@@ -26,6 +26,7 @@ export const publicationData: Publication[] = [
     tldr: "We propose a planning-based robotics system that solves complex real-world manipulation tasks directly from raw pixels and natural-language commands. Validated 'in-the-wild' at GRASP Lab.",
     keywords: ["TAMP", "VLAs", "Evaluation"],
     imageUrl: "/images/2026/tiptop-teaser.png",
+    featured: true,
   },
 
   {
@@ -34,8 +35,7 @@ export const publicationData: Publication[] = [
     title: "OmniGuide: Universal Guidance Fields for Enhancing Generalist Robot Policies",
     authors: "Yunzhou Song*, Long Le*, Yong-Hyun Park, Jie Wang, Junyao Shi, Lingjie Liu, Jiatao Gu, Eric Eaton, Dinesh Jayaraman, Kostas Daniilidis",
     paperUrl: "https://omniguide.github.io/",
-    codeUrl: "https://omniguide.github.io/",
-    tldr: "We propose a a flexible framework that improves VLA performance on Spatial Reasoning tasks by leveraging prior knowledge from 3D foundation models, semantic-reasoning VLMs, and human trajectory.",
+    tldr: "A flexible framework that improves VLA performance on spatial reasoning tasks by leveraging prior knowledge from 3D foundation models, semantic-reasoning VLMs, and human trajectory demonstrations.",
     keywords: ["Guidance", "3D", "VLAs", "Spatial Reasoning"],
     imageUrl: "/images/2026/guided_pi_teaser.png",
   },
@@ -102,7 +102,7 @@ export const publicationData: Publication[] = [
   {
     year: "2024",
     conference: "ICICT",
-    title: "Real-time V2V Communication Network Cooperative Control System through Distributed Database,",
+    title: "Real-time V2V Communication Network Cooperative Control System through Distributed Database",
     authors: "Xinwen Zhu, Zihao Li, Yuxuan Jiang, Jiazhen Xu, Jie Wang, and Xuyang Ba",
     paperUrl: "https://arxiv.org/abs/2410.17576",
     codeUrl: "https://github.com/Essoz/Distributed-Intersection-Traffic-Coordination-With-Lease",

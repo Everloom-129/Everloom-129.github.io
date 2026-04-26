@@ -11,31 +11,31 @@ export interface Experience {
 
 export const experienceData: Experience[] = [
   {
-    date: "Fall 2025 - Present",
+    date: "Fall 2025 – Present",
     title: "Graduate Research Assistant",
     company: "Daniilidis Research Group, GRASP Lab",
     description:
-      "Improve Spatial Reasoning of VLAs like Pi05 via Guidance and RL.",
-    advisor: "Prof. Kostas Daniilidis ",
+      "Improving spatial reasoning of generalist robot policies (π0, OpenVLA) via guidance fields and reinforcement learning.",
+    advisor: "Prof. Kostas Daniilidis",
     logo: "/images/upenn_grasplab_logo.png",
-    companyUrl: "https://www.cis.upenn.edu/~kostas//",
+    companyUrl: "https://www.cis.upenn.edu/~kostas/",
   },
   {
     date: "Summer 2025",
     title: "Research Intern",
     company: "Dyna Robotics",
     companyUrl: "https://www.dyna.co/",
-    description: "Building an agentic reasoning VLA for fine-grained manipulation tasks depending on memory.",
+    description: "Building an agentic reasoning VLA for fine-grained manipulation, with persistent memory for long-horizon task execution.",
     logo: "/images/dyna_logo.png",
-    advisor: "Dr.Jason Ma & York Yang",
+    advisor: "Dr. Jason Ma & York Yang",
   },
 
   {
-    date: "Fall 2024 - Present",
+    date: "Fall 2024 – Present",
     title: "Graduate Research Assistant",
     company: "PennPAL Research Group, GRASP Lab",
     description:
-      "Building VLMs-based Manipulation System via Diffusion Policy for fine-grained tasks. Reproduced ReKep, SPHINX and pi0. ",
+      "Building VLM-based manipulation systems using diffusion policies for fine-grained tasks. Reproduced and benchmarked ReKep, SPHINX, and π0.",
     advisor: "Prof. Dinesh Jayaraman",
     logo: "/images/PennPAL_logo.webp",
     companyUrl: "https://www.seas.upenn.edu/~dineshj/pal/index.html/",
@@ -45,7 +45,7 @@ export const experienceData: Experience[] = [
     title: "Multimodal MLE Intern",
     company: "IDEA-Computer Vision & Robotics Department",
     description:
-      "Build, train and optimize a small human-centric video captioning model based on Grounding DINO 1.6Pro.",
+      "Built, trained, and optimized a human-centric video captioning model grounded in Grounding DINO 1.6 Pro for multimodal understanding.",
     advisor: "Dr. Xiaoke Jiang & Prof. Lei Zhang",
     companyUrl: "https://www.idea.edu.cn/research/cvr.html",
     logo: "/images/IDEA_logo.png",

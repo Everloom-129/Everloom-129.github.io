@@ -3,44 +3,48 @@ import { ArrowUpRight } from "lucide-react";
 import { Portfolio } from "@/data/portfolio";
 
 export function PortfolioEntry({ portfolio }: { portfolio: Portfolio }) {
+  const cleanTitle = portfolio.title.replace(/^\d{4}:\s*/, "");
+
   return (
-    <div className="flex flex-row gap-6">
+    <div className="group flex flex-col border border-zinc-100 rounded-xl overflow-hidden hover:border-zinc-200 hover:shadow-sm transition-all duration-200 bg-white h-full">
       {portfolio.imageUrl && (
-        <div className="w-1/4 min-w-[160px] relative">
+        <div className="relative w-full aspect-video bg-zinc-100 overflow-hidden flex-shrink-0">
           <Image
             src={portfolio.imageUrl}
-            alt={portfolio.title}
-            width={160}
-            height={200}
+            alt={cleanTitle}
+            fill
             loading="lazy"
-            className="rounded-lg"
+            className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
           />
         </div>
       )}
-      <div className="flex flex-col flex-1">
-        <h3 className="font-serif text-md mb-3">
+
+      <div className="flex flex-col flex-1 p-5">
+        <h3 className="font-serif text-base text-zinc-900 leading-snug mb-2">
           {portfolio.projectUrl ? (
             <a
               href={portfolio.projectUrl}
-              className="group inline-flex items-center gap-2 hover:text-zinc-600 transition-colors duration-300"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-500 transition-colors inline-flex items-center gap-1.5"
             >
-              {portfolio.title}
+              {cleanTitle}
               <ArrowUpRight
-                size={16}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                size={14}
+                className="opacity-0 group-hover:opacity-100 flex-shrink-0 transition-opacity duration-200"
               />
             </a>
           ) : (
-            portfolio.title
+            cleanTitle
           )}
         </h3>
 
         {portfolio.technologies && (
-          <div className="flex gap-2 mb-4 flex-wrap">
-            {portfolio.technologies.map((tech, index) => (
+          <div className="flex flex-wrap gap-1.5 mb-3">
+            {portfolio.technologies.map((tech, i) => (
               <span
-                key={index}
-                className="text-xs text-zinc-600 px-2 py-1 bg-zinc-100 rounded-full"
+                key={i}
+                className="text-[10px] text-zinc-500 bg-zinc-50 border border-zinc-100 px-2 py-0.5 rounded"
               >
                 {tech}
               </span>
@@ -48,35 +52,21 @@ export function PortfolioEntry({ portfolio }: { portfolio: Portfolio }) {
           </div>
         )}
 
-        <div className="flex gap-6">
-          {portfolio.projectUrl && (
-            <a
-              href={portfolio.projectUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider uppercase">Project</span>
-            </a>
-          )}
-          {portfolio.codeUrl && (
-            <a
-              href={portfolio.codeUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider uppercase">Code</span>
-            </a>
-          )}
-        </div>
-        <p className="text-sm text-zinc-600 mb-4 mt-4 italic">
+        <p className="text-sm text-zinc-600 leading-relaxed flex-1">
           {portfolio.description}
         </p>
+
+        {portfolio.codeUrl && (
+          <a
+            href={portfolio.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-700 transition-colors mt-4 self-start"
+          >
+            <ArrowUpRight size={11} />
+            <span className="tracking-wider uppercase">Code</span>
+          </a>
+        )}
       </div>
     </div>
   );

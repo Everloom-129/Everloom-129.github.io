@@ -20,13 +20,12 @@ export const portfolioData: Portfolio[] = [
   //   codeUrl: "https://github.com/Everloom-129/RainyBird",
   // },
   {
-    title: "2024: CIS5190 RL-based High-Speed Drone Racing",
-    description: 
-      "Advisor: Prof. Antonio Loquercio" + 
-      "Built a drone racing simulation with curriculum tracks (ellipse, split-S, UZH) using OmniDrones on IsaacSim & IssacLab. " +
-      "Designed a PPO-based reward function, achieving 40.7% success rate and 7.94 m/s average speed on a 127m track. " +
-      "Trained 150M frames across 250 parallel environments in 8 hours on 2 x NVIDIA A6000 GPUs. " +
-      "Explored domain randomization and trajectory-based methods for robustness.",
+    title: "2024: High-Speed Drone Racing via Deep Reinforcement Learning",
+    description:
+      "Advisor: Prof. Antonio Loquercio. " +
+      "Built a drone racing simulation with curriculum tracks (ellipse, split-S, UZH) using OmniDrones on IsaacSim & IsaacLab. " +
+      "Designed a PPO-based reward shaping scheme, achieving a 40.7% success rate and 7.94 m/s average speed on a 127 m track. " +
+      "Trained 150M frames across 250 parallel environments in 8 hours on 2× NVIDIA A6000 GPUs. ",
     technologies: ["RL", "IsaacSim", "Drone"],
     projectUrl: "https://www.seas.upenn.edu/~cis5190/fall2024/",
     imageUrl: "/images/drone-racing.png", 
@@ -36,9 +35,9 @@ export const portfolioData: Portfolio[] = [
   {
     title: "2024: PhiloCoffee Club",
     description:
-      "A student club exploring the crossroads of coffee and philosophy, finding insights through the shared experience of a delicious cup of coffee. ",
+      "A student club at ZJU International Campus exploring the intersection of coffee culture and philosophy — building community through conversation and a shared cup.",
     technologies: ["Coffee", "Philosophy", "Technology"],
-    projectUrl: "https://github.com/Everloom-129/RainyBird",
+    projectUrl: "https://philocoffee.github.io/",
     imageUrl:
       "/images/Philocoffee_Vision.jpg",
     codeUrl: "https://github.com/orgs/PhiloCoffee/repositories",
@@ -46,10 +45,10 @@ export const portfolioData: Portfolio[] = [
 
   
   {
-    title: "2023: CS438 Wireless Network Analysis Tool",
-    description: 
-      "A Python-based analytical tool for comprehensive wireless network analysis, featuring signal strength heatmaps and roaming mechanisms analysis. " +
-      "Developed in collaboration with UIUC IT Network team to study campus Wi-Fi infrastructure. 📡",
+    title: "2023: Campus Wi-Fi Network Analysis Tool",
+    description:
+      "A Python toolkit for wireless network analysis, featuring signal-strength heatmap visualization and roaming mechanism profiling. " +
+      "Built in collaboration with the UIUC IT Network team to characterize and improve campus Wi-Fi infrastructure.",
     technologies: ["Python", "UIUC Network Analysis"],
     projectUrl: "https://github.com/Everloom-129/CS438_Communication_Networks_Hub/tree/main/mini_project",
     imageUrl: "/images/CS438_heatmap_F1.png",   
@@ -57,42 +56,41 @@ export const portfolioData: Portfolio[] = [
   },
   
   {
-    title: "2023: Shell Eco-marathon Autonomous Programming Competition",
-    description: 
-      "Developed autonomous driving modules using ROS and tested in CARLA simulator with Unreal 4 Engine. Focused on efficient path planning for Shell Eco-marathon competition. 🚗",
+    title: "2023: Energy-Efficient Autonomous Driving for Shell Eco-marathon",
+    description:
+      "Developed autonomous driving modules in ROS and validated them in CARLA (Unreal Engine 4). Focused on energy-efficient path planning algorithms tailored for the Shell Eco-marathon competition constraints.",
     technologies: ["ROS", "CARLA", "Python", "Autonomous Driving"],
     projectUrl: "https://www.shellecomarathon.com/about/previous-seasons/2023-programme-on-track/autonomous-programming-competition.html",
     imageUrl: "/images/carla_challenge_2020.jpg",
   },
 
   {
-    title: "2022: ECE391: MentOS - Multi-terminal Operating System",
-    description: 
-      "Developed a Linux-like OS kernel using C and x86, implementing core features like paging virtual memory, IDT, GDT, and i8259-based interrupt controller. " +
-      "Created device drivers for RTC, keyboard, PIT and a read-only file system. Established system call linkage between user and kernel space, " +
-      "with support for single CPU task scheduling and multiple terminal switching. ⚙️",
+    title: "2022: MentOS — Multi-terminal OS Kernel",
+    description:
+      "Implemented a Linux-like OS kernel in C and x86 assembly, covering paging and virtual memory, IDT/GDT setup, and an i8259-based interrupt controller. " +
+      "Wrote device drivers for RTC, keyboard, and PIT, plus a read-only filesystem. " +
+      "Established full user/kernel system call linkage with preemptive task scheduling and multi-terminal switching.",
     technologies: ["C", "x86 Assembly", "Operating Systems"],
     projectUrl: "https://github.com/Everloom-129/ECE391-Operating-System",
     // imageUrl: "/images/mentos.png",
     codeUrl: "https://github.com/Everloom-129/ECE391-Operating-System"
   },
 
-  {
-    title: "2021: RoboMaster University Robotics Competition",
-    description: 
-      "Assisted in developing and optimizing vision algorithms for object detection via YOLOv4, contributing to auto-aiming and shooting system for real-time target engagement, improving hit accuracy by 20%. " +
-      "Supported the integration of vision systems on Jetson Nano with embedded platforms on DJI manifold2, achieving a 30 FPS during live competition on the industrial camera. 🤖",
-    technologies: ["Python", "PyTorch", "C/C++", "Computer Vision"],
-    projectUrl: "https://github.com/Meta-Team",
-    imageUrl: "/images/meta-robotics.png",
-  },
+  // {
+  //   title: "2021: RoboMaster — Real-Time Vision System for Competitive Robotics",
+  //   description:
+  //     "Developed and optimized YOLOv4-based vision algorithms for real-time object detection, powering the auto-aiming system and improving hit accuracy by 20%. " +
+  //     "Integrated the vision pipeline on Jetson Nano with the DJI Manifold 2 embedded platform, sustaining 30 FPS on an industrial camera during live competition.",
+  //   technologies: ["Python", "PyTorch", "C/C++", "Computer Vision"],
+  //   projectUrl: "https://github.com/Meta-Team",
+  //   imageUrl: "/images/meta-robotics.png",
+  // },
 
   {
-    title: "2021: Simulation and Modeling of Unmanned Vehicle Safety Test for Baidu Apollo D-kit",
-    description: 
-      "Assembled Lidar, Radar and Camera modules for Baidu Apollo D-kit Self-driving Test Vehicle. " +
-      "Constructed high- solution Lidar maps across ZJU international campus. " + 
-      "Improved perception module for traffic state estimation based on collected data and literature review. 🚗",
+    title: "2021: Autonomous Sensor Stack for Baidu Apollo D-kit",
+    description:
+      "Assembled LiDAR, radar, and camera sensor stacks on a Baidu Apollo D-kit autonomous test vehicle. " +
+      "Constructed high-resolution LiDAR maps across the ZJU International Campus. ",
     technologies: ["ROS", "Cyber RT", "C++"],
     projectUrl: "https://github.com/ApolloAuto/apollo",
     imageUrl: "/images/SRTP照片被用作学校海报.png",

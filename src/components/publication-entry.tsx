@@ -25,7 +25,7 @@ function AuthorLine({ authors }: { authors: string }) {
     <p className="text-sm text-zinc-500 leading-relaxed">
       {parts.map((part, i) =>
         part === "Jie Wang" ? (
-          <span key={i} className="font-medium text-zinc-700 underline decoration-dotted underline-offset-2">
+          <span key={i} className="font-semibold text-zinc-700 underline decoration-dotted underline-offset-2">
             Jie Wang
           </span>
         ) : (
@@ -36,36 +36,29 @@ function AuthorLine({ authors }: { authors: string }) {
   );
 }
 
-function LinkButton({
-  href,
-  label,
-}: {
-  href: string;
-  label: string;
-}) {
+function LinkPill({ href, label }: { href: string; label: string }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-1.5 text-xs tracking-wider uppercase text-zinc-400 hover:text-zinc-900 transition-colors duration-200"
+      className="group inline-flex items-center gap-1 text-[11px] tracking-wider uppercase text-zinc-500 hover:text-zinc-900 border border-zinc-200 hover:border-zinc-400 rounded px-2 py-0.5 transition-all duration-150"
     >
-      <ArrowUpRight
-        size={11}
-        className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-      />
       {label}
+      <ArrowUpRight
+        size={10}
+        className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150"
+      />
     </a>
   );
 }
 
 export function PublicationEntry({ publication }: { publication: Publication }) {
   return (
-    <div className="flex flex-row gap-5">
-      {/* Thumbnail */}
+    <div className="flex flex-col sm:flex-row gap-5">
       {publication.imageUrl && (
-        <div className="flex-shrink-0 w-[130px]">
-          <div className="relative w-[130px] h-[88px] rounded-lg overflow-hidden bg-zinc-100">
+        <div className="flex-shrink-0 sm:w-[180px]">
+          <div className="relative w-full sm:w-[180px] h-[112px] rounded-lg overflow-hidden bg-zinc-100 border border-zinc-100">
             <Image
               src={publication.imageUrl}
               alt={publication.title}
@@ -77,13 +70,9 @@ export function PublicationEntry({ publication }: { publication: Publication }) 
         </div>
       )}
 
-      {/* Content */}
       <div className="flex flex-col flex-1 min-w-0">
-        {/* Conference + Award */}
-        <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span
-            className={`text-xs px-2 py-0.5 rounded-full font-medium ${conferenceBadgeClass(publication.conference)}`}
-          >
+        <div className="flex flex-wrap items-center gap-2 mb-1.5">
+          <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${conferenceBadgeClass(publication.conference)}`}>
             {publication.conference}
           </span>
           <span className="text-xs text-zinc-400">{publication.year}</span>
@@ -94,7 +83,6 @@ export function PublicationEntry({ publication }: { publication: Publication }) 
           )}
         </div>
 
-        {/* Title */}
         <h3 className="font-serif text-[0.95rem] leading-snug mb-1.5 text-zinc-900">
           {publication.paperUrl ? (
             <a
@@ -110,41 +98,25 @@ export function PublicationEntry({ publication }: { publication: Publication }) 
           )}
         </h3>
 
-        {/* Authors */}
         <AuthorLine authors={publication.authors} />
 
-        {/* TL;DR */}
         {publication.tldr && (
-          <p className="text-xs text-zinc-500 mt-2 leading-relaxed">
-            <span className="font-medium text-zinc-400 uppercase tracking-wider text-[10px] mr-1.5">tl;dr</span>
+          <p className="text-xs text-zinc-500 mt-2 leading-relaxed italic border-l-2 border-zinc-100 pl-3">
             {publication.tldr}
           </p>
         )}
 
-        {/* Links */}
-        <div className="flex flex-wrap gap-4 mt-3">
-          {publication.paperUrl && (
-            <LinkButton href={publication.paperUrl} label="Paper" />
-          )}
-          {publication.codeUrl && (
-            <LinkButton href={publication.codeUrl} label="Code" />
-          )}
-          {publication.poster && (
-            <LinkButton href={publication.poster} label="Poster" />
-          )}
-          {publication.bibtex && (
-            <LinkButton href={publication.bibtex} label="BibTeX" />
-          )}
+        <div className="flex flex-wrap gap-2 mt-3">
+          {publication.paperUrl && <LinkPill href={publication.paperUrl} label="Paper" />}
+          {publication.codeUrl && <LinkPill href={publication.codeUrl} label="Code" />}
+          {publication.poster && <LinkPill href={publication.poster} label="Poster" />}
+          {publication.bibtex && <LinkPill href={publication.bibtex} label="BibTeX" />}
         </div>
 
-        {/* Keywords */}
         {publication.keywords && publication.keywords.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mt-3">
+          <div className="flex flex-wrap gap-1.5 mt-2.5">
             {publication.keywords.map((kw, i) => (
-              <span
-                key={i}
-                className="text-[10px] tracking-wide text-zinc-400 px-2 py-0.5 bg-zinc-50 border border-zinc-100 rounded-full"
-              >
+              <span key={i} className="text-[10px] tracking-wide text-zinc-400 px-1.5 py-0.5 bg-zinc-50 border border-zinc-100 rounded">
                 {kw}
               </span>
             ))}

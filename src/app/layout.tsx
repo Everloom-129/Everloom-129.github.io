@@ -29,7 +29,7 @@ const ptSerif = PT_Serif({
 const metaTitle = customMetadata.title || aboutMe.name;
 const metaDescription =
   customMetadata.description ||
-  "MS Robotics student at UPenn GRASP Lab. Research in VLAs, embodied reasoning, and robot learning.";
+  "MS Robotics at UPenn GRASP Lab. Building generalist robot agents for real-world manipulation — VLAs, embodied reasoning, and RL.";
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -43,12 +43,21 @@ export const metadata: Metadata = {
     url: "https://everloom-129.github.io",
     siteName: metaTitle,
     type: "website",
+    images: [
+      {
+        url: "https://everloom-129.github.io/images/me_fries_high.jpg",
+        width: 800,
+        height: 1067,
+        alt: aboutMe.name,
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: metaTitle,
     description: metaDescription,
     creator: aboutMe.twitterUsername ? `@${aboutMe.twitterUsername}` : undefined,
+    images: ["https://everloom-129.github.io/images/me_fries_high.jpg"],
   },
 };
 
@@ -63,12 +72,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${notoSerif.variable} ${ptSerif.variable} antialiased`}
       >
         <Navbar />
-        <main className="">{children}</main>
+        <main>{children}</main>
         <footer className="border-t border-zinc-100 bg-[#FFFCF8]">
           <div className="max-w-screen-lg mx-auto px-8 py-10 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
             <div>
               <p className="text-sm text-zinc-500">
-                © {new Date().getFullYear()} {aboutMe.name}.
+                © {new Date().getFullYear()} {aboutMe.name}
               </p>
               {aboutMe.secretDescription && (
                 <p className="text-xs text-zinc-400 mt-3 max-w-sm leading-relaxed">

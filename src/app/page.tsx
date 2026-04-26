@@ -56,10 +56,11 @@ export default function Home() {
             {/* News */}
             {recentNews.length > 0 && (
               <section id="news">
-                <h2 className="font-serif text-sm mb-6 tracking-widest uppercase text-zinc-500">
+                <h2 className="font-serif text-xs tracking-widest uppercase text-zinc-400 mb-4 flex items-center gap-3">
                   News
+                  <span className="flex-1 h-px bg-zinc-100" />
                 </h2>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {recentNews.map((news, i) => (
                     <NewsEntry key={i} news={news} />
                   ))}
@@ -70,15 +71,16 @@ export default function Home() {
             {/* Featured Research */}
             {featuredPubs.length > 0 && (
               <section id="research">
-                <h2 className="font-serif text-sm mb-6 tracking-widest uppercase text-zinc-500">
+                <h2 className="font-serif text-xs tracking-widest uppercase text-zinc-400 mb-6 flex items-center gap-3">
                   Selected Research
+                  <span className="flex-1 h-px bg-zinc-100" />
                 </h2>
-                <div className="space-y-10">
+                <div className="space-y-8">
                   {featuredPubs.map((pub, i) => (
                     <div key={i}>
                       <PublicationEntry publication={pub} />
                       {i < featuredPubs.length - 1 && (
-                        <div className="h-px bg-zinc-100 mt-10" />
+                        <div className="h-px bg-zinc-100 mt-8" />
                       )}
                     </div>
                   ))}
@@ -90,10 +92,11 @@ export default function Home() {
             {/* Education */}
             {educationData.length > 0 && (
               <section id="education">
-                <h2 className="font-serif text-sm mb-6 tracking-widest uppercase text-zinc-500">
+                <h2 className="font-serif text-xs tracking-widest uppercase text-zinc-400 mb-5 flex items-center gap-3">
                   Education
+                  <span className="flex-1 h-px bg-zinc-100" />
                 </h2>
-                <div className="space-y-6">
+                <div className="space-y-5">
                   {educationData.map((ed, i) => (
                     <EducationEntry key={i} education={ed} />
                   ))}
@@ -104,8 +107,9 @@ export default function Home() {
             {/* Experience */}
             {experienceData.length > 0 && (
               <section id="experience">
-                <h2 className="font-serif text-sm mb-6 tracking-widest uppercase text-zinc-500">
+                <h2 className="font-serif text-xs tracking-widest uppercase text-zinc-400 mb-5 flex items-center gap-3">
                   Experience
+                  <span className="flex-1 h-px bg-zinc-100" />
                 </h2>
                 <div className="space-y-4">
                   {experienceData.map((exp, i) => (

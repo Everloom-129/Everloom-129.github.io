@@ -19,37 +19,32 @@ export interface AboutMe {
 
 export const aboutMe: AboutMe = {
   name: "Jie Wang",
-  title: "Master Student @ GRASP Lab",
+  title: "MS Robotics · UPenn GRASP Lab",
   institution: "University of Pennsylvania",
   // Note that links work in the description
-  description: 
-    "Hi! I'm a MS Robotics student at the University of Pennsylvania's <a href='https://www.grasp.upenn.edu/'>GRASP Laboratory</a>, " +
-    "where I have been fortunate to work with <a href='https://jasonma2016.github.io/'>Jason Ma</a>, <a href='https://edwardshu.com/'>Edward Hu</a>, <a href='https://www.seas.upenn.edu/~dineshj/'>Dinesh Jayaraman</a> and <a href='https://www.cis.upenn.edu/~kostas/'>Kostas Daniilidis</a>. <br><br>" +
-    
-    "I received my B.S. in Computer Engineering from ZJU and UIUC in 2024, advised by <a href='https://scholar.google.com/citations?user=2hB_Q4EAAAAJ&hl=en'>Said Mikki</a>. and <a href='https://person.zju.edu.cn/en/0617496'>Wei Xiang</a>. <br><br>" +
-    
-    "I also spent time at <a href='https://www.idea.edu.cn/research/cvr.html'>IDEA-CVR</a> as a research intern, advised by <a href='https://shockjiang.github.io/'>Xiaoke Jiang</a> and <a href='https://www.leizhang.org/'>Lei Zhang</a>. <br><br>" +
-    
-    "My research interests include VLAs, embodied reasoning and robot learning. <br>" +
-    "I am a passionate builder to make generalizable agents that can think and execute <a href='https://www.bls.gov/ors/factsheet/gross-and-fine-manipulation.htm'>fine-grained manipulation</a>, " +
-    "like brewing a cup of latte with an espresso machine. <br><br>" + 
-    
-    "This summer, I am working at <a href='https://www.dyna.co/'>Dyna Robotics</a>, delivering high-performance reasoning VLA models. " +
+  description:
+    "I'm an MS Robotics student at the University of Pennsylvania's <a href='https://www.grasp.upenn.edu/'>GRASP Laboratory</a>, " +
+    "working with <a href='https://jasonma2016.github.io/'>Jason Ma</a>, <a href='https://edwardshu.com/'>Edward Hu</a>, <a href='https://www.seas.upenn.edu/~dineshj/'>Dinesh Jayaraman</a>, and <a href='https://www.cis.upenn.edu/~kostas/'>Kostas Daniilidis</a>. <br><br>" +
 
-    "I am applying for a PhD position in Computer Science or Robotics. If you are interested in my research, please feel free to contact me.", 
+    "My research focuses on <strong>robot learning and embodied AI</strong>, building generalist agents that can reason and execute <a href='https://www.bls.gov/ors/factsheet/gross-and-fine-manipulation.htm'>fine-grained manipulation</a> from language commands and raw perception. " +
+    "I care about systems that work reliably both in the simulation and real world. <br><br>" +
 
+    "Previously I interned at <a href='https://www.dyna.co/'>Dyna Robotics</a>, shipping high-performance reasoning VLA models for dexterous manipulation. " +
+    "I also interned at <a href='https://www.idea.edu.cn/research/cvr.html'>IDEA-CVR</a>, advised by <a href='https://shockjiang.github.io/'>Xiaoke Jiang</a> and <a href='https://www.leizhang.org/'>Lei Zhang</a> building open-world understanding models.<br><br>" +
 
-    
+    "I received my B.S. in Computer Engineering from ZJU–UIUC in 2024, advised by <a href='https://person.zju.edu.cn/en/0617496'>Wei Xiang</a>. <br><br> and <a href='https://scholar.google.com/citations?user=2hB_Q4EAAAAJ&hl=en'>Said Mikki</a>" +
+
+    "I'm actively seeking for job opportunities in Robotics. If you are interested in my work, please feel free to contact me.",
+
   email: "tonyw3@seas.upenn.edu",
-  imageUrl:
-    "/images/me_fries_high.jpg",
+  imageUrl: "/images/me_fries_high.jpg",
   googleScholarUrl: "https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AIfU4H7SGuK4TMarWYOzmINbgA96Uo1gL97PZcO52F0VLZHT1xYB3QJz7HG83u2OS002pY_3BdJFdYOXgGndx2tUG92b&user=MDrLWmIAAAAJ",
   githubUsername: "Everloom-129",
   linkedinUsername: "jie-wang-8ab93a266",
   twitterUsername: "JieWang_ZJUI",
-  blogUrl: "https://substack.com/@jiewang2024?/",
+  blogUrl: "https://substack.com/@jiewang2024",
   cvUrl: "/files/resume.pdf",
   institutionUrl: "https://www.grasp.upenn.edu",
-  altName: "tonyw3@seas.upenn.edu",
-  secretDescription: "I am a big fan of Philosophy and Coffee! I founded PhiloCoffee Club(哲咖社) at international ZJU Campus. Here is the club website: philocoffee.github.io",
+  funDescription: "Building robots that work in the real world — not just in simulation.",
+  secretDescription: "Big fan of philosophy and coffee — I founded PhiloCoffee Club (哲咖社) at the ZJU International Campus. Club website: philocoffee.github.io",
 };

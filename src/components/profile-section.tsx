@@ -77,6 +77,13 @@ export function ProfileSection({ aboutMe, navItems }: ProfileSectionProps) {
           )}
         </p>
 
+        {/* Tagline */}
+        {aboutMe.funDescription && (
+          <p className="text-xs text-zinc-500 leading-relaxed mb-4 max-w-[220px]">
+            {aboutMe.funDescription}
+          </p>
+        )}
+
         {/* Quick links: Blog + CV */}
         <div className="flex gap-5 mb-5">
           {aboutMe.blogUrl && (
@@ -119,7 +126,7 @@ export function ProfileSection({ aboutMe, navItems }: ProfileSectionProps) {
             <SocialLink
               href={`https://github.com/${aboutMe.githubUsername}`}
               icon={<Github size={13} />}
-              label={`github/${aboutMe.githubUsername}`}
+              label={aboutMe.githubUsername ?? ""}
             />
           )}
           {aboutMe.twitterUsername && (

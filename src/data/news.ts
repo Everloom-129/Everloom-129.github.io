@@ -16,22 +16,17 @@ export const newsData: News[] = [
   {
     date: "September 2025",
     title: "GRASP Student, Faculty and Industry(SFI) Committee Meeting",
-    description: "I joined Faculty and Industry(SFI) Committee at GRASP Lab, inbviting distinguished guests to share their insights and experiences.",
+    description: "I joined SFI Committee at GRASP Lab, hosting friends to share their insights at GRASP Lab",
     link: "https://www.grasp.upenn.edu/",
   },
 
   {
     date: "August 2025",
-    title: "AAWR gets accepted by NeurIPS 2025!",
-    description: "AAWR: Real-World Reinforcement Learning of Interactive Perception Behaviors",
-    link: "https://sites.google.com/view/rwrl-ap/home",
+    title: "AAWR accepted at NeurIPS 2025",
+    description: "AAWR: Real-World Reinforcement Learning of Active Perception Behaviors",
+    link: "https://penn-pal-lab.github.io/aawr/",
   },
-  // {
-  //   date: "August 2025",
-  //   title: "Our blog on pi0 released, welcome to check how pi0 works in the wild!",
-  //   description: "Evaluating pi0 in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies",
-  //   link: "https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/",
-  // },
+
   {
     date: "July 2025",
     title: "RoboArena gets accepted by CoRL 2025, welcome to our workshop!",
@@ -41,15 +36,15 @@ export const newsData: News[] = [
   {
     date: "June 2025",
     title: "Research Internship at Dyna Robotics",
-    description: "At Dyna Robotics, I learned how to train large-scale VLAs models.",
+    description: "Developing high-performance reasoning VLA models for dexterous, real-world manipulation.",
     link: "https://dyna.co/",
   },
-  {
-    date: "June 2025",
-    title: "ZeroMimic wins best paper in CVPR2025 3DVLMs workshop!",
-    description: "3D Vision Language Models for Robotic Manipulation: Opportunities and Challenges!",
-    link: "https://robo-3dvlms.github.io/index.html#",
-  },
+  // {
+  //   date: "June 2025",
+  //   title: "ZeroMimic — Best Paper, CVPR 2025 3DVLMs Workshop",
+  //   description: "ZeroMimic: Distilling Robotic Manipulation Skills from Web Videos awarded Best Paper at the CVPR 2025 Workshop on 3D Vision-Language Models for Robotic Manipulation.",
+  //   link: "https://robo-3dvlms.github.io/index.html#",
+  // },
   // {
   //   date: "Mar 2025",
   //   title: "ICRA 2025 paper accepted!",

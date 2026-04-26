@@ -8,5 +8,5 @@ export const customMetadata: CustomMetadata = {
   // title: "My Custom Title",
   // description: "My Custom Description",
   title: "Jie Wang",
-  description: "MS Robotics student at UPenn GRASP Lab. Research in VLAs, embodied reasoning, and robot learning.",
+  description: "MS Robotics at UPenn GRASP Lab. Building generalist robot agents for real-world manipulation — VLAs, RL and evaluation",
 };
