@@ -42,7 +42,7 @@ export const experienceData: Experience[] = [
   },
   {
     date: "Summer 2024",
-    title: "Multimodal MLE Intern",
+    title: "MLE Intern",
     company: "IDEA-Computer Vision & Robotics Department",
     description:
       "Built, trained, and optimized a human-centric video captioning model grounded in Grounding DINO 1.6 Pro for multimodal understanding.",

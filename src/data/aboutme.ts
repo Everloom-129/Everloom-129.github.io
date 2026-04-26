@@ -32,7 +32,9 @@ export const aboutMe: AboutMe = {
     "Previously I interned at <a href='https://www.dyna.co/'>Dyna Robotics</a>, shipping high-performance reasoning VLA models for dexterous manipulation. " +
     "I also interned at <a href='https://www.idea.edu.cn/research/cvr.html'>IDEA-CVR</a>, advised by <a href='https://shockjiang.github.io/'>Xiaoke Jiang</a> and <a href='https://www.leizhang.org/'>Lei Zhang</a> building open-world understanding models.<br><br>" +
 
-    "I received my B.S. in Computer Engineering from ZJU–UIUC in 2024, advised by <a href='https://person.zju.edu.cn/en/0617496'>Wei Xiang</a>. <br><br> and <a href='https://scholar.google.com/citations?user=2hB_Q4EAAAAJ&hl=en'>Said Mikki</a>" +
+    "I received my B.S. in Computer Engineering from ZJU-UIUC in 2024, advised by " +
+    "<a href='https://person.zju.edu.cn/en/0617496'>Wei Xiang</a> and " +
+    "<a href='https://scholar.google.com/citations?user=2hB_Q4EAAAAJ&hl=en'>Said Mikki</a>. <br><br>" +
 
     "I'm actively seeking for job opportunities in Robotics. If you are interested in my work, please feel free to contact me.",
 
@@ -45,6 +47,6 @@ export const aboutMe: AboutMe = {
   blogUrl: "https://substack.com/@jiewang2024",
   cvUrl: "/files/resume.pdf",
   institutionUrl: "https://www.grasp.upenn.edu",
-  funDescription: "Building robots that work in the real world — not just in simulation.",
-  secretDescription: "Big fan of philosophy and coffee — I founded PhiloCoffee Club (哲咖社) at the ZJU International Campus. Club website: philocoffee.github.io",
+  funDescription: "Building robot learning infra that enables robots working in the wild",
+  secretDescription: "I am a big fan of philosophy and coffee, please check PhiloCoffee Club (哲咖社) at https://philocoffee.github.io",
 };

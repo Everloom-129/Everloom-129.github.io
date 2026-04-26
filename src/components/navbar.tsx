@@ -26,10 +26,10 @@ export function Navbar() {
             <Link
               key={href}
               href={href}
-              className={`text-xs tracking-widest uppercase transition-colors duration-200 ${
+              className={`text-sm tracking-widest uppercase font-bold transition-colors duration-200 ${
                 pathname.startsWith(href)
                   ? "text-zinc-900"
-                  : "text-zinc-400 hover:text-zinc-800"
+                  : "text-zinc-900 hover:text-zinc-600"
               }`}
             >
               {label}
@@ -40,7 +40,7 @@ export function Navbar() {
               href={aboutMe.cvUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs tracking-widest uppercase text-zinc-400 hover:text-zinc-800 transition-colors duration-200"
+              className="text-sm tracking-widest uppercase font-bold text-zinc-900 hover:text-zinc-600 transition-colors duration-200"
             >
               CV ↗
             </a>
