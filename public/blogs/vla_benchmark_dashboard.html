@@ -86,6 +86,14 @@
 
   footer{margin-top:30px;color:var(--dim);font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.7;border-top:1px solid var(--line);padding-top:18px}
   .swatch-coral{background:var(--hot)}.swatch-amber{background:var(--amber)}.swatch-cyan{background:var(--cyan)}.swatch-violet{background:var(--violet)}.swatch-green{background:var(--green)}
+
+  /* deep-dive links */
+  .deepdive .links{display:grid;gap:12px;margin-top:4px}
+  @media(min-width:880px){.deepdive .links{grid-template-columns:1fr 1fr}}
+  .deepdive a{display:flex;flex-direction:column;gap:5px;text-decoration:none;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--hot);border-radius:12px;padding:16px 18px;transition:border-color .15s,transform .15s}
+  .deepdive a:hover{border-color:var(--hot);transform:translateY(-2px)}
+  .deepdive a .t{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .deepdive a .d{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:.03em;line-height:1.5}
 </style>
 
 <div class="kicker">Simulation Manipulation Benchmarks · VLA Evaluation</div>
@@ -138,6 +146,23 @@
     <div class="donut-wrap">
       <svg id="donut" viewBox="0 0 180 180"></svg>
       <div class="donut-legend" id="donutLegend"></div>
+    </div>
+  </div>
+
+  <!-- DEEP DIVES: RoboCasa365 -->
+  <div class="card wide deepdive">
+    <span class="tag">companion atlases</span>
+    <h2>RoboCasa365 deep dives</h2>
+    <div class="note">two visual breakdowns of the RoboCasa365 benchmark · click through for the full atlas</div>
+    <div class="links">
+      <a href="robocasa365_atomic_skills.html">
+        <span class="t">Atomic Skills Atlas →</span>
+        <span class="d">the primitive skills VLAs are drilled on — pick, place, open, press, turn …</span>
+      </a>
+      <a href="robocasa365_composite_tasks.html">
+        <span class="t">Composite Tasks Atlas →</span>
+        <span class="d">multi-stage kitchen tasks chained from atomic skills</span>
+      </a>
     </div>
   </div>
 

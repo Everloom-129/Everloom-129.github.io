@@ -1,0 +1,598 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RoboCasa365 · Atomic Skills Atlas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+  :root{
+    --paper:#f3ede1; --paper2:#ece4d4; --card:#fbf7ee;
+    --ink:#262019; --dim:#7d7363; --line:#d9cdb7;
+    --terra:#c8553d; --mustard:#dca24a; --sage:#7d8b66;
+    --slate:#4f6b73; --plum:#8a5b6e; --teal:#3f8f86;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;-webkit-font-smoothing:antialiased}
+  body{
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:34px 34px;background-position:-1px -1px;
+    background-blend-mode:normal;
+  }
+  .shell{max-width:1240px;margin:0 auto;padding:clamp(20px,4vw,56px)}
+  .blueprint-tint{position:fixed;inset:0;background:linear-gradient(180deg,rgba(243,237,225,.6),rgba(243,237,225,.92));pointer-events:none;z-index:-1}
+
+  header.top{border:1.5px solid var(--ink);background:var(--card);padding:26px 28px;position:relative}
+  .stamp{position:absolute;top:18px;right:22px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--terra);border:1px solid var(--terra);padding:5px 10px;transform:rotate(3deg)}
+  .kick{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--terra)}
+  h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(36px,6.5vw,74px);line-height:.94;margin:.16em 0 .12em;letter-spacing:-.015em}
+  h1 em{font-style:italic;color:var(--terra)}
+  .lede{color:var(--dim);max-width:70ch;font-size:15px;line-height:1.62}
+  .lede b{color:var(--ink);font-weight:600}
+
+  .statbar{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:22px;border:1.5px solid var(--ink)}
+  @media(min-width:720px){.statbar{grid-template-columns:repeat(5,1fr)}}
+  .stat{padding:16px 18px;border-right:1px solid var(--line);background:var(--card)}
+  .stat:last-child{border-right:none}
+  .stat .num{font-family:'Fraunces',serif;font-weight:900;font-size:34px;line-height:1}
+  .stat .lab{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+  .stat .num.warn{color:var(--terra)}
+
+  section{margin-top:34px}
+  .sec-h{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+  .sec-h h2{font-family:'Fraunces',serif;font-weight:600;font-size:25px;margin:0;letter-spacing:-.01em}
+  .sec-h .idx{font-family:'Space Mono',monospace;font-size:12px;color:var(--terra)}
+  .sec-h .desc{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-left:auto}
+
+  .panel{border:1.5px solid var(--ink);background:var(--card);padding:22px}
+  .twocol{display:grid;gap:18px}
+  @media(min-width:880px){.twocol{grid-template-columns:1.15fr .85fr}}
+
+  /* skill bars */
+  .skillbars{display:flex;flex-direction:column;gap:10px}
+  .sb-row{display:grid;grid-template-columns:138px 1fr 30px;align-items:center;gap:12px;cursor:default}
+  .sb-row .n{font-size:13px;font-weight:500}
+  .sb-track{height:22px;background:var(--paper2);border:1px solid var(--line);position:relative;overflow:hidden}
+  .sb-fill{height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-family:'Space Mono',monospace;font-size:10px;font-weight:700}
+  .sb-row .c{font-family:'Space Mono',monospace;font-size:13px;text-align:right;color:var(--dim)}
+
+  /* horizon histogram */
+  #hist{width:100%;height:240px;display:block}
+  .hx{font-family:'Space Mono',monospace;font-size:9px;fill:var(--dim)}
+  /* avg horizon lollipop */
+  .lolli{display:flex;flex-direction:column;gap:9px}
+  .ll-row{display:grid;grid-template-columns:138px 1fr 42px;align-items:center;gap:10px}
+  .ll-row .n{font-size:12.5px}
+  .ll-track{position:relative;height:14px}
+  .ll-line{position:absolute;top:6px;height:2px;background:var(--line)}
+  .ll-dot{position:absolute;top:1px;width:12px;height:12px;border-radius:50%;transform:translateX(-50%)}
+  .ll-row .v{font-family:'Space Mono',monospace;font-size:12px;color:var(--terra);text-align:right}
+
+  /* progress bars (per-task SR) */
+  .bar-wrap{display:flex;flex-direction:column;gap:9px}
+  .bar-row{display:grid;grid-template-columns:210px 1fr 38px;align-items:center;gap:12px}
+  .bar-row .name{display:flex;flex-direction:column;line-height:1.22;font-size:12.5px;color:var(--ink);min-width:0}
+  .bar-row .name b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar-row .name small{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.03em}
+  .track{height:18px;background:var(--paper2);border:1px solid var(--line);border-radius:3px;overflow:hidden;position:relative}
+  .fill{height:100%;border-radius:0;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+  .bar-row .val{font-family:'Space Mono',monospace;font-size:12.5px;font-weight:700;color:var(--ink);text-align:right}
+
+  /* leaderboard */
+  .lb-meta{display:flex;flex-wrap:wrap;gap:0;border:1.5px solid var(--ink);margin-bottom:16px}
+  .lb-meta .m{padding:12px 18px;border-right:1px solid var(--line);background:var(--card);flex:1;min-width:90px}
+  .lb-meta .m:last-child{border-right:none}
+  .lb-meta .m b{font-family:'Fraunces',serif;font-weight:900;font-size:24px;display:block}
+  .lb-meta .m span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .lb-card{border:1.5px solid var(--line);background:var(--card);margin-bottom:10px;overflow:hidden}
+  .lb-card.top{border-color:var(--ink)}
+  .lb-head{display:grid;grid-template-columns:46px 1.4fr 2fr auto;align-items:center;gap:14px;padding:14px 18px}
+  @media(max-width:720px){.lb-head{grid-template-columns:36px 1fr;row-gap:10px}}
+  .lb-rank{font-size:22px;text-align:center}
+  .lb-rank .num{font-family:'Space Mono',monospace;font-size:14px;color:var(--dim);font-weight:700}
+  .lb-id .nm{font-family:'Fraunces',serif;font-weight:600;font-size:18px;letter-spacing:-.01em}
+  .lb-id .fam{font-family:'Space Mono',monospace;font-size:10px;color:var(--dim);display:flex;gap:8px;align-items:center;margin-top:2px}
+  .src{font-family:'Space Mono',monospace;font-size:8.5px;padding:2px 6px;border-radius:10px;letter-spacing:.05em;text-transform:uppercase}
+  .src.internal{background:rgba(79,107,115,.16);color:var(--slate)}
+  .src.external{background:rgba(200,85,61,.14);color:var(--terra)}
+  .lb-overall{display:flex;align-items:center;gap:12px}
+  .lb-overall .otrack{flex:1;height:22px;background:var(--paper2);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .lb-overall .ofill{height:100%}
+  .lb-overall .oval{font-family:'Fraunces',serif;font-weight:900;font-size:24px;width:54px;text-align:right}
+  .lb-splits{display:flex;gap:18px;padding:0 18px 14px;flex-wrap:wrap}
+  .split{flex:1;min-width:150px}
+  .split .lab{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);display:flex;justify-content:space-between;margin-bottom:4px}
+  .split .lab b{color:var(--ink)}
+  .split .st{height:8px;background:var(--paper2);border-radius:4px;overflow:hidden}
+  .split .sf{height:100%;border-radius:4px}
+  details.sub{border-top:1px dashed var(--line);padding:0 18px}
+  details.sub summary{cursor:pointer;font-family:'Space Mono',monospace;font-size:10.5px;color:var(--dim);padding:10px 0;list-style:none;letter-spacing:.04em}
+  details.sub summary::-webkit-details-marker{display:none}
+  details.sub summary:before{content:"▸ ";color:var(--terra)}
+  details.sub[open] summary:before{content:"▾ "}
+  .subgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px 22px;padding:4px 0 16px;font-size:12px}
+  .subgrid div{color:var(--ink)}
+  .subgrid div span{color:var(--dim);font-family:'Space Mono',monospace;font-size:9.5px;display:block;letter-spacing:.04em;text-transform:uppercase}
+  .subgrid a{color:var(--slate);word-break:break-all}
+  .lb-note{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-top:14px;line-height:1.6}
+
+  /* donut */
+  .donutwrap{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+  #donut{flex:0 0 168px}
+  .dl{display:flex;flex-direction:column;gap:10px;font-size:13px}
+  .dl span{display:flex;align-items:center;gap:9px}
+  .dl i{width:12px;height:12px;border-radius:2px}
+  .dl b{font-family:'Space Mono',monospace;color:var(--dim);font-weight:400;margin-left:8px}
+
+  /* word cloud */
+  #cloud{width:100%;height:300px;display:block}
+
+  /* catalog */
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;align-items:center}
+  .controls input{font-family:'IBM Plex Sans';font-size:13px;padding:9px 12px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);min-width:200px;flex:1}
+  .controls input:focus{outline:none;border-color:var(--terra)}
+  .chip{font-family:'Space Mono',monospace;font-size:10.5px;padding:7px 11px;border:1.5px solid var(--line);background:var(--card);color:var(--dim);cursor:pointer;user-select:none;letter-spacing:.04em}
+  .chip.on{border-color:var(--ink);color:var(--ink);background:var(--paper2)}
+  .chip.seen.on{border-color:var(--teal);color:var(--teal)}
+  .count-line{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:10px}
+
+  table.cat{width:100%;border-collapse:collapse;font-size:13px}
+  table.cat thead th{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--ink);cursor:pointer;white-space:nowrap}
+  table.cat thead th:hover{color:var(--terra)}
+  table.cat tbody td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cat tbody tr:hover{background:var(--paper2)}
+  .tname{font-weight:600;display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .tname .seenmark{width:7px;height:7px;border-radius:50%;background:var(--teal);flex:0 0 7px}
+  .tname .seenmark.no{background:transparent;border:1px solid var(--line)}
+  .skill-pill{display:inline-block;font-family:'Space Mono',monospace;font-size:9.5px;padding:3px 7px;border-radius:3px;color:#fff;white-space:nowrap}
+  .instr{color:var(--ink);max-width:520px;line-height:1.45}
+  .hz{font-family:'Space Mono',monospace;color:var(--dim);white-space:nowrap}
+  .hz b{color:var(--terra)}
+  mark{background:rgba(220,162,74,.45);color:inherit;padding:0 1px}
+
+  .note{border-left:3px solid var(--terra);background:var(--card);padding:14px 18px;font-size:13.5px;line-height:1.6;color:var(--dim)}
+  .note b{color:var(--ink)}
+  footer{margin-top:36px;border-top:1.5px solid var(--ink);padding-top:16px;font-family:'Space Mono',monospace;font-size:10.5px;color:var(--dim);line-height:1.7}
+</style>
+<div class="blueprint-tint"></div>
+
+<div class="shell">
+
+  <header class="top">
+    <div class="stamp">DATASHEET · ATOMIC</div>
+    <div class="kick">RoboCasa365 · Kitchen Manipulation Benchmark</div>
+    <h1>The <em>atomic skill</em><br>instruction atlas.</h1>
+    <p class="lede">Every verbatim task instruction in the RoboCasa365 atomic-skill release, parsed and visualized. <b>10 macro skill sets</b>, <b>14 fixtures</b>, and a horizon for every task — from a 5-second blender press to a 46-second microwave retrieval. These are the actual natural-language commands a VLA is conditioned on.</p>
+
+    <div class="statbar">
+      <div class="stat"><div class="num" id="s-count">65</div><div class="lab">atomic tasks</div></div>
+      <div class="stat"><div class="num">10</div><div class="lab">macro skills</div></div>
+      <div class="stat"><div class="num" id="s-seen">18</div><div class="lab">atomic-seen w/ SR</div></div>
+      <div class="stat"><div class="num" id="s-med">—</div><div class="lab">median horizon</div></div>
+      <div class="stat"><div class="num" id="s-range">—</div><div class="lab">horizon range (s)</div></div>
+    </div>
+  </header>
+
+  <div class="note" style="margin-top:18px">
+    <b>Count verified:</b> all <b>65</b> atomic tasks are present, cross-checked against RoboCasa365 Appendix E.1 (Nasiriany et al., arXiv 2603.04356). The set = 25 original RoboCasa atomic tasks + 40 new, grouped here into 10 macro skills (Close Door 8 · Open Door 8 · Lid 5 · Insertion 2 · Navigation 1 · Pick&amp;Place 21 · Press Button 6 · Slide Rack 3 · Turn Lever 5 · Twist Knob 6 = 65). The 18 Atomic-Seen tasks additionally carry per-task success rates from the paper's Table 11.
+  </div>
+
+  <!-- SKILL DISTRIBUTION + SEEN DONUT -->
+  <section>
+    <div class="sec-h"><span class="idx">01</span><h2>Skill distribution</h2><span class="desc">Pick &amp; Place dominates — 35% of all tasks</span></div>
+    <div class="twocol">
+      <div class="panel"><div class="skillbars" id="skillbars"></div></div>
+      <div class="panel">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:14px;letter-spacing:.06em">SEEN vs UNSEEN GENERALIZATION SPLIT</div>
+        <div class="donutwrap">
+          <svg id="donut" viewBox="0 0 168 168"></svg>
+          <div class="dl" id="donutLegend"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS RATES -->
+  <section>
+    <div class="sec-h"><span class="idx">02</span><h2>Per-task success rates</h2><span class="desc">GR00T N1.5 · pretrain + 100% target fine-tune · 30 trials/task</span></div>
+    <div class="twocol">
+      <div class="panel">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:14px;letter-spacing:.06em">18 ATOMIC-SEEN TASKS, SORTED BY SUCCESS RATE</div>
+        <div class="bar-wrap" id="srbars"></div>
+      </div>
+      <div class="panel">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:14px;letter-spacing:.06em">READING THESE NUMBERS</div>
+        <div style="font-size:13.5px;line-height:1.6;color:var(--ink)">
+          These are the only per-task success rates RoboCasa365 publishes — GR00T N1.5 after pretraining plus fine-tuning on 100% of the target data (Table 11), the best-performing configuration in the paper. They average <b>~65%</b> across the 18 Atomic-Seen tasks.
+          <p style="color:var(--dim)">High-precision, high-dexterity tasks anchor the bottom: <b style="color:var(--terra)">TurnOffStove</b> and <b style="color:var(--terra)">CloseBlenderLid</b> both sit at 37%, while a simple lever press, <b style="color:var(--ink)">TurnOnElectricKettle</b>, tops out at 93%.</p>
+          <p style="color:var(--dim)">Note this is a different, easier setting than the multi-task leaderboard below: with target fine-tuning, GR00T N1.5 reaches ~65% on these tasks; in the pure multi-task setting it scores only 50.7% on the same Atomic-Seen split.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section>
+    <div class="sec-h"><span class="idx">03</span><h2>Multi-task leaderboard</h2><span class="desc">generalist policies on the RoboCasa365 multi-task benchmark</span></div>
+    <div class="lb-meta">
+      <div class="m"><b>50</b><span>target tasks</span></div>
+      <div class="m"><b>7</b><span>models evaluated</span></div>
+      <div class="m"><b>3</b><span>eval splits</span></div>
+      <div class="m"><b id="lb-top">—</b><span>top overall</span></div>
+      <div class="m"><b>05/23/26</b><span>last updated</span></div>
+    </div>
+    <div id="leaderboard"></div>
+    <div class="lb-note">
+      OVERALL = task-count-weighted mean over the 50 target tasks: (18·Atomic-Seen + 16·Composite-Seen + 16·Composite-Unseen) / 50. Splits shown as % success. "internal" = RoboCasa team submission; "external" = community submission via PR. RoboCasa 1.0.1 entries (GR00T, GigaWorld, RLDX-1) use a 1.5× longer evaluation horizon than the 1.0.0 entries (π0, π0.5, Diffusion Policy).
+    </div>
+  </section>
+
+  <!-- HORIZON -->
+  <section>
+    <div class="sec-h"><span class="idx">04</span><h2>Task horizon</h2><span class="desc">how long each rollout runs, in seconds</span></div>
+    <div class="twocol">
+      <div class="panel">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:6px;letter-spacing:.06em">DISTRIBUTION OF HORIZONS</div>
+        <svg id="hist" viewBox="0 0 560 240"></svg>
+      </div>
+      <div class="panel">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:14px;letter-spacing:.06em">MEAN HORIZON BY SKILL</div>
+        <div class="lolli" id="lolli"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORD CLOUD -->
+  <section>
+    <div class="sec-h"><span class="idx">05</span><h2>Instruction vocabulary</h2><span class="desc">tokenized from the 65 description strings</span></div>
+    <div class="panel"><canvas id="cloud"></canvas></div>
+  </section>
+
+  <!-- CATALOG -->
+  <section>
+    <div class="sec-h"><span class="idx">06</span><h2>Full instruction catalog</h2><span class="desc">search · filter by skill · sort by horizon</span></div>
+    <div class="panel">
+      <div class="controls">
+        <input id="search" placeholder="Search task or instruction… (e.g. drawer, fridge, press)">
+        <span class="chip seen" id="seenChip" data-on="0">◍ seen only</span>
+      </div>
+      <div id="chips" class="controls" style="margin-bottom:12px"></div>
+      <div class="count-line" id="countLine"></div>
+      <div style="overflow-x:auto">
+        <table class="cat">
+          <thead><tr>
+            <th data-sort="name">Task ▲▼</th>
+            <th data-sort="skill">Skill ▲▼</th>
+            <th data-sort="instr">Instruction ▲▼</th>
+            <th data-sort="hz">Horizon ▲▼</th>
+            <th data-sort="sr">SR % ▲▼</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    SOURCE · RoboCasa365, Nasiriany, Nasiriany, Maddukuri &amp; Zhu, arXiv 2603.04356 (UT Austin / NVIDIA). All 65 atomic task names verified against Appendix E.1; instructions and horizons from the atomic-tasks datasheet; the 18 Atomic-Seen tasks and their per-task success rates from Appendix E.2 (Figure 7) and Table 11 (GR00T N1.5, pretraining + 100% target fine-tuning, 30 trials per task). Bracketed slots — [kitchen location], [dessert], [food], [burner location], [left/right], [in/out] — are templated families instantiated per scene. The 47 tasks without a success rate were not in the 18-task target-evaluation split, so the paper reports no per-task SR for them.
+  </footer>
+</div>
+
+<script>
+/* ---------- DATA: 60 enumerated atomic tasks ---------- */
+const SKILLS = {
+  "Close Door":   {c:"var(--slate)"},
+  "Open Door":    {c:"var(--teal)"},
+  "Close/Open Lid":{c:"var(--plum)"},
+  "Insertion":    {c:"var(--mustard)"},
+  "Navigation":   {c:"#9a8c5c"},
+  "Pick & Place": {c:"var(--terra)"},
+  "Press Button": {c:"#b06a3b"},
+  "Slide Rack":   {c:"#6b8f9c"},
+  "Turn Lever":   {c:"var(--sage)"},
+  "Twist Knob":   {c:"#a86b4e"},
+};
+const T = [
+  // name, skill, instruction, horizon(s), seen
+  ["CloseCabinet","Close Door","Close the cabinet door(s).",25,0],
+  ["CloseDishwasher","Close Door","Close the dishwasher door.",26,0],
+  ["CloseDrawer","Close Door","Close the left/right drawer.",19,0],
+  ["CloseFridge","Close Door","Close the fridge door(s).",40,1],
+  ["CloseFridgeDrawer","Close Door","Fully close the fridge drawer.",7,0],
+  ["CloseMicrowave","Close Door","Close the microwave door.",23,0],
+  ["CloseOven","Close Door","Close the oven door.",14,0],
+  ["CloseToasterOvenDoor","Close Door","Close the toaster oven door.",12,1],
+
+  ["OpenCabinet","Open Door","Open the cabinet door(s).",35,1],
+  ["OpenDishwasher","Open Door","Open the dishwasher door.",25,0],
+  ["OpenDrawer","Open Door","Open the left/right drawer.",24,1],
+  ["OpenFridge","Open Door","Open the fridge door(s).",39,0],
+  ["OpenFridgeDrawer","Open Door","Fully open the fridge drawer.",8,0],
+  ["OpenMicrowave","Open Door","Open the microwave door.",23,0],
+  ["OpenOven","Open Door","Open the oven door.",12,0],
+  ["OpenToasterOvenDoor","Open Door","Open the toaster oven door.",14,0],
+
+  ["CloseBlenderLid","Close/Open Lid","Close the lid blender by securely placing the lid on top.",17,1],
+  ["CloseElectricKettleLid","Close/Open Lid","Close the lid of the electric kettle.",7,0],
+  ["CloseStandMixerHead","Close/Open Lid","Close the stand mixer head.",9,0],
+  ["OpenBlenderLid","Close/Open Lid","Open the blender by taking off the lid and placing it on the counter.",9,0],
+  ["OpenStandMixerHead","Close/Open Lid","Open the stand mixer head.",8,1],
+
+  ["CoffeeServeMug","Insertion","Pick the mug from under the coffee machine dispenser and place it on the counter.",28,0],
+  ["CoffeeSetupMug","Insertion","Pick the mug from the counter and place it under the coffee machine dispenser.",31,1],
+
+  ["NavigateKitchen","Navigation","Navigate to the [kitchen location].",7,1],
+
+  ["CheesyBread","Pick & Place","Pick up the wedge of cheese and place it on the slice of bread to prepare a simple cheese on bread dish.",15,0],
+  ["MakeIcedCoffee","Pick & Place","Pick up an ice cube and place it in the glass of coffee.",14,0],
+  ["PackDessert","Pick & Place","Add the [dessert] to the tupperware that contains the [food].",12,0],
+  ["PickPlaceCabinetToCounter","Pick & Place","Pick the item from the cabinet and place it on the counter.",28,0],
+  ["PickPlaceCounterToBlender","Pick & Place","Pick the item from the counter and place it in the blender.",18,0],
+  ["PickPlaceCounterToCabinet","Pick & Place","Pick the item from the counter and place it in the cabinet.",22,1],
+  ["PickPlaceCounterToDrawer","Pick & Place","Pick the item from the counter and place it in the drawer.",12,0],
+  ["PickPlaceCounterToMicrowave","Pick & Place","Pick the item from the counter and place it in the microwave.",39,0],
+  ["PickPlaceCounterToOven","Pick & Place","Place the item on the bottom/top rack of the oven.",34,0],
+  ["PickPlaceCounterToSink","Pick & Place","Pick the item from the counter and place it in the sink.",32,0],
+  ["PickPlaceCounterToStandMixer","Pick & Place","Place the item in the stand mixer bowl.",31,0],
+  ["PickPlaceCounterToStove","Pick & Place","Pick the item from the plate and place it in the pan.",26,1],
+  ["PickPlaceCounterToToasterOven","Pick & Place","Place the item on the rack of the toaster oven.",29,0],
+  ["PickPlaceDrawerToCounter","Pick & Place","Pick the item from the drawer and place it on the counter.",15,1],
+  ["PickPlaceFridgeDrawerToShelf","Pick & Place","Pick the item from the fridge drawer and place it on a fridge shelf.",12,0],
+  ["PickPlaceFridgeShelfToDrawer","Pick & Place","Pick the item from the fridge shelf and place it in the fridge drawer.",12,0],
+  ["PickPlaceMicrowaveToCounter","Pick & Place","Pick the item from the microwave and place it on container located on the counter.",46,0],
+  ["PickPlaceSinkToCounter","Pick & Place","Pick the item from the sink and place it on the container located on the counter.",34,1],
+  ["PickPlaceStoveToCounter","Pick & Place","Pick the item from the pan and place it in the container.",31,0],
+  ["PickPlaceToasterOvenToCounter","Pick & Place","Pick the item from the toaster oven and place it on the plate on the counter.",18,0],
+  ["PickPlaceToasterToCounter","Pick & Place","Place the toasted item on a plate.",37,1],
+
+  ["OpenElectricKettleLid","Press Button","Press the button to open the lid of the electric kettle.",8,0],
+  ["StartCoffeeMachine","Press Button","Press the button on the coffee machine to serve coffee.",8,0],
+  ["TurnOffMicrowave","Press Button","Press the stop button on the microwave.",25,0],
+  ["TurnOnBlender","Press Button","Turn on the blender by pressing the power button.",5,0],
+  ["TurnOnElectricKettle","Press Button","Press down the lever to turn on the electric kettle.",11,1],
+  ["TurnOnMicrowave","Press Button","Press the start button on the microwave.",23,1],
+
+  ["SlideDishwasherRack","Slide Rack","Fully slide the top dishwasher rack in/out.",9,1],
+  ["SlideOvenRack","Slide Rack","Fully slide the oven rack in/out.",10,0],
+  ["SlideToasterOvenRack","Slide Rack","Fully slide the toaster oven tray in/out.",5,0],
+
+  ["AdjustWaterTemperature","Turn Lever","The water running in the sink is hot/cold. Adjust the faucet handle to run the water cold/hot. Make sure to keep the water on.",16,0],
+  ["TurnOffSinkFaucet","Turn Lever","Turn off the sink faucet.",23,0],
+  ["TurnOnSinkFaucet","Turn Lever","Turn on the sink faucet.",32,1],
+  ["TurnOnToaster","Turn Lever","Push down the lever of the toaster to turn it on.",6,0],
+  ["TurnSinkSpout","Turn Lever","Turn the sink spout to the left/right.",10,0],
+
+  ["AdjustToasterOvenTemperature","Twist Knob","Increase/Decrease the toaster oven temperature.",19,0],
+  ["LowerHeat","Twist Knob","Lower the heat of the kettle.",14,0],
+  ["PreheatOven","Twist Knob","Preheat the oven by turning the temperature knob.",10,0],
+  ["TurnOffStove","Twist Knob","Turn off the [burner location] burner of the stove.",21,1],
+  ["TurnOnStove","Twist Knob","Turn on the [burner location] burner of the stove.",17,0],
+  ["TurnOnToasterOven","Twist Knob","Turn on the toaster oven by setting the timer.",21,0],
+].map(r=>({name:r[0],skill:r[1],instr:r[2],hz:r[3],seen:r[4]}));
+
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+/* ---------- header stats ---------- */
+(function(){
+  const hz=T.map(t=>t.hz).sort((a,b)=>a-b);
+  const med=hz.length%2? hz[(hz.length-1)/2] : (hz[hz.length/2-1]+hz[hz.length/2])/2;
+  document.getElementById('s-count').textContent=T.length;
+  document.getElementById('s-seen').textContent=T.filter(t=>t.seen).length;
+  document.getElementById('s-med').textContent=med+'s';
+  document.getElementById('s-range').textContent=hz[0]+'–'+hz[hz.length-1];
+})();
+
+/* ---------- skill bars ---------- */
+(function(){
+  const counts={}; Object.keys(SKILLS).forEach(s=>counts[s]=0);
+  T.forEach(t=>counts[t.skill]++);
+  const max=Math.max(...Object.values(counts));
+  const el=document.getElementById('skillbars');
+  el.innerHTML=Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([s,c])=>{
+    const col=SKILLS[s].c;
+    return `<div class="sb-row"><div class="n">${s}</div>
+      <div class="sb-track"><div class="sb-fill" style="width:${c/max*100}%;background:${col}">${c}</div></div>
+      <div class="c">${(c/T.length*100).toFixed(0)}%</div></div>`;
+  }).join('');
+})();
+
+/* ---------- seen donut ---------- */
+(function(){
+  const seen=T.filter(t=>t.seen).length, unseen=T.length-seen;
+  const segs=[{n:"Atomic-Seen",v:seen,c:css('--teal')},{n:"Unseen",v:unseen,c:css('--line')}];
+  const tot=seen+unseen; let a0=-Math.PI/2,s='';const cx=84,cy=84,R=70,r=42;
+  segs.forEach(seg=>{const a1=a0+seg.v/tot*6.283;const lp=(a1-a0)>Math.PI?1:0;
+    const p=(a,rad)=>[cx+rad*Math.cos(a),cy+rad*Math.sin(a)];
+    const[x0,y0]=p(a0,R),[x1,y1]=p(a1,R),[x2,y2]=p(a1,r),[x3,y3]=p(a0,r);
+    s+=`<path d="M${x0},${y0} A${R},${R} 0 ${lp} 1 ${x1},${y1} L${x2},${y2} A${r},${r} 0 ${lp} 0 ${x3},${y3} Z" fill="${seg.c}"/>`;a0=a1;});
+  s+=`<text x="84" y="80" text-anchor="middle" style="font-family:Fraunces;font-weight:900;font-size:30px;fill:${css('--ink')}">${(seen/tot*100).toFixed(0)}%</text>`;
+  s+=`<text x="84" y="98" text-anchor="middle" style="font-family:Space Mono;font-size:8px;fill:${css('--dim')};letter-spacing:.1em">SEEN</text>`;
+  document.getElementById('donut').innerHTML=s;
+  document.getElementById('donutLegend').innerHTML=segs.map(seg=>`<span><i style="background:${seg.c}"></i>${seg.n}<b>${seg.v}</b></span>`).join('')
+    +`<span style="margin-top:6px;font-size:11px;color:var(--dim);font-family:Space Mono">held-out tasks test skill generalization</span>`;
+})();
+
+/* ---------- per-task success rates (GR00T N1.5, Table 11) ---------- */
+const SR = {
+  "TurnOnElectricKettle":93,"OpenStandMixerHead":90,"CloseToasterOvenDoor":87,
+  "OpenCabinet":87,"SlideDishwasherRack":87,"PickPlaceToasterToCounter":73,
+  "TurnOnMicrowave":70,"OpenDrawer":70,"PickPlaceSinkToCounter":70,
+  "PickPlaceCounterToStove":70,"CloseFridge":67,"TurnOnSinkFaucet":63,
+  "PickPlaceCounterToCabinet":63,"CoffeeSetupMug":60,"NavigateKitchen":60,
+  "PickPlaceDrawerToCounter":50,"TurnOffStove":37,"CloseBlenderLid":37
+};
+const skillOf={}; T.forEach(t=>skillOf[t.name]=t.skill);
+T.forEach(t=>{ t.sr = (t.name in SR) ? SR[t.name] : -1; });
+
+(function(){
+  const rows=Object.entries(SR).sort((a,b)=>b[1]-a[1]);
+  document.getElementById('srbars').innerHTML=rows.map(([name,v])=>{
+    const col=SKILLS[skillOf[name]].c;
+    return `<div class="bar-row">
+      <div class="name"><b>${name}</b><small style="color:${col}">${skillOf[name]}</small></div>
+      <div class="track"><div class="fill" style="width:${v}%;background:${col}"></div></div>
+      <div class="val">${v}</div></div>`;
+  }).join('');
+})();
+
+/* ---------- multi-task leaderboard ---------- */
+const LB = [
+  {rank:"🥇",num:1,name:"RLDX-1",fam:"RLDX",src:"external",overall:33.2,atomic:63.0,cs:27.5,cu:5.4,batch:"192",steps:"250,000",date:"05/20/2026",rc:"1.0.1",
+   code:"https://github.com/RLWRLD/RLDX-1",ckpt:"https://huggingface.co/RLWRLD/RLDX-1-FT-RC365",report:"https://arxiv.org/abs/2605.03269",pr:"#3",
+   notes:"RLDX-1 Tech Report (arXiv 2605.03269); external submission fine-tuned on RC365."},
+  {rank:"🥈",num:2,name:"GR00T N1.5",fam:"GR00T",src:"internal",overall:23.9,atomic:50.7,cs:14.8,cu:2.7,batch:"128",steps:"120,000",date:"05/19/2026",rc:"1.0.1",
+   code:"https://github.com/robocasa-benchmark/Isaac-GR00T",ckpt:"https://huggingface.co/robocasa/robocasa365_checkpoints",
+   notes:"Re-evaluated with 1.5x longer horizon after the RoboCasa 1.0.1 update for consistency."},
+  {rank:"🥉",num:3,name:"GR00T N1.6",fam:"GR00T",src:"internal",overall:21.9,atomic:51.1,cs:9.4,cu:1.7,batch:"128",steps:"120,000",date:"05/14/2026",rc:"1.0.1",
+   code:"https://github.com/Abhiram824/grootn16",ckpt:"https://huggingface.co/Abhi03/grootn16_robocasa365_multitask_learning",notes:""},
+  {rank:"#4",num:4,name:"GigaWorld-Policy 0.1",fam:"GigaWorld-Policy",src:"external",overall:20.7,atomic:44.4,cs:11.8,cu:2.9,batch:"64",steps:"600,000",date:"05/11/2026",rc:"1.0.1",
+   code:"https://github.com/buyaojinchang/gigaworld_policy_01_robocasa_multi-task.git",ckpt:"https://huggingface.co/HengtaoLi/gwp01-robocasa-multi-task",pr:"#1",
+   notes:"Multi-task model trained on the human300 dataset."},
+  {rank:"#5",num:5,name:"π0.5",fam:"openpi",src:"internal",overall:16.9,atomic:39.6,cs:7.1,cu:1.2,batch:"64",steps:"75,000",date:"04/02/2026",rc:"1.0.0",
+   code:"https://github.com/robocasa-benchmark/openpi",ckpt:"https://huggingface.co/robocasa/robocasa365_checkpoints",notes:"Example submission file."},
+  {rank:"#6",num:6,name:"π0",fam:"openpi",src:"internal",overall:14.8,atomic:34.6,cs:6.1,cu:1.1,batch:"64",steps:"75,000",date:"04/02/2026",rc:"1.0.0",
+   code:"https://github.com/robocasa-benchmark/openpi",ckpt:"https://huggingface.co/robocasa/robocasa365_checkpoints",notes:"Example submission file."},
+  {rank:"#7",num:7,name:"Diffusion Policy",fam:"Diffusion Policy",src:"internal",overall:6.1,atomic:15.7,cs:0.2,cu:1.3,batch:"192",steps:"250,000",date:"04/02/2026",rc:"1.0.0",
+   code:"https://github.com/robocasa-benchmark/diffusion_policy",ckpt:"https://huggingface.co/robocasa/robocasa365_checkpoints",notes:"Example submission file."},
+];
+(function(){
+  const maxO=Math.max(...LB.map(m=>m.overall));
+  document.getElementById('lb-top').textContent=maxO.toFixed(1);
+  const grad="linear-gradient(90deg,var(--terra),var(--mustard))";
+  const splitBar=(lab,v,max,col)=>`<div class="split"><div class="lab">${lab}<b>${v}%</b></div>
+    <div class="st"><div class="sf" style="width:${v/max*100}%;background:${col}"></div></div></div>`;
+  const esc=s=>(s||"").replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+  const lk=(label,url)=>url?`<div><span>${label}</span><a href="${url}" target="_blank" rel="noopener">${esc(url.replace(/^https?:\/\//,''))}</a></div>`:'';
+  document.getElementById('leaderboard').innerHTML=LB.map(m=>{
+    const rankCell = m.num<=3 ? `<div class="lb-rank">${m.rank}</div>` : `<div class="lb-rank"><span class="num">${m.rank}</span></div>`;
+    return `<div class="lb-card ${m.num<=3?'top':''}">
+      <div class="lb-head">
+        ${rankCell}
+        <div class="lb-id"><div class="nm">${esc(m.name)}</div>
+          <div class="fam">${esc(m.fam)} <span class="src ${m.src}">${m.src}</span></div></div>
+        <div class="lb-overall">
+          <div class="otrack"><div class="ofill" style="width:${m.overall/maxO*100}%;background:${grad}"></div></div>
+          <div class="oval">${m.overall}</div></div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--dim);text-align:right;line-height:1.5">
+          bs ${m.batch}<br>${m.steps} steps</div>
+      </div>
+      <div class="lb-splits">
+        ${splitBar("Atomic-Seen",m.atomic,70,"var(--sage)")}
+        ${splitBar("Composite-Seen",m.cs,70,"var(--slate)")}
+        ${splitBar("Composite-Unseen",m.cu,70,"var(--plum)")}
+      </div>
+      <details class="sub"><summary>submission details</summary>
+        <div class="subgrid">
+          <div><span>date evaluated</span>${m.date}</div>
+          <div><span>robocasa version</span>${m.rc}</div>
+          <div><span>source</span>${m.src}</div>
+          <div><span>batch / steps</span>${m.batch} / ${m.steps}</div>
+          ${lk("code",m.code)}
+          ${lk("checkpoint",m.ckpt)}
+          ${m.report?lk("tech report",m.report):''}
+          ${m.pr?`<div><span>pull request</span>${m.pr}</div>`:''}
+          ${m.notes?`<div style="grid-column:1/-1"><span>notes</span>${esc(m.notes)}</div>`:''}
+        </div>
+      </details>
+    </div>`;
+  }).join('');
+})();
+
+/* ---------- horizon histogram ---------- */
+(function(){
+  const W=560,H=240,P=34;
+  const bins=[[0,9],[10,14],[15,19],[20,24],[25,29],[30,34],[35,39],[40,46]];
+  const counts=bins.map(b=>T.filter(t=>t.hz>=b[0]&&t.hz<=b[1]).length);
+  const max=Math.max(...counts);
+  const bw=(W-P*2)/bins.length;
+  let s='';
+  for(let g=0;g<=max;g+=Math.ceil(max/4)){const y=H-P-(g/max)*(H-P*2);
+    s+=`<line x1="${P}" y1="${y}" x2="${W-P}" y2="${y}" stroke="${css('--line')}"/>`;
+    s+=`<text class="hx" x="${P-6}" y="${y+3}" text-anchor="end">${g}</text>`;}
+  counts.forEach((c,i)=>{const h=(c/max)*(H-P*2);const x=P+i*bw+4;const y=H-P-h;
+    s+=`<rect x="${x}" y="${y}" width="${bw-8}" height="${h}" fill="${css('--terra')}" opacity="${0.55+0.4*c/max}"/>`;
+    if(c)s+=`<text class="hx" x="${x+(bw-8)/2}" y="${y-5}" text-anchor="middle" style="fill:${css('--ink')};font-weight:700">${c}</text>`;
+    s+=`<text class="hx" x="${x+(bw-8)/2}" y="${H-P+13}" text-anchor="middle">${bins[i][0]}-${bins[i][1]}</text>`;});
+  s+=`<text class="hx" x="${W/2}" y="${H-2}" text-anchor="middle">horizon (seconds)</text>`;
+  document.getElementById('hist').innerHTML=s;
+})();
+
+/* ---------- mean horizon by skill (lollipop) ---------- */
+(function(){
+  const agg={};Object.keys(SKILLS).forEach(s=>agg[s]=[]);
+  T.forEach(t=>agg[t.skill].push(t.hz));
+  const rows=Object.entries(agg).map(([s,a])=>({s,m:a.reduce((x,y)=>x+y,0)/a.length})).sort((a,b)=>b.m-a.m);
+  const max=Math.max(...rows.map(r=>r.m));
+  document.getElementById('lolli').innerHTML=rows.map(r=>{
+    const col=SKILLS[r.s].c;const pct=r.m/max*100;
+    return `<div class="ll-row"><div class="n">${r.s}</div>
+      <div class="ll-track"><div class="ll-line" style="left:0;width:${pct}%"></div>
+      <div class="ll-dot" style="left:${pct}%;background:${col}"></div></div>
+      <div class="v">${r.m.toFixed(1)}s</div></div>`;
+  }).join('');
+})();
+
+/* ---------- word cloud ---------- */
+(function(){
+  const cv=document.getElementById('cloud');const DPR=Math.min(devicePixelRatio||1,2);
+  const W=cv.clientWidth,H=300;cv.width=W*DPR;cv.height=H*DPR;const ctx=cv.getContext('2d');ctx.scale(DPR,DPR);
+  const STOP=new Set("the and in it on of to a an into onto off at by up down or with from is are make sure".split(" "));
+  const VERB=new Set("pick place put open close press turn slide push add navigate adjust lower preheat serve secure setup".split(" "));
+  const FIX=new Set("cabinet dishwasher drawer fridge microwave oven toaster blender kettle mixer coffee sink stove faucet counter".split(" "));
+  const freq={};
+  T.forEach(t=>t.instr.toLowerCase().replace(/[\[\]().,\/]/g,' ').split(/\s+/).forEach(w=>{
+    w=w.replace(/s$/,m=>m); if(!w||STOP.has(w)||w.length<3)return; freq[w]=(freq[w]||0)+1;}));
+  let words=Object.entries(freq).map(([w,c])=>({w,c})).sort((a,b)=>b.c-a.c).slice(0,50);
+  const mx=words[0].c,mn=words[words.length-1].c;
+  const col=w=>VERB.has(w)?css('--terra'):FIX.has(w)?css('--slate'):css('--mustard');
+  const placed=[];
+  const fits=(x,y,w,h)=>{if(x<3||y<3||x+w>W-3||y+h>H-3)return false;for(const p of placed)if(x<p.x+p.w&&x+w>p.x&&y<p.y+p.h&&y+h>p.y)return false;return true;};
+  words.forEach((o,i)=>{const t=(o.c-mn)/(mx-mn||1);const size=Math.round(12+t*40);o.size=size;o.color=col(o.w);
+    ctx.font=`${i<3?900:600} ${size}px Fraunces, serif`;const m=ctx.measureText(o.w);const w=m.width+8,h=size*1.02;
+    let ang=Math.random()*6.28,r=0,x=0,y=0,ok=false;
+    for(let k=0;k<2800;k++){x=W/2+r*Math.cos(ang)-w/2;y=H/2+r*Math.sin(ang)*0.6-h/2;if(fits(x,y,w,h)){ok=true;break;}ang+=0.35;r+=0.5;}
+    if(ok){placed.push({x,y,w,h});o.x=x;o.y=y;}});
+  words.forEach((o,i)=>{if(o.x==null)return;ctx.font=`${i<3?900:600} ${o.size}px Fraunces, serif`;ctx.textBaseline='top';
+    ctx.fillStyle=o.color;ctx.globalAlpha=0.6+0.4*((o.size-12)/40);ctx.fillText(o.w,o.x+4,o.y);});
+  ctx.globalAlpha=1;
+})();
+
+/* ---------- interactive catalog ---------- */
+const state={q:"",skill:null,seen:false,sortKey:"skill",sortDir:1};
+const chipsEl=document.getElementById('chips');
+chipsEl.innerHTML=Object.keys(SKILLS).map(s=>`<span class="chip" data-skill="${s}">${s}</span>`).join('');
+chipsEl.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+  const s=c.dataset.skill;state.skill=state.skill===s?null:s;
+  chipsEl.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x.dataset.skill===state.skill));render();});
+const seenChip=document.getElementById('seenChip');
+seenChip.onclick=()=>{state.seen=!state.seen;seenChip.classList.toggle('on',state.seen);render();};
+document.getElementById('search').oninput=e=>{state.q=e.target.value.toLowerCase();render();};
+document.querySelectorAll('table.cat thead th').forEach(th=>th.onclick=()=>{
+  const k=th.dataset.sort;state.sortDir=state.sortKey===k?-state.sortDir:1;state.sortKey=k;render();});
+
+function esc(s){return s.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+function hl(s){if(!state.q)return esc(s);const i=s.toLowerCase().indexOf(state.q);if(i<0)return esc(s);
+  return esc(s.slice(0,i))+'<mark>'+esc(s.slice(i,i+state.q.length))+'</mark>'+esc(s.slice(i+state.q.length));}
+
+function render(){
+  let rows=T.filter(t=>{
+    if(state.skill&&t.skill!==state.skill)return false;
+    if(state.seen&&!t.seen)return false;
+    if(state.q&&!(t.name.toLowerCase().includes(state.q)||t.instr.toLowerCase().includes(state.q)))return false;
+    return true;});
+  rows.sort((a,b)=>{let x=a[state.sortKey],y=b[state.sortKey];
+    if(typeof x==='string'){x=x.toLowerCase();y=y.toLowerCase();}
+    return (x<y?-1:x>y?1:0)*state.sortDir;});
+  document.getElementById('countLine').textContent=`${rows.length} of ${T.length} tasks`+(state.skill?` · ${state.skill}`:'')+(state.seen?' · seen only':'');
+  document.getElementById('tbody').innerHTML=rows.map(t=>{
+    const col=SKILLS[t.skill].c;
+    const sr = SR[t.name];
+    const srCell = sr==null ? `<td class="hz" style="color:var(--line)">—</td>`
+      : `<td class="hz"><b style="color:${sr>=70?'var(--sage)':sr>=50?'var(--mustard)':'var(--terra)'}">${sr}</b></td>`;
+    return `<tr>
+      <td><div class="tname"><span class="seenmark ${t.seen?'':'no'}" title="${t.seen?'Atomic-Seen':'Unseen'}"></span>${hl(t.name)}</div></td>
+      <td><span class="skill-pill" style="background:${col}">${t.skill}</span></td>
+      <td class="instr">${hl(t.instr)}</td>
+      <td class="hz"><b>${t.hz}</b>s</td>
+      ${srCell}
+    </tr>`;}).join('');
+}
+render();
+</script>
