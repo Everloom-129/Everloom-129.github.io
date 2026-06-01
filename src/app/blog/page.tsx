@@ -133,6 +133,14 @@ export default function BlogPage() {
     },
   ];
 
+  const benchmarkTabs: { label: string; url: string }[] = [
+    { label: "RoboCasa365 · Atomic", url: "/blogs/robocasa365_atomic_skills.html" },
+    { label: "RoboCasa365 · Composite", url: "/blogs/robocasa365_composite_tasks.html" },
+    { label: "MolmoAct2 · BimanualYAM", url: "/blogs/molmoact2_yam_dataset.html" },
+    { label: "BEHAVIOR Challenge 2025", url: "/blogs/behavior_challenge_2025.html" },
+    { label: "LW-BenchHub", url: "/blogs/lw_benchhub_tasks.html" },
+  ];
+
   const misc: WritingEntry[] = [
     {
       title: "PhiloCoffee Club (哲咖社)",
@@ -167,6 +175,55 @@ export default function BlogPage() {
             description="Blog posts and reports from research projects."
             entries={researchNotes}
           />
+
+          {/* Benchmark Atlas — dashboard lead + per-benchmark tabs */}
+          <section className="mb-12">
+            <div className="mb-4">
+              <h2 className="font-serif text-xs tracking-widest uppercase text-zinc-400 flex items-center gap-3">
+                Benchmark Atlas
+                <span className="flex-1 h-px bg-zinc-100" />
+              </h2>
+              <p className="text-xs text-zinc-400 mt-2 leading-relaxed max-w-xl font-sans">
+                A living visual survey of VLA simulation benchmarks — instructions, success rates, and per-benchmark dissections.
+              </p>
+            </div>
+            <a
+              href="/blogs/vla_benchmark_dashboard.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-start justify-between gap-4 py-4 border-b border-zinc-100 cursor-pointer"
+            >
+              <div className="flex-1 min-w-0">
+                <h3 className="font-serif text-sm text-zinc-900 leading-snug mb-1 group-hover:text-zinc-500 transition-colors duration-200">
+                  VLA Simulation Benchmarks — Visual Survey
+                </h3>
+                <p className="text-xs text-zinc-500 leading-relaxed">
+                  Word clouds of task instructions, a capability-vs-robustness map, and a benchmark × model success heatmap across 20+ sim benchmarks.
+                </p>
+              </div>
+              <ArrowUpRight
+                size={14}
+                className="flex-shrink-0 text-zinc-300 group-hover:text-zinc-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 mt-0.5"
+              />
+            </a>
+            <div className="flex flex-wrap gap-2 pt-4">
+              {benchmarkTabs.map((t) => (
+                <a
+                  key={t.label}
+                  href={t.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] font-sans text-zinc-500 border border-zinc-200 rounded-full px-3 py-1 hover:border-zinc-400 hover:text-zinc-700 transition-colors"
+                >
+                  {t.label}
+                </a>
+              ))}
+              <span className="text-[11px] font-sans text-zinc-300 border border-dashed border-zinc-200 rounded-full px-3 py-1 select-none">
+                (…) more
+              </span>
+            </div>
+          </section>
+
           <Section
             title="Course Notes"
             description="Reading logs, reproductions, and reflections from graduate courses."

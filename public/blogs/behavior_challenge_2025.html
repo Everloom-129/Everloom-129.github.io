@@ -1,0 +1,368 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BEHAVIOR Challenge 2025 · Task & Leaderboard Atlas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+  :root{
+    --paper:#0f1117; --paper2:#161922; --card:#171b25;
+    --ink:#e9e6dc; --dim:#8a8f9e; --line:#2a3040;
+    --gold:#e3b23c; --terra:#e0654a; --teal:#3fb8a8; --slate:#6f8bb0; --plum:#b07c98; --indigo:#8a87e0; --sage:#94b06a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;-webkit-font-smoothing:antialiased}
+  body{background-image:
+      radial-gradient(900px 480px at 88% -8%, rgba(138,135,224,.10), transparent 60%),
+      radial-gradient(800px 460px at -6% 8%, rgba(63,184,168,.08), transparent 55%);}
+  .shell{max-width:1240px;margin:0 auto;padding:clamp(20px,4vw,56px)}
+
+  header.top{border:1.5px solid var(--line);background:var(--card);padding:26px 28px;position:relative;overflow:hidden;border-radius:14px}
+  .stamp{position:absolute;top:18px;right:22px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);border:1px solid var(--gold);padding:5px 10px;border-radius:20px}
+  .kick{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--teal)}
+  h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(34px,6vw,68px);line-height:.95;margin:.16em 0 .12em;letter-spacing:-.015em}
+  h1 em{font-style:italic;color:var(--gold)}
+  .lede{color:var(--dim);max-width:72ch;font-size:15px;line-height:1.62}
+  .lede b{color:var(--ink);font-weight:600}
+
+  .statbar{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:22px;border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+  @media(min-width:720px){.statbar{grid-template-columns:repeat(5,1fr)}}
+  .stat{padding:16px 18px;border-right:1px solid var(--line);background:var(--paper2)}
+  .stat:last-child{border-right:none}
+  .stat .num{font-family:'Fraunces',serif;font-weight:900;font-size:30px;line-height:1}
+  .stat .num.gold{color:var(--gold)}
+  .stat .lab{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+
+  .note{border-left:3px solid var(--gold);background:var(--card);padding:14px 18px;font-size:13.5px;line-height:1.6;color:var(--dim);margin-top:18px;border-radius:0 10px 10px 0}
+  .note b{color:var(--ink)}
+
+  section{margin-top:34px}
+  .sec-h{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+  .sec-h h2{font-family:'Fraunces',serif;font-weight:600;font-size:25px;margin:0;letter-spacing:-.01em}
+  .sec-h .idx{font-family:'Space Mono',monospace;font-size:12px;color:var(--teal)}
+  .sec-h .desc{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-left:auto}
+
+  .panel{border:1.5px solid var(--line);background:var(--card);padding:22px;border-radius:14px}
+  .twocol{display:grid;gap:18px}
+  @media(min-width:880px){.twocol{grid-template-columns:1fr 1fr}}
+  .twocol.bias{grid-template-columns:1fr}
+  @media(min-width:880px){.twocol.bias{grid-template-columns:1.2fr .8fr}}
+
+  /* leaderboard */
+  .lb-card{border:1.5px solid var(--line);background:var(--paper2);border-radius:12px;margin-bottom:9px;padding:14px 18px}
+  .lb-card.podium{border-color:var(--gold)}
+  .lb-top{display:grid;grid-template-columns:42px 1.5fr 2.2fr auto;align-items:center;gap:14px}
+  @media(max-width:720px){.lb-top{grid-template-columns:34px 1fr;row-gap:8px}}
+  .lb-rank{font-size:20px;text-align:center}
+  .lb-rank .n{font-family:'Space Mono',monospace;font-size:13px;color:var(--dim);font-weight:700}
+  .lb-team .t{font-family:'Fraunces',serif;font-weight:600;font-size:17px}
+  .lb-team .a{font-family:'Space Mono',monospace;font-size:10px;color:var(--dim);margin-top:2px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .trk{font-family:'Space Mono',monospace;font-size:8.5px;padding:2px 6px;border-radius:9px;letter-spacing:.04em;text-transform:uppercase}
+  .trk.Standard{background:rgba(63,184,168,.16);color:var(--teal)}
+  .trk.Privileged{background:rgba(176,124,152,.18);color:var(--plum)}
+  .lb-q{display:flex;align-items:center;gap:11px}
+  .lb-q .qtrack{flex:1;height:20px;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;position:relative;background-image:repeating-linear-gradient(90deg,transparent,transparent calc(25% - 1px),var(--line) calc(25% - 1px),var(--line) 25%)}
+  .lb-q .qfill{height:100%;background:linear-gradient(90deg,var(--gold),var(--terra));position:relative;z-index:1}
+  .lb-detail{margin-top:0}
+  /* collapsible section */
+  .sec-fold{border:1.5px solid var(--line);background:var(--card);border-radius:14px;overflow:hidden}
+  .sec-fold>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:14px;padding:18px 22px}
+  .sec-fold>summary::-webkit-details-marker{display:none}
+  .sec-fold>summary:after{content:"\25B8";margin-left:auto;color:var(--teal);font-size:14px;transition:transform .2s}
+  .sec-fold[open]>summary:after{transform:rotate(90deg)}
+  .sec-fold>summary .idx{font-family:'Space Mono',monospace;font-size:12px;color:var(--teal)}
+  .sec-fold>summary .fold-title{font-family:'Fraunces',serif;font-weight:600;font-size:25px;letter-spacing:-.01em}
+  .sec-fold>summary .fold-hint{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim)}
+  .sec-fold[open]>summary{border-bottom:1px solid var(--line)}
+  .sec-fold .fold-body{padding:22px}
+  .lb-q .qval{font-family:'Fraunces',serif;font-weight:900;font-size:21px;width:64px;text-align:right}
+  .lb-q .qval small{font-family:'Space Mono',monospace;font-size:9px;color:var(--dim);display:block;font-weight:400;letter-spacing:.04em}
+  .lb-links{font-family:'Space Mono',monospace;font-size:10px;text-align:right;line-height:1.7}
+  .lb-links a{color:var(--slate);text-decoration:none;border-bottom:1px dotted var(--slate)}
+  .lb-sub{display:flex;gap:18px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .lb-metric{flex:1;min-width:130px}
+  .lb-metric .ml{font-family:'Space Mono',monospace;font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;display:flex;justify-content:space-between;margin-bottom:4px}
+  .lb-metric .ml b{color:var(--ink)}
+  .lb-metric .mt{height:6px;background:var(--paper);border-radius:3px;overflow:hidden}
+  .lb-metric .mf{height:100%;border-radius:3px}
+  .lb-note{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-top:14px;line-height:1.6}
+
+  /* bars */
+  .barscroll{max-height:520px;overflow-y:auto;padding-right:8px}
+  .bar-wrap{display:flex;flex-direction:column;gap:7px}
+  .bar-row{display:grid;grid-template-columns:200px 1fr 44px;align-items:center;gap:12px}
+  .bar-row .name{font-size:12px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .track{height:15px;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .fill{height:100%;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+  .bar-row .c{font-family:'Space Mono',monospace;font-size:11px;text-align:right;color:var(--dim)}
+
+  .donutwrap{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  #roomdonut{flex:0 0 176px}
+  .dl{display:flex;flex-direction:column;gap:7px;font-size:12.5px}
+  .dl span{display:flex;align-items:center;gap:9px}
+  .dl i{width:11px;height:11px;border-radius:2px}
+  .dl b{font-family:'Space Mono',monospace;color:var(--dim);font-weight:400;margin-left:auto;padding-left:12px}
+
+  #durhist{width:100%;height:220px;display:block;margin-top:4px}
+  .hx{font-family:'Space Mono',monospace;font-size:9px;fill:var(--dim)}
+  #cloud{width:100%;height:300px;display:block}
+
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px;align-items:center}
+  .controls input,.controls select{font-family:'IBM Plex Sans';font-size:13px;padding:9px 12px;border:1.5px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:8px}
+  .controls input{flex:1;min-width:200px}
+  .controls input:focus,.controls select:focus{outline:none;border-color:var(--teal)}
+  .count-line{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:10px}
+
+  .clist{display:flex;flex-direction:column;gap:0}
+  .crow{border-bottom:1px solid var(--line);padding:14px 2px}
+  .crow:hover{background:var(--paper2)}
+  .crow .top-line{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .crow .tid{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold)}
+  .crow .tname{font-family:'Fraunces',serif;font-weight:600;font-size:16px;letter-spacing:-.01em}
+  .room-pill{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px;color:#0f1117}
+  .dur-tag{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);border:1px solid var(--line);padding:2px 8px;border-radius:10px;margin-left:auto}
+  .crow .instr{font-size:13px;color:var(--ink);line-height:1.5;margin-top:7px;max-width:96ch}
+  .crow a.vid{font-family:'Space Mono',monospace;font-size:10px;color:var(--teal);text-decoration:none;margin-top:6px;display:inline-block}
+  mark{background:rgba(227,178,60,.28);color:inherit;padding:0 1px}
+
+  footer{margin-top:36px;border-top:1.5px solid var(--line);padding-top:16px;font-family:'Space Mono',monospace;font-size:10.5px;color:var(--dim);line-height:1.7}
+  footer a{color:var(--slate)}
+</style>
+<div class="shell">
+
+  <header class="top">
+    <div class="stamp">BEHAVIOR-1K</div>
+    <div class="kick">NeurIPS 2025 · Stanford Vision &amp; Learning Lab</div>
+    <h1>Behavior 1K Challenge<br><em>50 task &amp; leaderboard.</em></h1>
+    <p class="lede">BEHAVIOR is the largest curated embodied-AI benchmark — 1,000 everyday household activities. Its 2025 NeurIPS Challenge evaluates whole-robot policies on <b>50 long-horizon tasks</b> spanning real homes: cooking, cleaning, tidying, assembly. These are <b>minutes-long, multi-room</b> activities, and the leaderboard shows just how hard that is — the winner completes about <b>12% of full tasks</b>.</p>
+    <div class="statbar">
+      <div class="stat"><div class="num">50</div><div class="lab">challenge tasks</div></div>
+      <div class="stat"><div class="num" id="s-rooms">0</div><div class="lab">room types</div></div>
+      <div class="stat"><div class="num" id="s-meddur">0</div><div class="lab">median duration</div></div>
+      <div class="stat"><div class="num" id="s-maxdur">0</div><div class="lab">longest task</div></div>
+      <div class="stat"><div class="num gold" id="s-topq">0</div><div class="lab">top Q-score (held-out)</div></div>
+    </div>
+  </header>
+
+  <div class="note">
+    <b>Two metrics, two test sets.</b> <b>Full Task Success Rate (FSR)</b> is binary — the entire goal must be met. <b>Q-score</b> awards partial credit for completed sub-goals, so it rewards meaningful progress and is the official ranking metric. Each is reported on a <b>Public Validation</b> set (self-reported) and a <b>Held-out Test</b> set (verified by the BEHAVIOR team). Tracks: <b>Standard</b> vs <b>Privileged</b> (privileged-information access). Leaderboard is provisional, fetched from the official page.
+  </div>
+
+  <!-- 01 LEADERBOARD -->
+  <section>
+    <details class="sec-fold">
+      <summary>
+        <span class="idx">01</span>
+        <span class="fold-title">Challenge leaderboard</span>
+        <span class="fold-hint">18 teams · ranked by held-out Q-score · click to expand</span>
+      </summary>
+      <div class="fold-body">
+        <div id="leaderboard"></div>
+        <div class="lb-note">
+          Bars are on a true <b style="color:var(--ink)">0&ndash;100% scale</b> (faint gridlines mark 25 / 50 / 75%). Because BEHAVIOR is so hard, even the top Q-score fills only ~26% of the track &mdash; that short bar is the honest picture, not a rendering glitch. The main bar shows <b style="color:var(--gold)">Q-score</b> (held-out where verified, else validation, labelled per card); each card also lists Q and FSR on both test sets. Blank held-out cells mean the team was not evaluated on the hidden set.
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- 02 ROOMS + DURATION -->
+  <section>
+    <div class="sec-h"><span class="idx">02</span><h2>Where &amp; how long</h2><span class="desc">rooms touched and task duration</span></div>
+    <div class="twocol">
+      <div class="panel">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:14px;letter-spacing:.06em">ROOMS INVOLVED (tasks may span several)</div>
+        <div class="donutwrap">
+          <svg id="roomdonut" viewBox="0 0 176 176"></svg>
+          <div class="dl" id="roomLegend"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:.06em">DEMONSTRATION DURATION</div>
+        <svg id="durhist" viewBox="0 0 520 220"></svg>
+        <div style="font-size:12px;color:var(--dim);line-height:1.5;margin-top:6px">Every task is long-horizon: the shortest is over a minute, most run 3&ndash;8 minutes, and the longest (Assembling Gift Baskets) is nearly <b style="color:var(--ink)">15 minutes</b> of continuous manipulation and navigation.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 LONGEST TASKS -->
+  <section>
+    <div class="sec-h"><span class="idx">03</span><h2>Task duration ranking</h2><span class="desc">all 50, by demonstration length</span></div>
+    <div class="panel"><div class="barscroll"><div class="bar-wrap" id="durbars"></div></div></div>
+  </section>
+
+  <!-- 04 WORD CLOUD -->
+  <section>
+    <div class="sec-h"><span class="idx">04</span><h2>Instruction vocabulary</h2><span class="desc">tokenized from all 50 instructions</span></div>
+    <div class="panel"><canvas id="cloud"></canvas></div>
+  </section>
+
+  <!-- 05 CATALOG -->
+  <section>
+    <div class="sec-h"><span class="idx">05</span><h2>Full task catalog</h2><span class="desc">search · filter by room · sort by duration</span></div>
+    <div class="panel">
+      <div class="controls">
+        <input id="search" placeholder="Search task or instruction… (e.g. fridge, pizza, toys)">
+        <select id="roomsel"><option value="">All rooms</option></select>
+        <select id="sortsel"><option value="id">Sort: task order</option><option value="dur">Sort: duration ↓</option><option value="wlen">Sort: instruction length ↓</option></select>
+      </div>
+      <div class="count-line" id="countLine"></div>
+      <div class="clist" id="clist"></div>
+    </div>
+  </section>
+
+  <footer>
+    SOURCES · Tasks: BEHAVIOR Challenge 50-task export (task names, activity keys, verbatim language instructions, rooms, demonstration durations, Vimeo demos). Leaderboard: <a href="https://behavior.stanford.edu/challenge/leaderboard.html" target="_blank">behavior.stanford.edu/challenge/leaderboard.html</a> (provisional 2025 leaderboard, fetched; Q-score and Full Task Success across Public Validation and Held-out Test). BEHAVIOR-1K: Li et al., "BEHAVIOR-1K: A Human-Centered, Embodied AI Benchmark with 1,000 Everyday Activities," simulator OmniGibson on NVIDIA Isaac Sim. Q-score = fraction of satisfied goal sub-conditions under the best-matched goal clause (partial credit). Some instruction strings contain minor source typos, preserved verbatim.
+  </footer>
+</div>
+
+<script>
+const RAW = {"tasks": [{"id": 0, "name": "Turning On Radio", "key": "turning_on_radio", "instr": "Turn on the radio receiver that’s on the table in the living room.", "rooms": ["living room"], "dur": 72, "wlen": 13, "video": "https://player.vimeo.com/video/1109198872", "page": "https://behavior.stanford.edu/challenge/tasks/00_turning_on_radio.html"}, {"id": 1, "name": "Picking Up Trash", "key": "picking_up_trash", "instr": "Put the three can of soda from the living room inside the tash can in the kitchen.", "rooms": ["kitchen", "living room"], "dur": 176, "wlen": 17, "video": "https://player.vimeo.com/video/1109202972", "page": "https://behavior.stanford.edu/challenge/tasks/01_picking_up_trash.html"}, {"id": 2, "name": "Putting Away Halloween Decorations", "key": "putting_away_Halloween_decorations", "instr": "Place each of the two pumpkins and all three candles from the living room inside a cabinet in the living room (use any cabinet), then make sure every cabinet is closed, and position the cauldron so it is next to a table in the living room.", "rooms": ["living room"], "dur": 460, "wlen": 46, "video": "https://player.vimeo.com/video/1114054409", "page": "https://behavior.stanford.edu/challenge/tasks/02_putting_away_Halloween_decorations.html"}, {"id": 3, "name": "Cleaning Up Plates and Food", "key": "cleaning_up_plates_and_food", "instr": "From the breakfast table in the kitchen, move both pizzas - keeping each on its plate - into the same refrigerator, put both bowls into one sink, and make sure the refrigerator is closed.", "rooms": ["kitchen"], "dur": 457, "wlen": 34, "video": "https://player.vimeo.com/video/1114054554", "page": "https://behavior.stanford.edu/challenge/tasks/03_cleaning_up_plates_and_food.html"}, {"id": 4, "name": "Can Meat", "key": "can_meat", "instr": "Open the kitchen cabinet, take out the two hinged jars, open them, place exactly two cooked bratwursts from the chopping board on the countertop into each jar, then close both jars, put them back inside the cabinet, and close the cabinet.", "rooms": ["kitchen"], "dur": 395, "wlen": 41, "video": "https://player.vimeo.com/video/1114054618", "page": "https://behavior.stanford.edu/challenge/tasks/04_can_meat.html"}, {"id": 5, "name": "Setting Mousetraps", "key": "setting_mousetraps", "instr": "Take the four mousetraps from the cabinet in the bathroom and place them on the bathroom floor. Make sure all four end up on the same floor surface, and ensure that at least two of them are either under or directly next to the same bathroom sink.", "rooms": ["bathroom"], "dur": 339, "wlen": 47, "video": "https://player.vimeo.com/video/1114054686", "page": "https://behavior.stanford.edu/challenge/tasks/05_setting_mousetraps.html"}, {"id": 6, "name": "Hiding Easter Eggs", "key": "hiding_Easter_eggs", "instr": "Take the three Easter eggs out of the wicker basket on the lawn in the garden, then place them on the lawn next to a single tree (choose any tree) so that all three eggs are next to the same tree and none are left in the basket.", "rooms": ["garden"], "dur": 254, "wlen": 48, "video": "https://player.vimeo.com/video/1114055436", "page": "https://behavior.stanford.edu/challenge/tasks/06_hiding_Easter_eggs.html"}, {"id": 7, "name": "Picking Up Toys", "key": "picking_up_toys", "instr": "Put all the toys in the child’s room - the three board games (two on the bed and one on the table), the two jigsaw puzzles on the table, and the tennis ball on the table - inside the toy box on the table in the child’s room.", "rooms": ["childs room"], "dur": 630, "wlen": 48, "video": "https://player.vimeo.com/video/1114054920", "page": "https://behavior.stanford.edu/challenge/tasks/07_picking_up_toys.html"}, {"id": 8, "name": "Rearranging Kitchen Furniture", "key": "rearranging_kitchen_furniture", "instr": "Move the toaster, food processor, and French press from the kitchen countertop into the same kitchen cabinet, and make sure that cabinet is closed at the end.", "rooms": ["kitchen"], "dur": 298, "wlen": 27, "video": "https://player.vimeo.com/video/1114056046", "page": "https://behavior.stanford.edu/challenge/tasks/08_rearranging_kitchen_furniture.html"}, {"id": 9, "name": "Putting Up Christmas Decorations Inside", "key": "putting_up_Christmas_decorations_inside", "instr": "In the living room, take the wreath, three candy canes, and two pillar candles out of the wicker basket. Place the wreath and two of the candy canes on the same living-room sofa. Put the remaining candy cane on top of a dining-room table. Put both pillar candles together on top of one dining-room table (they can share the same table). Finally, place all three gift boxes under or right next to the Christmas tree in the living room.", "rooms": ["kitchen", "living room"], "dur": 457, "wlen": 79, "video": "https://player.vimeo.com/video/1114056731", "page": "https://behavior.stanford.edu/challenge/tasks/09_putting_up_Christmas_decorations_inside.html"}, {"id": 10, "name": "Set Up A Coffee Station In Your Kitchen", "key": "set_up_a_coffee_station_in_your_kitchen", "instr": "Set up a coffee station on the kitchen countertop: keep the coffee maker on the countertop, move the bottle of coffee from the kitchen shelf to the counter next to the coffee maker, place a paper coffee filter on top of the coffee maker, put the saucer next to the coffee maker with the coffee cup on the saucer, and place the electric kettle next to the coffee maker.", "rooms": ["kitchen"], "dur": 209, "wlen": 69, "video": "https://player.vimeo.com/video/1114056931", "page": "https://behavior.stanford.edu/challenge/tasks/10_set_up_a_coffee_station_in_your_kitchen.html"}, {"id": 11, "name": "Putting Dishes Away After Cleaning", "key": "putting_dishes_away_after_cleaning", "instr": "In the kitchen, gather all eight plates from the two countertops, place them all inside a single cabinet (either one), and make sure all cabinets are closed when you’re done.", "rooms": ["kitchen"], "dur": 365, "wlen": 30, "video": "https://player.vimeo.com/video/1114057082", "page": "https://behavior.stanford.edu/challenge/tasks/11_putting_dishes_away_after_cleaning.html"}, {"id": 12, "name": "Preparing Lunch Box", "key": "preparing_lunch_box", "instr": "Put both apple halves, the club sandwich, and the chocolate chip cookie from the chopping board on the kitchen countertop into the packing box on the countertop. Then take the bottle of tea out of the refrigerator, put it into the same box, and close the refrigerator when you’re done.", "rooms": ["kitchen"], "dur": 275, "wlen": 50, "video": "https://player.vimeo.com/video/1114057330", "page": "https://behavior.stanford.edu/challenge/tasks/12_preparing_lunch_box.html"}, {"id": 13, "name": "Loading The Car", "key": "loading_the_car", "instr": "Put the digital camera from the living room table into the container on the living room floor. Then take the container and the tennis racket to the garage, place both in the car trunk, and close it.", "rooms": ["living room", "garage"], "dur": 641, "wlen": 37, "video": "https://player.vimeo.com/video/1114057519", "page": "https://behavior.stanford.edu/challenge/tasks/13_loading_the_car.html"}, {"id": 14, "name": "Carrying in Groceries", "key": "carrying_in_groceries", "instr": "Take the sack of groceries out of the car trunk in the garage, bring it to the kitchen, and put both the tomato and the carton of milk into the refrigerator in the kitchen. When you’re done, close the car trunk and make sure the refrigerator in the kitchen is closed.", "rooms": ["kitchen", "garage"], "dur": 476, "wlen": 51, "video": "https://player.vimeo.com/video/1114057919", "page": "https://behavior.stanford.edu/challenge/tasks/14_carrying_in_groceries.html"}, {"id": 15, "name": "Bringing in Wood", "key": "bringing_in_wood", "instr": "Bring the three plywood sheets from the garden into the corridor and place them on the floor there.", "rooms": ["garden", "corridor"], "dur": 451, "wlen": 18, "video": "https://player.vimeo.com/video/1114058068", "page": "https://behavior.stanford.edu/challenge/tasks/15_bringing_in_wood.html"}, {"id": 16, "name": "Moving Boxes To Storage", "key": "moving_boxes_to_storage", "instr": "Move the two storage containers from the living room to the garage. In the garage, place one container on the floor and stack the other container on top of it (either order is fine).", "rooms": ["living room", "garage"], "dur": 487, "wlen": 34, "video": "https://player.vimeo.com/video/1114058315", "page": "https://behavior.stanford.edu/challenge/tasks/16_moving_boxes_to_storage.html"}, {"id": 17, "name": "Bringing Water", "key": "bringing_water", "instr": "Retrieve the two bottles from the refrigerator in the kitchen, bring them to the living room, and place both on the coffee table. Make sure the refrigerator is closed when you finish.", "rooms": ["living room", "kitchen"], "dur": 315, "wlen": 32, "video": "https://player.vimeo.com/video/1114058418", "page": "https://behavior.stanford.edu/challenge/tasks/17_bringing_water.html"}, {"id": 18, "name": "Tidying Bedroom", "key": "tidying_bedroom", "instr": "In the bedroom, move the book from the bed onto either nightstand, and place the two sandals side by side next to the bed.", "rooms": ["bedroom"], "dur": 368, "wlen": 24, "video": "https://player.vimeo.com/video/1114058519", "page": "https://behavior.stanford.edu/challenge/tasks/18_tidying_bedroom.html"}, {"id": 19, "name": "Outfit A Basic Toolbox", "key": "outfit_a_basic_toolbox", "instr": "In the utility room, put the drill, pliers, flashlight, Allen wrench, and screwdriver from the tabletop into the toolbox, keep the toolbox on the tabletop, and close the toolbox.", "rooms": ["utility room"], "dur": 355, "wlen": 29, "video": "https://player.vimeo.com/video/1114058641", "page": "https://behavior.stanford.edu/challenge/tasks/19_outfit_a_basic_toolbox.html"}, {"id": 20, "name": "Sorting Vegetables", "key": "sorting_vegetables", "instr": "Sort the vegetables from the two wicker baskets on the kitchen floor into the mixing bowls on the kitchen countertop: put all three bok choy and all three Vidalia onions together into one mixing bowl; put both leeks and both broccoli together into a second mixing bowl; and put all three sweet corn into a third mixing bowl.", "rooms": ["kitchen"], "dur": 397, "wlen": 58, "video": "https://player.vimeo.com/video/1114058741", "page": "https://behavior.stanford.edu/challenge/tasks/20_sorting_vegetables.html"}, {"id": 21, "name": "Collecting Children's Toys", "key": "collecting_childrens_toys", "instr": "Pick up the two dice from the bed, the two teddy bears from the floor, and the two board games (one from the desk and one from the bed), and place them all inside the same bookcase in the child’s room.", "rooms": ["childs room"], "dur": 640, "wlen": 41, "video": "https://player.vimeo.com/video/1114058872", "page": "https://behavior.stanford.edu/challenge/tasks/21_collecting_childrens_toys.html"}, {"id": 22, "name": "Putting Shoes On Rack", "key": "putting_shoes_on_rack", "instr": "Pick up the two gym shoes and the two sandals from the corridor floor and place them onto the hallstand (shoe rack) in the corridor, making sure they are on the rack and not on the floor. Arrange them so the two gym shoes are next to each other and the two sandals are next to each other.", "rooms": ["corridor"], "dur": 258, "wlen": 58, "video": "https://player.vimeo.com/video/1114058985", "page": "https://behavior.stanford.edu/challenge/tasks/22_putting_shoes_on_rack.html"}, {"id": 23, "name": "Boxing Books Up for Storage", "key": "boxing_books_up_for_storage", "instr": "Put all six books from the bookcases in the living room into the box on the living room floor.", "rooms": ["living room"], "dur": 808, "wlen": 19, "video": "https://player.vimeo.com/video/1114059113", "page": "https://behavior.stanford.edu/challenge/tasks/23_boxing_books_up_for_storage.html"}, {"id": 24, "name": "Storing Food", "key": "storing_food", "instr": "Put away all the food on the kitchen countertop by storing it inside the kitchen cabinets: move the two boxes of oatmeal, two bags of chips, two bottles of olive oil, and two jars of sugar from the countertop into the kitchen cabinets (each item can go into either cabinet).", "rooms": ["kitchen"], "dur": 662, "wlen": 50, "video": "https://player.vimeo.com/video/1114059272", "page": "https://behavior.stanford.edu/challenge/tasks/24_storing_food.html"}, {"id": 25, "name": "Clearing Food from Table into Fridge", "key": "clearing_food_from_table_into_fridge", "instr": "Pack the half chicken and the half apple pie from the plates on the breakfast table into the two tupperware containers from the countertop, then put both tupperware containers inside the refrigerator in the kitchen and make sure the refrigerator is closed at the end.", "rooms": ["kitchen"], "dur": 436, "wlen": 45, "video": "https://player.vimeo.com/video/1114059394", "page": "https://behavior.stanford.edu/challenge/tasks/25_clearing_food_from_table_into_fridge.html"}, {"id": 26, "name": "Assembling Gift Baskets", "key": "assembling_gift_baskets", "instr": "Place one candle, one butter cookie, one piece of Swiss cheese, and one bow from the table into each of the four wicker baskets on the floor in the living room.", "rooms": ["living room"], "dur": 869, "wlen": 31, "video": "https://player.vimeo.com/video/1114059476", "page": "https://behavior.stanford.edu/challenge/tasks/26_assembling_gift_baskets.html"}, {"id": 27, "name": "Sorting Household Items", "key": "sorting_household_items", "instr": "From the two baskets on the bedroom floor, take out the items and organize them in the bathroom: place both detergent bottles under the bathroom sink next to each other; put the box of sanitary napkins on the bathroom shelf; set the soap dispenser on the sink; make sure the cup remains on the sink; put both the toothpaste tube and the toothbrush inside the cup.", "rooms": ["bedroom", "bathroom"], "dur": 527, "wlen": 66, "video": "https://player.vimeo.com/video/1114059574", "page": "https://behavior.stanford.edu/challenge/tasks/27_sorting_household_items.html"}, {"id": 28, "name": "Getting Organized For Work", "key": "getting_organized_for_work", "instr": "In the bedroom, organize the workspace by keeping the computer under the desk, ensuring the monitor is on the desk, placing the keyboard on the desk next to the monitor, placing the mouse on the desk next to the keyboard, moving the folder from the swivel chair onto the desk next to the mouse, stacking the notebook on top of the folder with the pen on top of the notebook, and positioning the swivel chair next to the desk.", "rooms": ["bedroom"], "dur": 522, "wlen": 79, "video": "https://player.vimeo.com/video/1114059683", "page": "https://behavior.stanford.edu/challenge/tasks/28_getting_organized_for_work.html"}, {"id": 29, "name": "Clean Up Your Desk", "key": "clean_up_your_desk", "instr": "In the child’s room, clean up the desk: put both folders and both paperback books into the bookcase; put the pencil and both pens into the pencil case and leave the case on the desk; take the stapler out of the bookcase and place it on the desk; move the laptop from the bed onto the desk and close it.", "rooms": ["childs room"], "dur": 714, "wlen": 60, "video": "https://player.vimeo.com/video/1114059839", "page": "https://behavior.stanford.edu/challenge/tasks/29_clean_up_your_desk.html"}, {"id": 30, "name": "Setting The Fire", "key": "setting_the_fire", "instr": "In the living room, place the newspaper from the table into the wood fireplace, then put both pieces of firewood from the floor on top of the newspaper. Use the cigar lighter to ignite any one of the items so that the whole pile catches fire, and then turn the lighter off.", "rooms": ["living room"], "dur": 304, "wlen": 52, "video": "https://player.vimeo.com/video/1114059945", "page": "https://behavior.stanford.edu/challenge/tasks/30_setting_the_fire.html"}, {"id": 31, "name": "Clean Boxing Gloves", "key": "clean_boxing_gloves", "instr": "Wash the two dusty boxing gloves from the countertop in the utility room in the washer until they are no longer covered with dust.", "rooms": ["utility room"], "dur": 275, "wlen": 24, "video": "https://player.vimeo.com/video/1114060008", "page": "https://behavior.stanford.edu/challenge/tasks/31_clean_boxing_gloves.html"}, {"id": 32, "name": "Wash A Baseball Cap", "key": "wash_a_baseball_cap", "instr": "Wash the two baseball caps on the countertop in the utility room using the washer until they are no longer dirty.", "rooms": ["utility room"], "dur": 278, "wlen": 21, "video": "https://player.vimeo.com/video/1114060147", "page": "https://behavior.stanford.edu/challenge/tasks/32_wash_a_baseball_cap.html"}, {"id": 33, "name": "Wash Dog Toys", "key": "wash_dog_toys", "instr": "In the utility room, take the two teddy toys, the tennis ball, and the softball out of the cabinet and wash them in the washer so that both teddies are free of dirt and dust, the tennis ball has no debris, and the softball has no dirt.", "rooms": ["utility room"], "dur": 374, "wlen": 47, "video": "https://player.vimeo.com/video/1114060219", "page": "https://behavior.stanford.edu/challenge/tasks/33_wash_dog_toys.html"}, {"id": 34, "name": "Hanging Pictures", "key": "hanging_pictures", "instr": "Pick up the poster from the kitchen countertop and hang it on one of the wall nails in the kitchen.", "rooms": ["kitchen"], "dur": 80, "wlen": 20, "video": "https://player.vimeo.com/video/1114060330", "page": "https://behavior.stanford.edu/challenge/tasks/34_hanging_pictures.html"}, {"id": 35, "name": "Attach a Camera to a Tripod", "key": "attach_a_camera_to_a_tripod", "instr": "Attach the digital camera to the camera tripod in the bedroom.", "rooms": ["bedroom"], "dur": 130, "wlen": 11, "video": "https://player.vimeo.com/video/1114060393", "page": "https://behavior.stanford.edu/challenge/tasks/35_attach_a_camera_to_a_tripod.html"}, {"id": 36, "name": "Clean a Patio", "key": "clean_a_patio", "instr": "Pick up the broom in the garden and sweep the mud off the patio floor until the floor is no longer covered in mud.", "rooms": ["garden"], "dur": 402, "wlen": 24, "video": "https://player.vimeo.com/video/1114060492", "page": "https://behavior.stanford.edu/challenge/tasks/36_clean_a_patio.html"}, {"id": 37, "name": "Clean a Trumpet", "key": "clean_a_trumpet", "instr": "In the bedroom, pick up the scrub brush from the desk and scrub the cornet (trumpet) on the desk until it’s no longer covered in dust.", "rooms": ["bedroom"], "dur": 177, "wlen": 26, "video": "https://player.vimeo.com/video/1114060606", "page": "https://behavior.stanford.edu/challenge/tasks/37_clean_a_trumpet.html"}, {"id": 38, "name": "Spraying For Bugs", "key": "spraying_for_bugs", "instr": "Pick up the pesticide atomizer in the garden and spray insectifuge to fully cover both potted plants in the garden.", "rooms": ["garden"], "dur": 216, "wlen": 20, "video": "https://player.vimeo.com/video/1114060681", "page": "https://behavior.stanford.edu/challenge/tasks/38_spraying_for_bugs.html"}, {"id": 39, "name": "Spraying Fruit Trees", "key": "spraying_fruit_trees", "instr": "In the garden, pick up the pesticide atomizer on the floor and spray pesticide onto both trees until each tree trunk is fully covered.", "rooms": ["garden"], "dur": 278, "wlen": 24, "video": "https://player.vimeo.com/video/1114060748", "page": "https://behavior.stanford.edu/challenge/tasks/39_spraying_fruit_trees.html"}, {"id": 40, "name": "Make Microwave Popcorn", "key": "make_microwave_popcorn", "instr": "In the kitchen, take the popcorn bag from the countertop, put it into the microwave, and heat it until the popcorn is cooked so the cooked popcorn ends up inside the bag.", "rooms": ["kitchen"], "dur": 108, "wlen": 32, "video": "https://player.vimeo.com/video/1114060842", "page": "https://behavior.stanford.edu/challenge/tasks/40_make_microwave_popcorn.html"}, {"id": 41, "name": "Cook Cabbage", "key": "cook_cabbage", "instr": "From the kitchen refrigerator, take the cabbage and the chili, dice them on the chopping board with the knife, cook the diced cabbage and diced chili in the frying pan on the stove, and leave the cooked, diced cabbage and cooked, diced chili in the frying pan.", "rooms": ["kitchen"], "dur": 471, "wlen": 47, "video": "https://player.vimeo.com/video/1114060935", "page": "https://behavior.stanford.edu/challenge/tasks/41_cook_cabbage.html"}, {"id": 42, "name": "Chop an Onion", "key": "chop_an_onion", "instr": "In the kitchen, take the Vidalia onion out of the sink, dice it on the chopping board with the paring knife, put the diced onion into the bowl on the countertop, then place both the paring knife and the chopping board into the sink.", "rooms": ["kitchen"], "dur": 213, "wlen": 44, "video": "https://player.vimeo.com/video/1114061062", "page": "https://behavior.stanford.edu/challenge/tasks/42_chop_an_onion.html"}, {"id": 43, "name": "Slicing Vegetables", "key": "slicing_vegetables", "instr": "From the refrigerator in the kitchen, take out the two bell peppers, the two beets, and the zucchini. Then, on either chopping board on the countertop, use the parer to dice all of them so that only diced bell pepper, diced beet, and diced zucchini remain. Make sure the refrigerator is closed when you finish.", "rooms": ["kitchen"], "dur": 495, "wlen": 55, "video": "https://player.vimeo.com/video/1114061183", "page": "https://behavior.stanford.edu/challenge/tasks/43_slicing_vegetables.html"}, {"id": 44, "name": "Chopping Wood", "key": "chopping_wood", "instr": "Chop the four logs on the driveway in the garden into eight half logs using the axe and the chopping block.", "rooms": ["garden"], "dur": 358, "wlen": 21, "video": "https://player.vimeo.com/video/1114061262", "page": "https://behavior.stanford.edu/challenge/tasks/44_chopping_wood.html"}, {"id": 45, "name": "Cook Hot Dogs", "key": "cook_hot_dogs", "instr": "Take the two hot dogs out of the refrigerator in the kitchen and cook them in the microwave until both are cooked.", "rooms": ["kitchen"], "dur": 305, "wlen": 22, "video": "https://player.vimeo.com/video/1114061371", "page": "https://behavior.stanford.edu/challenge/tasks/45_cook_hot_dogs.html"}, {"id": 46, "name": "Cook Bacon", "key": "cook_bacon", "instr": "Take the tray with six slices of bacon out of the refrigerator in the kitchen, cook all six slices in the frying pan on the stove until they’re cooked, and make sure the refrigerator is closed when you’re done.", "rooms": ["kitchen"], "dur": 256, "wlen": 39, "video": "https://player.vimeo.com/video/1114061497", "page": "https://behavior.stanford.edu/challenge/tasks/46_cook_bacon.html"}, {"id": 47, "name": "Freeze Pies", "key": "freeze_pies", "instr": "In the kitchen, take the two apple pies from the plates on the countertop, put each pie into a separate tupperware container taken from the cabinet, place both tupperwares inside the refrigerator, close the refrigerator, and leave them until the pies are frozen.", "rooms": ["kitchen"], "dur": 415, "wlen": 43, "video": "https://player.vimeo.com/video/1114061625", "page": "https://behavior.stanford.edu/challenge/tasks/47_freeze_pies.html"}, {"id": 48, "name": "Canning Food", "key": "canning_food", "instr": "In the kitchen, open the refrigerator and the cabinet. Take the steak and the pineapple out of the refrigerator and take two bowls from the cabinet. On the chopping board on the countertop, use the carving knife to dice the steak and to dice the pineapple. Put only the diced steak into one bowl and only the diced pineapple into the other bowl - do not mix them. Place both bowls back inside the cabinet, then close the refrigerator and close the cabinet.", "rooms": ["kitchen"], "dur": 766, "wlen": 83, "video": "https://player.vimeo.com/video/1114061821", "page": "https://behavior.stanford.edu/challenge/tasks/48_canning_food.html"}, {"id": 49, "name": "Make Pizza", "key": "make_pizza", "instr": "Make a pizza on the cookie sheet in the kitchen: take the grated cheese, the four pieces of pepperoni, and the two mushrooms from their tupperware containers in the refrigerator; chop the Vidalia onion on the chopping board with the knife, and also chop the two whole mushrooms in half; top the pizza dough that’s already on the cookie sheet with the cheese, pepperoni, halved mushrooms, and chopped onion; bake it in the oven until it becomes a pizza, and leave the finished pizza on the cookie sheet.", "rooms": ["kitchen"], "dur": 640, "wlen": 88, "video": "https://player.vimeo.com/video/1114061917", "page": "https://behavior.stanford.edu/challenge/tasks/49_make_pizza.html"}], "lb": [{"rank": 1, "team": "Robot Learning Collective", "aff": "Independent", "track": "Standard", "fsr_pv": 0.112, "fsr_ht": 0.124, "q_pv": 0.2605, "q_ht": 0.2599, "date": "2025-11-14", "code": "https://github.com/IliaLarchenko/behavior-1k-solution", "report": "https://arxiv.org/abs/2512.06951"}, {"rank": 2, "team": "Comet", "aff": "NVIDIA Research", "track": "Standard", "fsr_pv": 0.144, "fsr_ht": 0.114, "q_pv": 0.183, "q_ht": 0.2514, "date": "2025-11-17", "code": "https://github.com/mli0603/openpi-comet", "report": "https://arxiv.org/abs/2512.10071"}, {"rank": 3, "team": "SimpleAI Robot", "aff": "Beijing Simple AI Technology", "track": "Standard", "fsr_pv": 0.14, "fsr_ht": 0.108, "q_pv": 0.1943, "q_ht": 0.1591, "date": "2025-11-17", "code": null, "report": null}, {"rank": 4, "team": "The North Star", "aff": "Huawei CRI EAI Team", "track": "Standard", "fsr_pv": 0.128, "fsr_ht": 0.076, "q_pv": 0.1702, "q_ht": 0.1204, "date": "2025-11-16", "code": null, "report": null}, {"rank": 5, "team": "Embodied Intelligence", "aff": "Independent", "track": "Privileged", "fsr_pv": 0.062, "fsr_ht": 0.052, "q_pv": 0.111, "q_ht": 0.0947, "date": "2025-11-17", "code": null, "report": null}, {"rank": 6, "team": "RAPPER", "aff": "GIST", "track": "Privileged", "fsr_pv": 0.052, "fsr_ht": null, "q_pv": 0.075, "q_ht": null, "date": "2025-11-17", "code": null, "report": null}, {"rank": 7, "team": "tobi", "aff": "Alzonova", "track": "Standard", "fsr_pv": 0.036, "fsr_ht": null, "q_pv": 0.0717, "q_ht": null, "date": "2025-11-17", "code": null, "report": null}, {"rank": 8, "team": "MR", "aff": "MR", "track": "Privileged", "fsr_pv": 0.034, "fsr_ht": null, "q_pv": 0.0512, "q_ht": null, "date": "2025-11-15", "code": null, "report": null}, {"rank": 9, "team": "RACΞL", "aff": "CMU", "track": "Standard", "fsr_pv": 0.014, "fsr_ht": null, "q_pv": 0.014, "q_ht": null, "date": "2025-11-16", "code": null, "report": null}, {"rank": 10, "team": "Ahri+EFFL+MLV", "aff": "Postech", "track": "Standard", "fsr_pv": 0.01, "fsr_ht": null, "q_pv": 0.01, "q_ht": null, "date": "2025-11-17", "code": null, "report": null}, {"rank": 11, "team": "Merlin Labs", "aff": "Independent", "track": "Standard", "fsr_pv": 0.006, "fsr_ht": null, "q_pv": 0.009, "q_ht": null, "date": "2025-11-17", "code": null, "report": "https://merlyn-labs.com/behavior-report"}, {"rank": 12, "team": "LYQRobotics", "aff": "Independent", "track": "Standard", "fsr_pv": 0.008, "fsr_ht": null, "q_pv": 0.008, "q_ht": null, "date": "2025-11-17", "code": null, "report": null}, {"rank": 13, "team": "ACT", "aff": "Xiamen University", "track": "Standard", "fsr_pv": 0.002, "fsr_ht": null, "q_pv": 0.0037, "q_ht": null, "date": "2025-11-16", "code": null, "report": null}, {"rank": 14, "team": "StarVLA", "aff": "Independent", "track": "Standard", "fsr_pv": 0.0, "fsr_ht": null, "q_pv": 0.0019, "q_ht": null, "date": "2025-11-17", "code": "https://github.com/starVLA/starVLA", "report": null}, {"rank": 15, "team": "Cloud-Data", "aff": "Cloud Data Technology", "track": "Standard", "fsr_pv": 0.0, "fsr_ht": null, "q_pv": 0.0, "q_ht": null, "date": "2025-11-16", "code": null, "report": null}, {"rank": 16, "team": "RobotSimArk", "aff": "—", "track": "Standard", "fsr_pv": 0.0, "fsr_ht": null, "q_pv": 0.0, "q_ht": null, "date": "2025-11-16", "code": null, "report": null}, {"rank": 17, "team": "EntropyMaximum", "aff": "Independent", "track": "Standard", "fsr_pv": 0.0, "fsr_ht": null, "q_pv": 0.0, "q_ht": null, "date": "2025-11-16", "code": null, "report": null}, {"rank": 18, "team": "Magikid", "aff": "Magikid", "track": "Standard", "fsr_pv": 0.0, "fsr_ht": null, "q_pv": 0.0, "q_ht": null, "date": "2025-11-16", "code": null, "report": null}]};
+const TASKS=RAW.tasks, LB=RAW.lb;
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+const ROOMPAL={"kitchen":"var(--terra)","living room":"var(--gold)","garden":"var(--sage)","bedroom":"var(--slate)","utility room":"var(--teal)","childs room":"var(--plum)","garage":"var(--indigo)","bathroom":"var(--teal)","corridor":"var(--dim)"};
+const fmtDur=s=>{const m=Math.floor(s/60),sec=s%60;return m+":"+(sec<10?"0":"")+sec;};
+
+/* stats */
+const roomSet={};TASKS.forEach(t=>t.rooms.forEach(r=>roomSet[r]=(roomSet[r]||0)+1));
+document.getElementById('s-rooms').textContent=Object.keys(roomSet).length;
+const durs=TASKS.map(t=>t.dur).sort((a,b)=>a-b);
+document.getElementById('s-meddur').textContent=fmtDur(durs[Math.floor(durs.length/2)]);
+document.getElementById('s-maxdur').textContent=fmtDur(durs[durs.length-1]);
+const topQ=Math.max.apply(null,LB.map(m=>m.q_ht||0));
+document.getElementById('s-topq').textContent=topQ.toFixed(3);
+
+/* 01 leaderboard */
+(function(){
+  const medal=r=>r===1?"\ud83e\udd47":r===2?"\ud83e\udd48":r===3?"\ud83e\udd49":'<span class="n">#'+r+'</span>';
+  const esc=s=>(s||"").replace(/[&\u003c>]/g,m=>({'&':'&amp;','\u003c':'&lt;','>':'&gt;'}[m]));
+  const mbar=(lab,v,col)=>{
+    if(v==null)return '<div class="lb-metric"><div class="ml">'+lab+'<b>\u2014</b></div><div class="mt"></div></div>';
+    return '<div class="lb-metric"><div class="ml">'+lab+'<b>'+(v*100).toFixed(2)+'%</b></div><div class="mt"><div class="mf" style="width:'+(v*100)+'%;background:'+col+'"></div></div></div>';
+  };
+  document.getElementById('leaderboard').innerHTML=LB.map(m=>{
+    const qShown = m.q_ht!=null ? m.q_ht : m.q_pv;
+    const qLabel = m.q_ht!=null ? "held-out" : "validation";
+    const links=[];
+    if(m.code)links.push('<a href="'+m.code+'" target="_blank">code</a>');
+    if(m.report)links.push('<a href="'+m.report+'" target="_blank">report</a>');
+    return '<div class="lb-card '+(m.rank<=3?'podium':'')+'">'+
+      '<div class="lb-top">'+
+        '<div class="lb-rank">'+medal(m.rank)+'</div>'+
+        '<div class="lb-team"><div class="t">'+esc(m.team)+'</div>'+
+          '<div class="a">'+esc(m.aff)+' <span class="trk '+m.track+'">'+m.track+'</span></div></div>'+
+        '<div class="lb-q"><div class="qtrack"><div class="qfill" style="width:'+(qShown*100)+'%"></div></div>'+
+          '<div class="qval">'+qShown.toFixed(3)+'<small>Q · '+qLabel+'</small></div></div>'+
+        '<div class="lb-links">'+(links.join('<br>')||'<span style="color:var(--line)">\u2014</span>')+'</div>'+
+      '</div>'+
+      '<div class="lb-sub">'+
+        mbar("Q validation",m.q_pv,css('--gold'))+
+        mbar("Q held-out",m.q_ht,css('--terra'))+
+        mbar("FSR validation",m.fsr_pv,css('--teal'))+
+        mbar("FSR held-out",m.fsr_ht,css('--slate'))+
+      '</div>'+
+    '</div>';
+  }).join('');
+})();
+
+/* 02 room donut */
+(function(){
+  const entries=Object.entries(roomSet).sort((a,b)=>b[1]-a[1]);
+  const tot=entries.reduce((s,e)=>s+e[1],0);
+  let a0=-Math.PI/2,s='';const cx=88,cy=88,R=74,r=44;
+  entries.forEach(([rm,v])=>{const a1=a0+v/tot*6.283;const lp=(a1-a0)>Math.PI?1:0;
+    const p=(a,rad)=>[cx+rad*Math.cos(a),cy+rad*Math.sin(a)];
+    const A=p(a0,R),B=p(a1,R),C=p(a1,r),D=p(a0,r);
+    s+='<path d="M'+A[0]+','+A[1]+' A'+R+','+R+' 0 '+lp+' 1 '+B[0]+','+B[1]+' L'+C[0]+','+C[1]+' A'+r+','+r+' 0 '+lp+' 0 '+D[0]+','+D[1]+' Z" fill="'+(ROOMPAL[rm]||css('--dim'))+'"/>';a0=a1;});
+  s+='<text x="88" y="84" text-anchor="middle" style="font-family:Fraunces;font-weight:900;font-size:26px;fill:'+css('--ink')+'">'+Object.keys(roomSet).length+'</text>';
+  s+='<text x="88" y="102" text-anchor="middle" style="font-family:Space Mono;font-size:8px;fill:'+css('--dim')+';letter-spacing:.1em">ROOM TYPES</text>';
+  document.getElementById('roomdonut').innerHTML=s;
+  document.getElementById('roomLegend').innerHTML=entries.map(([rm,v])=>'<span><i style="background:'+(ROOMPAL[rm]||css('--dim'))+'"></i>'+rm+'<b>'+v+'</b></span>').join('');
+})();
+
+/* 02 duration histogram */
+(function(){
+  const W=520,H=220,P=36;
+  const bins=[[60,120],[120,180],[180,300],[300,480],[480,900]];
+  const labels=["1-2m","2-3m","3-5m","5-8m","8m+"];
+  const counts=bins.map(b=>TASKS.filter(t=>t.dur>=b[0]&&t.dur<b[1]).length);
+  const max=Math.max.apply(null,counts);const bw=(W-P*2)/bins.length;
+  let s='';
+  for(let g=0;g<=max;g+=Math.ceil(max/4)){const y=H-P-(g/max)*(H-P*2);
+    s+='<line x1="'+P+'" y1="'+y+'" x2="'+(W-P)+'" y2="'+y+'" stroke="'+css('--line')+'"/>';
+    s+='<text class="hx" x="'+(P-6)+'" y="'+(y+3)+'" text-anchor="end">'+g+'</text>';}
+  counts.forEach((c,i)=>{const h=(c/max)*(H-P*2);const x=P+i*bw+6;const y=H-P-h;
+    s+='<rect x="'+x+'" y="'+y+'" width="'+(bw-12)+'" height="'+h+'" rx="2" fill="'+css('--gold')+'" opacity="'+(0.5+0.45*c/max)+'"/>';
+    if(c)s+='<text class="hx" x="'+(x+(bw-12)/2)+'" y="'+(y-5)+'" text-anchor="middle" style="fill:'+css('--ink')+';font-weight:700">'+c+'</text>';
+    s+='<text class="hx" x="'+(x+(bw-12)/2)+'" y="'+(H-P+14)+'" text-anchor="middle">'+labels[i]+'</text>';});
+  document.getElementById('durhist').innerHTML=s;
+})();
+
+/* 03 duration bars */
+(function(){
+  const rows=TASKS.slice().sort((a,b)=>b.dur-a.dur);
+  const max=rows[0].dur;
+  document.getElementById('durbars').innerHTML=rows.map(t=>{
+    const col=ROOMPAL[t.rooms[0]]||css('--dim');
+    return '<div class="bar-row"><div class="name" title="'+t.name+'">'+t.name+'</div>'+
+      '<div class="track"><div class="fill" style="width:'+(t.dur/max*100)+'%;background:'+col+'"></div></div>'+
+      '<div class="c">'+fmtDur(t.dur)+'</div></div>';
+  }).join('');
+})();
+
+/* 04 word cloud */
+(function(){
+  const cv=document.getElementById('cloud');const DPR=Math.min(devicePixelRatio||1,2);
+  const W=cv.clientWidth,H=300;cv.width=W*DPR;cv.height=H*DPR;const ctx=cv.getContext('2d');ctx.scale(DPR,DPR);
+  const STOP=new Set("the and a an in it on of to into onto off at by with from is are for then them each one all that so make sure place put every there where any use position next".split(" "));
+  const VERB=new Set("turn put pick place move open close set bring carry load store sort tidy clean wash chop slice cook make freeze can hang attach spray collect rearrange assemble organize".split(" "));
+  const FIX=new Set("kitchen living room bedroom garden table cabinet fridge counter floor shelf box car radio trash toys pizza onion bacon water wood books shoes desk".split(" "));
+  const freq={};
+  TASKS.forEach(t=>(t.instr.toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/).forEach(w=>{
+    if(!w||STOP.has(w)||w.length<3)return;freq[w]=(freq[w]||0)+1;})));
+  let words=Object.entries(freq).map(([w,c])=>({w,c})).sort((a,b)=>b.c-a.c).slice(0,55);
+  const mx=words[0].c,mn=words[words.length-1].c;
+  const col=w=>VERB.has(w)?css('--gold'):FIX.has(w)?css('--teal'):css('--slate');
+  const placed=[];
+  const fits=(x,y,w,h)=>{if(x<3||y<3||x+w>W-3||y+h>H-3)return false;for(const p of placed)if(x<p.x+p.w&&x+w>p.x&&y<p.y+p.h&&y+h>p.y)return false;return true;};
+  words.forEach((o,i)=>{const t=(o.c-mn)/(mx-mn||1);const size=Math.round(12+t*38);o.size=size;o.color=col(o.w);
+    ctx.font=(i<3?900:600)+' '+size+'px Fraunces, serif';const m=ctx.measureText(o.w);const w=m.width+8,h=size*1.02;
+    let ang=Math.random()*6.28,r=0,x=0,y=0,ok=false;
+    for(let k=0;k<3000;k++){x=W/2+r*Math.cos(ang)-w/2;y=H/2+r*Math.sin(ang)*0.6-h/2;if(fits(x,y,w,h)){ok=true;break;}ang+=0.35;r+=0.5;}
+    if(ok){placed.push({x:x,y:y,w:w,h:h});o.x=x;o.y=y;}});
+  words.forEach((o,i)=>{if(o.x==null)return;ctx.font=(i<3?900:600)+' '+o.size+'px Fraunces, serif';ctx.textBaseline='top';
+    ctx.fillStyle=o.color;ctx.globalAlpha=0.62+0.38*((o.size-12)/38);ctx.fillText(o.w,o.x+4,o.y);});
+  ctx.globalAlpha=1;
+})();
+
+/* 05 catalog */
+const state={q:"",room:"",sort:"id"};
+const roomsel=document.getElementById('roomsel');
+roomsel.innerHTML+=Object.keys(roomSet).sort().map(r=>'<option value="'+r+'">'+r+' ('+roomSet[r]+')</option>').join('');
+roomsel.onchange=e=>{state.room=e.target.value;render();};
+document.getElementById('sortsel').onchange=e=>{state.sort=e.target.value;render();};
+document.getElementById('search').oninput=e=>{state.q=e.target.value.toLowerCase();render();};
+
+function esc(s){return (s||"").replace(/[&\u003c>]/g,m=>({'&':'&amp;','\u003c':'&lt;','>':'&gt;'}[m]));}
+function hl(s){s=s||"";if(!state.q)return esc(s);const i=s.toLowerCase().indexOf(state.q);if(i<0)return esc(s);
+  return esc(s.slice(0,i))+'<mark>'+esc(s.slice(i,i+state.q.length))+'</mark>'+esc(s.slice(i+state.q.length));}
+
+function render(){
+  let rows=TASKS.filter(t=>{
+    if(state.room&&!t.rooms.includes(state.room))return false;
+    if(state.q){const hay=(t.name+" "+t.instr).toLowerCase();if(!hay.includes(state.q))return false;}
+    return true;});
+  if(state.sort==="dur")rows.sort((a,b)=>b.dur-a.dur);
+  else if(state.sort==="wlen")rows.sort((a,b)=>b.wlen-a.wlen);
+  else rows.sort((a,b)=>a.id-b.id);
+  document.getElementById('countLine').textContent=rows.length+' of '+TASKS.length+' tasks'+(state.room?' · '+state.room:'');
+  document.getElementById('clist').innerHTML=rows.map(t=>{
+    const pills=t.rooms.map(r=>'<span class="room-pill" style="background:'+(ROOMPAL[r]||css('--dim'))+'">'+r+'</span>').join(' ');
+    const vid=t.video?'<a class="vid" href="'+t.video+'" target="_blank">\u25B6 watch demo</a>':'';
+    return '<div class="crow">'+
+      '<div class="top-line"><span class="tid">#'+t.id+'</span><span class="tname">'+hl(t.name)+'</span>'+
+      pills+'<span class="dur-tag">'+fmtDur(t.dur)+'</span></div>'+
+      '<div class="instr">'+hl(t.instr)+'</div>'+vid+
+    '</div>';
+  }).join('');
+}
+render();
+</script>

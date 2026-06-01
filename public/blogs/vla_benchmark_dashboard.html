@@ -94,6 +94,9 @@
   .deepdive a:hover{border-color:var(--hot);transform:translateY(-2px)}
   .deepdive a .t{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
   .deepdive a .d{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:.03em;line-height:1.5}
+  .deepdive a.more{border-left-color:var(--line);border-style:dashed;opacity:.6;cursor:default}
+  .deepdive a.more:hover{transform:none;border-color:var(--line)}
+  .deepdive a.more .t{color:var(--dim)}
 </style>
 
 <div class="kicker">Simulation Manipulation Benchmarks · VLA Evaluation</div>
@@ -149,19 +152,35 @@
     </div>
   </div>
 
-  <!-- DEEP DIVES: RoboCasa365 -->
+  <!-- DEEP DIVES: per-benchmark -->
   <div class="card wide deepdive">
     <span class="tag">companion atlases</span>
-    <h2>RoboCasa365 deep dives</h2>
-    <div class="note">two visual breakdowns of the RoboCasa365 benchmark · click through for the full atlas</div>
+    <h2>Per-benchmark deep dives</h2>
+    <div class="note">benchmark-by-benchmark visual breakdowns · each links to the full atlas · more on the way</div>
     <div class="links">
       <a href="robocasa365_atomic_skills.html">
-        <span class="t">Atomic Skills Atlas →</span>
+        <span class="t">RoboCasa365 · Atomic Skills →</span>
         <span class="d">the primitive skills VLAs are drilled on — pick, place, open, press, turn …</span>
       </a>
       <a href="robocasa365_composite_tasks.html">
-        <span class="t">Composite Tasks Atlas →</span>
+        <span class="t">RoboCasa365 · Composite Tasks →</span>
         <span class="d">multi-stage kitchen tasks chained from atomic skills</span>
+      </a>
+      <a href="molmoact2_yam_dataset.html">
+        <span class="t">MolmoAct2 · BimanualYAM →</span>
+        <span class="d">what's actually in the bimanual training data — instruction &amp; object mix</span>
+      </a>
+      <a href="behavior_challenge_2025.html">
+        <span class="t">BEHAVIOR Challenge 2025 →</span>
+        <span class="d">50 long-horizon household tasks + the live leaderboard</span>
+      </a>
+      <a href="lw_benchhub_tasks.html">
+        <span class="t">LW-BenchHub →</span>
+        <span class="d">Lightwheel's aggregated cross-benchmark task atlas</span>
+      </a>
+      <a class="more" href="#" onclick="return false">
+        <span class="t">(&hellip;) more coming</span>
+        <span class="d">additional benchmark dissections are in progress</span>
       </a>
     </div>
   </div>
