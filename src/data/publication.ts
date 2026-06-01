@@ -42,7 +42,7 @@ export const publicationData: Publication[] = [
   
   {
     year: "2026",
-    conference: "NeurIPS 2025 & ARLET Workshop",
+    conference: "NeurIPS 2025",
     title: "AAWR: Real World Reinforcement Learning of Active Perception Behaviors",
     authors: "Edward S. Hu*, Jie Wang*, Xingfang Yuan*, Fiona Luo, Muyao Li, Gaspard Lambrechts, Oleh Rybkin, Dinesh Jayaraman",
     paperUrl: "https://penn-pal-lab.github.io/aawr/",
@@ -67,12 +67,12 @@ export const publicationData: Publication[] = [
   },
   {
     year: "2025",
-    conference: "GRASP Blog 2025",
+    conference: "GRASP Lab 2025",
     title: "Evaluating pi0 in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies",
     authors: "Jie Wang*, Matthew Leonard, Kostas Daniilidis, Dinesh Jayaraman, Edward S. Hu",
     paperUrl: "https://penn-pal-lab.github.io/Pi0-Experiment-in-the-Wild/",
     poster: "/files/Pi0-Experiment-in-the-Wild-Poster-v1.pdf",
-    tldr: "We vibe-check pi0 across 300 trials on various manipulation tasks, summarize the insights and our observations in this blog.",
+    tldr: "We vibe-check pi0 across 300 trials on various manipulation tasks, summarizing our insights and observations across generalist robot policies.",
     keywords: ["VLAs", "Real-World Evaluation"],
     imageUrl: "/images/pi0blog_bar_chart.png",
     featured: true,
