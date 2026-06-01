@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MolmoAct2 · BimanualYAM Training Data Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161d;
+    --surface2: #1a1e28;
+    --border: #252a38;
+    --accent: #4fffb0;
+    --accent2: #ff6b6b;
+    --accent3: #ffc947;
+    --accent4: #60a5fa;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --muted2: #94a3b8;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 3rem;
+    background: var(--surface);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .header-left h1 {
+    font-family: var(--mono);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+  }
+  .header-left p {
+    color: var(--muted2);
+    font-size: 0.875rem;
+  }
+  .header-stats {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+  }
+  .stat-pill .num {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-pill .label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* LAYOUT */
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 3rem 4rem;
+  }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .card h3 {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
+  }
+
+  /* CHARTS */
+  .chart-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  /* FAMILY TABLE */
+  .family-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+  .family-table th {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .family-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .family-table tr:hover td { background: var(--surface2); }
+  .family-table tr.has-success td { background: rgba(79,255,176,0.03); }
+  .family-table tr.has-success:hover td { background: rgba(79,255,176,0.07); }
+
+  .family-name {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent4);
+  }
+  .mono-num {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+  }
+
+  /* MINI BARS */
+  .mini-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .mini-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--accent4);
+    opacity: 0.7;
+    min-width: 2px;
+  }
+  .mini-bar-success {
+    background: var(--accent);
+  }
+
+  /* SUCCESS BADGE */
+  .success-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+  .success-badge.high { color: var(--accent); background: rgba(79,255,176,0.1); }
+  .success-badge.mid { color: var(--accent3); background: rgba(255,201,71,0.1); }
+  .success-badge.low { color: var(--accent2); background: rgba(255,107,107,0.1); }
+  .success-badge.none { color: var(--muted); background: var(--surface2); }
+
+  /* DEDUP BAR */
+  .dedup-bar {
+    width: 80px;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .dedup-fill {
+    height: 100%;
+    background: var(--accent3);
+    border-radius: 3px;
+  }
+
+  /* INSTRUCTION PILLS */
+  .instr-samples {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .instr-pill {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.78rem;
+    color: var(--muted2);
+    line-height: 1.4;
+  }
+
+  /* PAPER TASKS PANEL */
+  .paper-tasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+  }
+  .paper-task-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--muted2);
+  }
+
+  /* SCATTER */
+  .scatter-note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
+
+  /* KEY FINDING */
+  .finding-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .finding-box .tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .finding-box p {
+    font-size: 0.875rem;
+    color: var(--muted2);
+    line-height: 1.6;
+  }
+  .finding-box strong { color: var(--text); }
+
+  /* EXPAND ROWS */
+  .expand-row { display: none; }
+  .expand-row td { padding: 0 1rem 1rem; }
+  .expand-row.open { display: table-row; }
+
+  .expand-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: var(--mono);
+    padding: 0;
+    transition: color 0.15s;
+  }
+  .expand-btn:hover { color: var(--accent4); }
+
+  /* POUR WARNING */
+  .pour-warning {
+    background: rgba(255,107,107,0.07);
+    border: 1px solid rgba(255,107,107,0.3);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .pour-warning .icon { font-size: 1.25rem; flex-shrink: 0; }
+  .pour-warning p { font-size: 0.875rem; color: var(--muted2); line-height: 1.6; }
+  .pour-warning strong { color: var(--accent2); }
+
+  /* TABLE WRAPPER */
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  /* SCROLLABLE */
+  .overflow-x { overflow-x: auto; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p { font-size: 0.78rem; color: var(--muted); font-family: var(--mono); }
+
+  @media (max-width: 900px) {
+    header, main, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>MolmoAct2 · BimanualYAM Training Data</h1>
+    <p>Instruction distribution, task family coverage, and relationship to paper success rates</p>
+  </div>
+  <div class="header-stats">
+    <div class="stat-pill">
+      <span class="num">737</span>
+      <span class="label">Datasets</span>
+    </div>
+    <div class="stat-pill">
+      <span class="num">20,554</span>
+      <span class="label">Total Instructions</span>
+    </div>
+    <div class="stat-pill">
+      <span class="num">11,451</span>
+      <span class="label">Unique Instructions</span>
+    </div>
+    <div class="stat-pill">
+      <span class="num">18</span>
+      <span class="label">Task Families</span>
+    </div>
+    <div class="stat-pill">
+      <span class="num">55.7%</span>
+      <span class="label">Unique Ratio</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- KEY FINDINGS -->
+  <div style="margin: 2rem 0 1.5rem;">
+    <div class="section-title">Key Findings</div>
+    <div class="finding-box">
+      <div class="tag">Finding 01 — Data Concentration</div>
+      <p><strong>tablebuss (101 datasets, 4,177 instr) + foldclo (92 datasets, 3,678 instr) + scan (71 datasets, 2,035 instr)</strong> together account for ~48% of all instructions. The distribution is heavily long-tailed with the top 3 families dominating.</p>
+    </div>
+    <div class="finding-box" style="border-left-color: var(--accent3);">
+      <div class="tag" style="color: var(--accent3);">Finding 02 — Instruction Diversity vs Volume</div>
+      <p><strong>charging</strong> (dedup ratio 0.21) and <strong>plate-cleaning</strong> (0.23) have extremely low diversity despite high episode counts — the re-annotation pipeline generates many near-identical instructions. <strong>toy</strong> (0.92) and <strong>gro</strong> (0.87) have much richer per-episode instruction variety.</p>
+    </div>
+    <div class="finding-box" style="border-left-color: var(--accent2);">
+      <div class="tag" style="color: var(--accent2);">Finding 03 — Success Rate vs Coverage</div>
+      <p>Paper success rates (Table 19) are only reported for 5 task families. <strong>cup</strong> maps to the highest success (77% avg), consistent with high dataset count (13) and clean pick-and-place structure. <strong>tool/pegboard</strong> scores only 14% despite 20 datasets — suggesting data volume alone doesn't guarantee performance on dexterous tasks.</p>
+    </div>
+  </div>
+
+  <!-- POUR WARNING -->
+  <div class="pour-warning">
+    <div class="icon">⚠️</div>
+    <p><strong>Pour task is absent from all 737 datasets.</strong> Zero coverage of any pouring, liquid transfer, or tilting behavior in the training data. Zero-shot failure on pour task instructions is expected — the action expert has no robot demonstration pairing this instruction family to motor behaviors. This is distinct from the VLM backbone's semantic understanding of "pour."</p>
+  </div>
+
+  <!-- CHARTS ROW -->
+  <div class="section-title">Distribution Overview</div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Datasets per Task Family</h3>
+      <div class="chart-wrap" style="height: 320px;">
+        <canvas id="chartDatasets"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Instructions per Task Family (Total vs Unique)</h3>
+      <div class="chart-wrap" style="height: 320px;">
+        <canvas id="chartInstructions"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Success Rate vs Dataset Count (paper Table 19)</h3>
+      <div class="chart-wrap" style="height: 260px;">
+        <canvas id="chartScatter"></canvas>
+      </div>
+      <p class="scatter-note">Only families with paper-reported success rates shown. Bubble size = unique instruction count.</p>
+    </div>
+    <div class="card">
+      <h3>Deduplication Ratio per Family</h3>
+      <div class="chart-wrap" style="height: 260px;">
+        <canvas id="chartDedup"></canvas>
+      </div>
+      <p class="scatter-note">unique / total instructions. Low ratio = repetitive re-annotation; high = diverse.</p>
+    </div>
+  </div>
+
+  <!-- MAIN TABLE -->
+  <div class="section-title">Per-Family Detail Table</div>
+  <div class="table-wrap overflow-x">
+    <table class="family-table" id="mainTable">
+      <thead>
+        <tr>
+          <th>Family</th>
+          <th>Datasets</th>
+          <th>Total Instr</th>
+          <th>Unique Instr</th>
+          <th>Dedup Ratio</th>
+          <th>Paper Tasks (MolmoAct2 %)</th>
+          <th>Avg Success</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+</main>
+
+<footer>
+  <p>Source: allenai/MolmoAct2-BimanualYAM · tasks_all.json · Paper Table 19</p>
+  <p>737 datasets · 20,554 instructions · 18 task families</p>
+</footer>
+
+<script>
+const DATA = [{"family":"block","label":"Block Spelling","datasets":43,"total_instructions":847,"unique_instructions":685,"dedup_ratio":0.81,"paper_tasks":[],"avg_success":null,"sample_instructions":["Move the blocks to spell ROBOT using the robotic arms, ensuring each letter is correctly placed in sequence.","Move blocks to spell ICRA, adjusting positions as needed.","Move the red 'A' block to the left, then push the red 'I' block next to it, and finally place the blue '2' block beside them.","Move the blocks to form a circle on the table.","Flip the blocks to show the letters \"B\", \"I\", \"X\", and \"H\"."]},{"family":"box","label":"Pack Box","datasets":42,"total_instructions":806,"unique_instructions":669,"dedup_ratio":0.83,"paper_tasks":[],"avg_success":null,"sample_instructions":["Place blue marker, red stapler, orange cutter, and tape into box.","Place Pringles can and snacks into the black box.","Place marker, highlighter, tape, and blue object into box, then close the box.","Place markers, tape, and stapler into box, then close it.","Pick up the black marker, place it in the box, then pick up the orange box cutter and place it in the box."]},{"family":"charging","label":"Phone Charging","datasets":40,"total_instructions":761,"unique_instructions":159,"dedup_ratio":0.21,"paper_tasks":[],"avg_success":null,"sample_instructions":["Grasp charger, plug into phone, switch on socket.","Grasp USB cable, plug into phone, then switch on power socket.","Grasp the charger cable, plug it into the phone, then switch on the socket using the robot arm.","Grasp the phone with the left arm and the charger with the right arm. Plug the charger into the phone. Switch on the socket.","Grasp the phone, align the charger with the port, and plug it in. Then, move to the power strip and press the switch to turn it on."]},{"family":"clo","label":"Pack Clothes","datasets":13,"total_instructions":513,"unique_instructions":417,"dedup_ratio":0.81,"paper_tasks":[],"avg_success":null,"sample_instructions":["Place the black shirt, plaid shirt, pink shirt, and green shirt into the clear plastic container.","Place the white cloth, plaid shirt, black cloth, green cloth, and blue cloth into the container.","Place the black pants, blue jeans, and light blue jeans into the container.","Place the white cloth, plaid fabric, black cloth, blue jeans, and white shirt into the clear plastic container.","Place green, pink, black, and plaid clothes into the container sequentially."]},{"family":"cup","label":"Cup Stacking","datasets":13,"total_instructions":454,"unique_instructions":373,"dedup_ratio":0.82,"paper_tasks":[["Cup Stacking",54.0],["Cup Storing",100.0]],"avg_success":77.0,"sample_instructions":["Place bowls, cups, fork, and spoon into container.","Place the gray bowl, yellow bowl, white bowl, yellow cup, white cup, gray cup, spoon, and fork into the container.","Place blue bowl, yellow bowl, white bowl, pink cup, yellow cup, green cup, and blue cup into container.","Place white bowl, yellow bowl, pink cup, yellow cup, blue cup, and blue bowls in container.","Place blue, beige, yellow, and green bowls and cups into container."]},{"family":"cut","label":"Cutlery Sort","datasets":24,"total_instructions":395,"unique_instructions":250,"dedup_ratio":0.63,"paper_tasks":[],"avg_success":null,"sample_instructions":["Place forks into the black basket and spoons into the white basket.","Pick up white plastic forks and place them in the black basket. Then, pick up white plastic spoons and place them in the white basket.","Pick up white plastic spoons and forks, place them into the designated containers.","Pick up spoons and forks, place them neatly into the white tray compartments.","Place spoons, forks, and knife into the white tray's compartments."]},{"family":"foldclo","label":"Fold Clothes","datasets":92,"total_instructions":3678,"unique_instructions":1811,"dedup_ratio":0.49,"paper_tasks":[],"avg_success":null,"sample_instructions":["Fold the orange shirt neatly and place it into the container.","Spread the orange shirt flat on the table, fold the sleeves inward, fold the bottom up, and place it on the pile.","Pick up blue shirt, fold it neatly, place on table.","Spread the light blue shirt flat, fold sleeves inward, fold bottom up, then fold in half.","Fold the black pants neatly on the table using both arms."]},{"family":"gro","label":"Pack Groceries","datasets":12,"total_instructions":371,"unique_instructions":323,"dedup_ratio":0.87,"paper_tasks":[],"avg_success":null,"sample_instructions":["Place the green coffee bag, orange snack, and blue box into the basket.","Place the green bag, brown bag, blue packet, orange pasta, green bottle, and white packets into the basket.","Place the green bottle, crumpled paper, and snack packages into the gray basket.","Place the green-lidded jar, crumpled bag, pasta pack, and tissue pack into the gray basket.","Place the green jar, can, and blue box into the basket."]},{"family":"med","label":"Pack Medication","datasets":24,"total_instructions":443,"unique_instructions":341,"dedup_ratio":0.77,"paper_tasks":[["Store Test Tube",67.0],["Prepare Pipette",33.0]],"avg_success":50.0,"sample_instructions":["Place the blue box, white box, red box, green box, and black bottle into the transparent container.","Place the blue box, white box, green box, red box, and bottle into the container.","Place the blue box, white box, red box, green box, and brown bottle into the clear plastic container.","Place the blue box, white tube, red packet, green box, and black bottle into the plastic container.","Place the white bottle, brown bottle, Panadol box, yellow container, and orange tube into the plastic container."]},{"family":"plate-cleaning","label":"Plate Cleaning","datasets":82,"total_instructions":1774,"unique_instructions":414,"dedup_ratio":0.23,"paper_tasks":[],"avg_success":null,"sample_instructions":["Pick up sponge, scrub each plate, rinse, stack clean plates on tray.","Use sponge to scrub red stains off plates, rinse them, and stack clean plates neatly aside.","Pick up sponge, clean each plate thoroughly, stack cleaned plates neatly aside.","Pick up sponge, scrub plates, rinse, and stack them neatly on the tray.","Pick up sponge, scrub yellow plate, rinse, stack. Repeat for green plate. Place sponge back."]},{"family":"scan","label":"Scan Groceries","datasets":71,"total_instructions":2035,"unique_instructions":911,"dedup_ratio":0.45,"paper_tasks":[],"avg_success":null,"sample_instructions":["Pick up the green box, move it to the scanner, and scan the barcode.","Pick up the orange snack bag, scan its barcode, then place it in the basket. Repeat for the green and white packet, scanning each before placing in the basket.","Pick up the green package and scan its barcode with the scanner.","Pick up the cup noodles, scan the barcode, and place it back on the table.","Pick up the green jar, place it on the table, then scan its barcode."]},{"family":"scoop","label":"Scoop Items","datasets":29,"total_instructions":451,"unique_instructions":216,"dedup_ratio":0.48,"paper_tasks":[],"avg_success":null,"sample_instructions":["Grasp yellow scoop, scoop soybeans from container, pour into bowl on scale, adjust until 50g, place scoop back.","Use the red scoop to transfer chickpeas from the container into the bowl on the scale until it reads 50g.","Use red scoop to transfer beans into bowl until scale reads 50 grams.","Use the pink scoop to transfer black beans from the container into the bowl on the scale until it reaches 150g.","Use the yellow scoop to transfer beans into the bowl until the scale reads 50 grams."]},{"family":"tablebuss","label":"Table Bussing","datasets":101,"total_instructions":4177,"unique_instructions":2837,"dedup_ratio":0.68,"paper_tasks":[["Candy Storing",40.5]],"avg_success":40.5,"sample_instructions":["Place the yellow plate, white cup, and blue bowl into the dishwasher rack.","Place the red packet and white object in the clear bin, then load the dishes into the dishwasher.","Place chopsticks, cup, bowl, and plate into dishwasher rack.","Place cups, plates, and bowls in dishwasher rack, discard waste in bins.","Place cups and plates in the dishwasher, dispose of trash, and put food waste in the bin."]},{"family":"toilet","label":"Pack Toiletries","datasets":24,"total_instructions":619,"unique_instructions":498,"dedup_ratio":0.8,"paper_tasks":[],"avg_success":null,"sample_instructions":["Place mouthwash, lotion, tissues, toothpaste, toothbrush, and razor into the box.","Place the bottle, tube, toothbrush, toothpaste, razor, and soap into the box.","Place mouthwash, soap, toothpaste, toothbrush, and razor in the box.","Place the white bottle, black bottle, orange bottle, small jar, and white box into the container.","Place the white bottle, black bottle, orange tube, small jar, and white box into the clear plastic container."]},{"family":"tool","label":"Pack Tools","datasets":20,"total_instructions":476,"unique_instructions":409,"dedup_ratio":0.86,"paper_tasks":[["Pegboard",14.0]],"avg_success":14.0,"sample_instructions":["Place the screwdriver, pliers, wrench, and hammer into the plastic container.","Pick up pliers, wrench, screwdrivers, and wire cutters, then place them into the container.","Place the white plastic forks into the green basket and the white plastic spoons into the white basket.","Pick up pliers with orange handles and place them in the container. Then, pick up the red-handled pliers and place them in the container.","Place the scraper, screwdriver, pliers, and brush into the container."]},{"family":"toy","label":"Pack Toys","datasets":18,"total_instructions":539,"unique_instructions":495,"dedup_ratio":0.92,"paper_tasks":[["Store Toys",32.0]],"avg_success":32.0,"sample_instructions":["Place the red toy truck, colorful cube, black wheel, blue and yellow toy, and red ball into the box.","Place the orange ball, blue truck, and pink toy into the box.","Place the red truck, teddy bear, yellow duck, and balls into the box.","Place the toy truck, plush toy, and ball into the pink box.","Place the plush toy, rattle, rubber duck, orange ball, and green ball into the box."]},{"family":"untangle","label":"Untangle Cable","datasets":74,"total_instructions":1726,"unique_instructions":442,"dedup_ratio":0.26,"paper_tasks":[],"avg_success":null,"sample_instructions":["Grasp black cable, pull apart, then grasp white cable and untangle both.","Grasp tangled cable, pull ends apart, untangle, and place neatly on table.","Grasp tangled black cables, pull apart loops, separate individual wires, and lay them out neatly on the table.","Grasp tangled cables, pull apart, and straighten them out on the table.","Untangle the black and white cables by grasping and pulling them apart, then separate and organize each cable individually on the table."]},{"family":"yam","label":"YAM Tasks","datasets":15,"total_instructions":489,"unique_instructions":227,"dedup_ratio":0.46,"paper_tasks":[["Linearbot",64.0]],"avg_success":64.0,"sample_instructions":["Grasp the green cloth, fold it in half, then fold again. Place neatly on the stack.","Pick up blue cloth, fold it, and place on stack.","Pick up the green cloth, fold it in half, then fold again.","Fold the purple cloth neatly on the table using both robotic arms.","Grasp the green cloth, fold it in half, then fold again, and place it on the blue cloth."]}];
+
+const COLORS = [
+  '#4fffb0','#60a5fa','#ffc947','#ff6b6b','#c084fc','#34d399','#fb923c',
+  '#f472b6','#a78bfa','#38bdf8','#86efac','#fcd34d','#f87171','#67e8f9',
+  '#d8b4fe','#6ee7b7','#fdba74','#e879f9'
+];
+
+const sorted = [...DATA].sort((a,b) => b.total_instructions - a.total_instructions);
+const families = sorted.map(d => d.label);
+const maxDs = Math.max(...DATA.map(d => d.datasets));
+const maxInstr = Math.max(...DATA.map(d => d.total_instructions));
+
+// Chart 1: Datasets bar
+new Chart(document.getElementById('chartDatasets'), {
+  type: 'bar',
+  data: {
+    labels: families,
+    datasets: [{
+      data: sorted.map(d => d.datasets),
+      backgroundColor: sorted.map((_, i) => COLORS[i % COLORS.length] + 'cc'),
+      borderRadius: 4,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: {
+      callbacks: { label: ctx => ` ${ctx.raw} datasets` }
+    }},
+    scales: {
+      x: { grid: { color: '#252a38' }, ticks: { color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } } },
+      y: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'IBM Plex Mono', size: 10 } } }
+    }
+  }
+});
+
+// Chart 2: Total vs Unique instructions
+new Chart(document.getElementById('chartInstructions'), {
+  type: 'bar',
+  data: {
+    labels: families,
+    datasets: [
+      { label: 'Total', data: sorted.map(d => d.total_instructions), backgroundColor: '#60a5fa44', borderRadius: 3, borderSkipped: false },
+      { label: 'Unique', data: sorted.map(d => d.unique_instructions), backgroundColor: '#4fffb0aa', borderRadius: 3, borderSkipped: false }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: '#94a3b8', font: { family: 'IBM Plex Mono', size: 10 } } } },
+    scales: {
+      x: { grid: { color: '#252a38' }, ticks: { color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } } },
+      y: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'IBM Plex Mono', size: 10 } } }
+    }
+  }
+});
+
+// Chart 3: Scatter — success vs datasets
+const withSuccess = DATA.filter(d => d.avg_success !== null);
+new Chart(document.getElementById('chartScatter'), {
+  type: 'bubble',
+  data: {
+    datasets: withSuccess.map((d, i) => ({
+      label: d.label,
+      data: [{ x: d.datasets, y: d.avg_success, r: Math.sqrt(d.unique_instructions) / 4 }],
+      backgroundColor: COLORS[i * 3 % COLORS.length] + 'bb',
+      borderColor: COLORS[i * 3 % COLORS.length],
+      borderWidth: 1.5,
+    }))
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: '#94a3b8', font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 10 } },
+      tooltip: { callbacks: {
+        label: ctx => `${ctx.dataset.label}: ${ctx.raw.y}% success, ${ctx.raw.x} datasets`
+      }}
+    },
+    scales: {
+      x: { title: { display: true, text: 'Dataset Count', color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } }, grid: { color: '#252a38' }, ticks: { color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } } },
+      y: { title: { display: true, text: 'Avg Success Rate (%)', color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } }, grid: { color: '#252a38' }, ticks: { color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } }, min: 0, max: 105 }
+    }
+  }
+});
+
+// Chart 4: Dedup ratio
+const dedupSorted = [...DATA].sort((a,b) => a.dedup_ratio - b.dedup_ratio);
+new Chart(document.getElementById('chartDedup'), {
+  type: 'bar',
+  data: {
+    labels: dedupSorted.map(d => d.label),
+    datasets: [{
+      data: dedupSorted.map(d => d.dedup_ratio),
+      backgroundColor: dedupSorted.map(d => d.dedup_ratio < 0.3 ? '#ff6b6baa' : d.dedup_ratio < 0.6 ? '#ffc947aa' : '#4fffb0aa'),
+      borderRadius: 4, borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: {
+      callbacks: { label: ctx => ` ${(ctx.raw*100).toFixed(0)}% unique` }
+    }},
+    scales: {
+      x: { min: 0, max: 1, grid: { color: '#252a38' }, ticks: { color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 }, callback: v => (v*100)+'%' } },
+      y: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'IBM Plex Mono', size: 10 } } }
+    }
+  }
+});
+
+// BUILD TABLE
+const tbody = document.getElementById('tableBody');
+const bySorted = [...DATA].sort((a,b) => b.total_instructions - a.total_instructions);
+
+bySorted.forEach((d, i) => {
+  const hasSuccess = d.avg_success !== null;
+  const successClass = !hasSuccess ? 'none' : d.avg_success >= 60 ? 'high' : d.avg_success >= 35 ? 'mid' : 'low';
+  const successText = hasSuccess ? d.avg_success.toFixed(1) + '%' : 'N/A';
+  const barW = Math.round((d.datasets / maxDs) * 120);
+  const instrW = Math.round((d.total_instructions / maxInstr) * 120);
+  const color = COLORS[i % COLORS.length];
+
+  const tr = document.createElement('tr');
+  if (hasSuccess) tr.classList.add('has-success');
+  tr.innerHTML = `
+    <td><span class="family-name">${d.family}</span><br><span style="font-size:0.75rem;color:var(--muted)">${d.label}</span></td>
+    <td>
+      <div class="mini-bar-wrap">
+        <div class="mini-bar" style="width:${barW}px;background:${color}"></div>
+        <span class="mono-num">${d.datasets}</span>
+      </div>
+    </td>
+    <td>
+      <div class="mini-bar-wrap">
+        <div class="mini-bar" style="width:${instrW}px;background:${color}"></div>
+        <span class="mono-num">${d.total_instructions.toLocaleString()}</span>
+      </div>
+    </td>
+    <td><span class="mono-num">${d.unique_instructions.toLocaleString()}</span></td>
+    <td>
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <div class="dedup-bar"><div class="dedup-fill" style="width:${d.dedup_ratio*100}%"></div></div>
+        <span class="mono-num" style="font-size:0.75rem">${(d.dedup_ratio*100).toFixed(0)}%</span>
+      </div>
+    </td>
+    <td>
+      ${d.paper_tasks.length > 0
+        ? d.paper_tasks.map(([t, s]) => `<span class="paper-task-tag">${t}: ${s}%</span>`).join(' ')
+        : '<span style="color:var(--muted);font-size:0.75rem">—</span>'
+      }
+    </td>
+    <td><span class="success-badge ${successClass}">${successText}</span></td>
+    <td><button class="expand-btn" onclick="toggleExpand(${i})">▸ samples</button></td>
+  `;
+
+  const expandTr = document.createElement('tr');
+  expandTr.className = 'expand-row';
+  expandTr.id = `expand-${i}`;
+  expandTr.innerHTML = `
+    <td colspan="8">
+      <div class="instr-samples">
+        ${d.sample_instructions.map(s => `<div class="instr-pill">${s}</div>`).join('')}
+      </div>
+    </td>
+  `;
+
+  tbody.appendChild(tr);
+  tbody.appendChild(expandTr);
+});
+
+function toggleExpand(i) {
+  const row = document.getElementById(`expand-${i}`);
+  const btn = row.previousElementSibling.querySelector('.expand-btn');
+  if (row.classList.contains('open')) {
+    row.classList.remove('open');
+    btn.textContent = '▸ samples';
+  } else {
+    row.classList.add('open');
+    btn.textContent = '▾ samples';
+  }
+}
+</script>
+</body>
+</html>
