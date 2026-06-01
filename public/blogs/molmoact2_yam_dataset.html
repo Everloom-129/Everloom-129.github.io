@@ -439,6 +439,31 @@
     </div>
   </div>
 
+  <!-- WORD CLOUDS -->
+  <div class="section-title">Instruction Vocabulary Analysis</div>
+
+  <div class="finding-box" style="border-left-color: var(--accent4); margin-bottom: 1.5rem;">
+    <div class="tag" style="color: var(--accent4);">Finding 04 — Vocabulary Structure</div>
+    <p>Top tokens across all instructions are <strong>color words</strong> (blue, white, black, green, yellow) and <strong>object nouns</strong> (box, bowl, cup, plate). Instruction diversity is driven almost entirely by object-attribute variation, not task-type variation. The action verbs are a small, repetitive set: place, pick up, fold, grasp, put. <strong>"Pour" and related liquid-transfer vocabulary are entirely absent</strong> — consistent with zero-shot failure on pour tasks.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom: 2rem;">
+    <div class="card">
+      <h3>All Instructions — Word Cloud</h3>
+      <img src="images/m2_yam_all_wordcloud.png"
+           alt="Word cloud of all 20,554 instructions in BimanualYAM"
+           style="width:100%;border-radius:8px;display:block;">
+      <p class="scatter-note" style="margin-top:0.75rem;">All 20,554 instructions. Color and object words dominate; task verbs are a narrow, repetitive set.</p>
+    </div>
+    <div class="card">
+      <h3>Unique Instructions Only — Word Cloud</h3>
+      <img src="images/m2_yam_unique_wordcloud.png"
+           alt="Word cloud of 11,451 unique instructions in BimanualYAM"
+           style="width:100%;border-radius:8px;display:block;">
+      <p class="scatter-note" style="margin-top:0.75rem;">Deduplicated to unique instructions. Distribution tightens further — relative weight of rare action verbs drops when re-annotation copies are removed.</p>
+    </div>
+  </div>
+
   <!-- MAIN TABLE -->
   <div class="section-title">Per-Family Detail Table</div>
   <div class="table-wrap overflow-x">
