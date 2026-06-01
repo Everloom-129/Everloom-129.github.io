@@ -7,7 +7,7 @@ export interface News {
 
 export const newsData: News[] = [
   {
-    date: "June 2026",
+    date: "May 2026",
     title: "TipTop ranks #1 on the MolmoSpaces leaderboard",
     description: "Our TipTop entry reached first place on the MolmoSpaces leaderboard.",
     link: "https://molmospaces.allen.ai/leaderboard",
