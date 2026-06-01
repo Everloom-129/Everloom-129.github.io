@@ -126,8 +126,8 @@ export default function BlogPage() {
     {
       title: "EAS5450: Engineering Entrepreneurship",
       description:
-        "Notes from UPenn's engineering entrepreneurship course — covering venture formation, go-to-market strategy, and what it takes to turn deep-tech research into a company.",
-      url: "https://github.com/Everloom-129/EAS5450-Eng_Entrepreneurship",
+        "Notes from UPenn's engineering entrepreneurship course, covering venture formation, go-to-market strategy, and what it takes to turn deep-tech research into a company.",
+      url: "https://everloom-129.github.io/EAS5450-Eng_Entrepreneurship/",
       tag: "Course Notes",
       date: "2025",
     },
@@ -139,6 +139,7 @@ export default function BlogPage() {
     { label: "MolmoAct2 · BimanualYAM", url: "/blogs/molmoact2_yam_dataset.html" },
     { label: "BEHAVIOR Challenge 2025", url: "/blogs/behavior_challenge_2025.html" },
     { label: "LW-BenchHub", url: "/blogs/lw_benchhub_tasks.html" },
+    { label: "RoboTwin 2.0", url: "/blogs/robotwin_tasks.html" },
   ];
 
   const misc: WritingEntry[] = [
@@ -165,17 +166,6 @@ export default function BlogPage() {
         </div>
 
         <div className="max-w-2xl">
-          <Section
-            title="Essays"
-            description="Long-form writing on research, AI, and ideas."
-            entries={essays}
-          />
-          <Section
-            title="Research Notes"
-            description="Blog posts and reports from research projects."
-            entries={researchNotes}
-          />
-
           {/* Benchmark Atlas — dashboard lead + per-benchmark tabs */}
           <section className="mb-12">
             <div className="mb-4">
@@ -224,6 +214,16 @@ export default function BlogPage() {
             </div>
           </section>
 
+          <Section
+            title="Essays"
+            description="Long-form writing on research, AI, and ideas."
+            entries={essays}
+          />
+          <Section
+            title="Research Notes"
+            description="Blog posts and reports from research projects."
+            entries={researchNotes}
+          />
           <Section
             title="Course Notes"
             description="Reading logs, reproductions, and reflections from graduate courses."
