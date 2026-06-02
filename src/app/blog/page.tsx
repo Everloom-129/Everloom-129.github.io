@@ -205,6 +205,32 @@ export default function BlogPage() {
                 GitHub
               </a>
             </div>
+
+            {/* Dataset deep-dive subsection */}
+            <div className="mt-8 pl-4 border-l-2 border-zinc-100">
+              <h3 className="font-serif text-[11px] tracking-widest uppercase text-zinc-400 mb-1">
+                Dataset Deep-Dive
+              </h3>
+              <a
+                href="/blogs/molmoact2_yam_dataset.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start justify-between gap-4 py-2 cursor-pointer"
+              >
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-serif text-sm text-zinc-900 leading-snug mb-1 group-hover:text-zinc-500 transition-colors duration-200">
+                    MolmoAct2 · BimanualYAM — Training Data Analysis
+                  </h4>
+                  <p className="text-xs text-zinc-500 leading-relaxed">
+                    What&apos;s actually in the bimanual training data — instruction word clouds and the object &amp; skill mix.
+                  </p>
+                </div>
+                <ArrowUpRight
+                  size={14}
+                  className="flex-shrink-0 text-zinc-300 group-hover:text-zinc-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 mt-0.5"
+                />
+              </a>
+            </div>
           </section>
 
           <Section
