@@ -12,6 +12,8 @@ npm run lint     # ESLint check
 
 There are no tests. The site is deployed as a GitHub Pages static export — `next build` produces the `out/` directory.
 
+**Node 18+ is required** (Next.js 15). If the system default is older, install a local Node 20 and prefix commands with it on `PATH`.
+
 ## Architecture
 
 Next.js 15 App Router site configured for **static export** (`output: "export"` in `next.config.ts`). This means no server-side features: no dynamic routes that require a server, no API routes, no Next.js image optimization (images use `unoptimized: true`).
@@ -36,9 +38,13 @@ All personal content is defined as TypeScript data files — **editing these is 
 - `/` (`src/app/page.tsx`) — homepage: profile sidebar + about/news/selected research/education/experience
 - `/research` — all publications grouped by year; blog-type entries separated at bottom
 - `/projects` — portfolio cards from `portfolioData`
-- `/blog` — writing aggregator pulling blog publications + hardcoded course/misc entries
+- `/blog` — writing aggregator: a leading **Benchmark Atlas** section (SimBench project link + a MolmoAct2/YAM "Dataset Deep-Dive" subsection), then blog publications + hardcoded essay/course/misc entries. The Benchmark Atlas content is hardcoded JSX in `src/app/blog/page.tsx`, not data-driven.
 
 The `Navbar` component is a `"use client"` component (needs `usePathname`); all pages themselves are server components.
+
+### Static blog pages in `public/blogs/`
+
+Standalone hand-authored HTML lives in `public/blogs/*.html`. Next.js copies everything under `public/` verbatim to the export root, so these are served directly at `https://everloom-129.github.io/blogs/{name}.html` — independent of the React pages, no routing needed. Link to them from React with root-relative paths (`/blogs/{name}.html`). Drop a new `.html` file in to publish another one. (Most of the former VLA-benchmark dashboards now live in the separate [SimBench](https://github.com/Everloom-129/SimBench) repo; `molmoact2_yam_dataset.html` remains here.)
 
 ### Layout details
 

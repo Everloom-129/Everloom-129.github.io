@@ -5,8 +5,11 @@ V2: 08/13/2024
 V3: 02/05/2025
 V4: 02/21/2025
 V5: 08/09/2025
+V6: 06/02/2026
 
 Website is being updated!
+
+Built with Next.js 15 (App Router, static export to `out/`). Content lives in `src/data/*.ts`; standalone HTML write-ups live in `public/blogs/*.html` and are served at `/blogs/{name}.html`. See `CLAUDE.md` for architecture notes.
 
 
 Website preview: https://everloom-129.github.io/
