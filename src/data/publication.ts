@@ -4,6 +4,7 @@ export interface Publication {
   title: string;
   authors: string;
   paperUrl?: string;
+  arxivUrl?: string;
   codeUrl?: string;
   poster?: string;
   bibtex?: string;
@@ -19,9 +20,10 @@ export const publicationData: Publication[] = [
   {
     year: "2026",
     conference: "Under Review",
-    title: "TiPToP: A Modular Planning-Based Robot Manipulation System",
+    title: "TiPToP: A Modular Open-Vocabulary Planning System for Robotic Manipulation",
     authors: "William Shen, Nishanth Kumar, Sahit Chintalapudi, Jie Wang, Christopher Watson, Edward S. Hu, Jing Cao, Dinesh Jayaraman, Leslie Pack Kaelbling, Tomás Lozano-Pérez",
-    paperUrl: "https://tiptop.fly.dev/",
+    paperUrl: "https://tiptop-robot.github.io/",
+    arxivUrl: "https://arxiv.org/abs/2603.09971",
     codeUrl: "https://github.com/tiptop-robot/tiptop",
     tldr: "We propose a planning-based robotics system that solves complex real-world manipulation tasks directly from raw pixels and natural-language commands. Validated 'in-the-wild' at GRASP Lab.",
     keywords: ["TAMP", "VLAs", "Evaluation"],

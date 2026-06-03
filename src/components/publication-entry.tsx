@@ -108,6 +108,7 @@ export function PublicationEntry({ publication }: { publication: Publication }) 
 
         <div className="flex flex-wrap gap-2 mt-3">
           {publication.paperUrl && <LinkPill href={publication.paperUrl} label="Paper" />}
+          {publication.arxivUrl && <LinkPill href={publication.arxivUrl} label="arXiv" />}
           {publication.codeUrl && <LinkPill href={publication.codeUrl} label="Code" />}
           {publication.poster && <LinkPill href={publication.poster} label="Poster" />}
           {publication.bibtex && <LinkPill href={publication.bibtex} label="BibTeX" />}
